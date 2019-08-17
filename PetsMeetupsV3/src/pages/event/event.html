@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Add Event</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label>Event Name</ion-label>
+      <ion-input [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Event Location</ion-label>
+      <ion-input [(ngModel)]="location"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Event Notes</ion-label>
+      <ion-input [(ngModel)]="notes"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Start Date</ion-label>
+      <ion-datetime id="startDate" [(ngModel)]="startDate" placeholder="Select Date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>End Date</ion-label>
+      <ion-datetime [(ngModel)]="endDate" placeholder="Select Date"></ion-datetime>
+    </ion-item>
+  </ion-list>
+
+  <div text-right>
+    <button ion-button (click)="createEvent()">Create Event</button>
+  </div>
+</ion-content>
