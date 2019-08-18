@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Calendar } from '@ionic-native/calendar';
 
 /**
@@ -24,13 +24,14 @@ export class EventPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private calendar: Calendar
+    private calendar: Calendar,
+    private toastController: ToastController
   ) {
     this.title = 'Pet Meetup';
     this.location = 'The Fire Nation';
     this.notes = 'Bring Zuzu';
-    this.startDate = new Date().toISOString();
-    this.endDate = new Date().toISOString();
+    this.startDate = new Date();
+    this.endDate = new Date();
   }
 
   ionViewDidLoad() {
@@ -46,6 +47,18 @@ export class EventPage {
         new Date(this.startDate),
         new Date(this.endDate)
       )
-      .then(msg => console.log(msg), err => console.log(err));
+      .then(
+        msg => this.presentToast('Event saved to Calendar!'),
+        err => this.presentToast('Oops! Something went wrong!')
+      );
+  }
+
+  async presentToast(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000
+    });
+
+    toast.present();
   }
 }

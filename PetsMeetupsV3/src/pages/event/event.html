@@ -23,15 +23,12 @@
     </ion-item>
     <ion-item>
       <ion-label>Start Date</ion-label>
-      <ion-datetime id="startDate" [(ngModel)]="startDate" placeholder="Select Date"></ion-datetime>
+      <ion-datetime [(ngModel)]="startDate" placeholder="Select Date"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>End Date</ion-label>
       <ion-datetime [(ngModel)]="endDate" placeholder="Select Date"></ion-datetime>
     </ion-item>
   </ion-list>
-
-  <div text-right>
-    <button ion-button (click)="createEvent()">Create Event</button>
-  </div>
+  <button class="full-width-button" ion-button (click)="createEvent()">Create Event</button>
 </ion-content>
