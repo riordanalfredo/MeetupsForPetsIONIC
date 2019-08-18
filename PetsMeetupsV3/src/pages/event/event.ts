@@ -27,11 +27,13 @@ export class EventPage {
     private calendar: Calendar,
     private toastController: ToastController
   ) {
+    let timeZoneOffset = new Date().getTimezoneOffset() * 60000;
+
     this.title = 'Pet Meetup';
     this.location = 'The Fire Nation';
     this.notes = 'Bring Zuzu';
-    this.startDate = new Date();
-    this.endDate = new Date();
+    this.startDate = new Date(Date.now() - timeZoneOffset).toISOString();
+    this.endDate = new Date(Date.now() - timeZoneOffset).toISOString();
   }
 
   ionViewDidLoad() {
