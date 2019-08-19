@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts/ngx';
+import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
 
 /**
  * Generated class for the ContactPage page.
@@ -18,8 +18,8 @@ import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/cont
 export class ContactPage {
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     private contacts: Contacts,
     private sanitizer: DomSanitizer) {}
 
@@ -43,7 +43,7 @@ export class ContactPage {
             }
             this.contactList.push(contact);
           }
-        }      
+        }
     });
   }
 
@@ -58,9 +58,9 @@ export class ContactPage {
     );
   }
 
-  ionViewDidLoad() {    
+  ionViewDidLoad() {
     console.log('ionViewDidLoad ContactPage');
   }
-  
+
 
 }
