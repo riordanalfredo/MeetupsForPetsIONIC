@@ -9,33 +9,19 @@ import { ContactPage } from '../pages/contact/contact';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts/ngx';
-
+import { Calendar } from '@ionic-native/calendar';
+import { EventPage } from '../pages/event/event';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    ListPage,
-    ContactPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-  ],
+  declarations: [MyApp, HomePage, ListPage, EventPage],
+  imports: [BrowserModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    ListPage,
-    ContactPage
-  ],
+  entryComponents: [MyApp, HomePage, ListPage, EventPage],
   providers: [
     StatusBar,
     SplashScreen,
-    Contacts, 
-    Contact, 
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Calendar
   ]
 })
 export class AppModule {}
