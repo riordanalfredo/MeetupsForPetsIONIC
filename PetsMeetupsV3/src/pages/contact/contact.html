@@ -11,20 +11,16 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        {{contact.name}}
-      </ion-col>
-      <ion-col>
-        ion-col
-      </ion-col>
-      <ion-col>
-        ion-col
-      </ion-col>
-      <ion-col>
-        ion-col
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <button ion-button (click)="getContacts()">getContacts</button>
+  <button ion-button (click)="addContact()">addContact</button>
+
+  <ion-list>
+    <ion-item *ngFor="let contact of contactList">
+      <ion-avatar *ngIf="contact.image" item-start>
+        <img [src]="contact.image">
+      </ion-avatar>
+      {{contact.name}}
+      <p>{{contact.number}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
