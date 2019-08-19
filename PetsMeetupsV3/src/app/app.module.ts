@@ -9,18 +9,21 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Calendar } from '@ionic-native/calendar';
+import { SMS } from '@ionic-native/sms';
 import { EventPage } from '../pages/event/event';
+import { MessagePage } from '../pages/message/message';
 
 @NgModule({
-  declarations: [MyApp, HomePage, ListPage, EventPage],
+  declarations: [MyApp, HomePage, ListPage, EventPage, MessagePage],
   imports: [BrowserModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, ListPage, EventPage],
+  entryComponents: [MyApp, HomePage, ListPage, EventPage, MessagePage],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    Calendar
+    Calendar,
+    SMS
   ]
 })
 export class AppModule {}
