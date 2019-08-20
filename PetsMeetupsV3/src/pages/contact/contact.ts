@@ -11,7 +11,6 @@ import {FormBuilder, FormGroup, Validators, AbstractControl, } from '@angular/fo
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html',
@@ -64,7 +63,7 @@ export class ContactPage {
             }
             this.contactList.push(contact);
           }
-        }      
+        }
     })
   }
 
