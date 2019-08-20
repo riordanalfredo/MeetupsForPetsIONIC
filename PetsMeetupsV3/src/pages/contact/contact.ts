@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
+import {FormBuilder, FormGroup, Validators, AbstractControl, } from '@angular/forms';
 
 /**
  * Generated class for the ContactPage page.
@@ -18,11 +19,30 @@ import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/cont
 
 export class ContactPage {
 
+  formGroup: FormGroup;
+  petName: AbstractControl;
+  ownerName: AbstractControl;
+  phoneNumber: AbstractControl;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public formBuilder: FormBuilder,
     private contacts: Contacts,
-    private sanitizer: DomSanitizer) {}
+    private sanitizer: DomSanitizer
+    ) {
+      this.getContacts();
+
+      this.formGroup = formBuilder.group({
+        petName: ['', Validators.required],
+        ownerName: ['', Validators.required],
+        phoneNumber: ['', Validators.required]
+      });
+
+      this.petName = this.formGroup.controls['petName'];
+      this.ownerName = this.formGroup.controls['ownerName'];
+      this.phoneNumber = this.formGroup.controls['phoneNumber'];
+    }
 
   contactList = [];
   getContacts(): void {
@@ -50,16 +70,18 @@ export class ContactPage {
 
   addContact(): void {
     let contact: Contact = this.contacts.create();
-    let contactName = new ContactName(null, 'Smith', 'John');
-    console.log(contact);
-    console.log(contactName);
-    contact.name = contactName;
-    let number = new ContactField('mobile', '6471234567');
+    let ownerName = this.formGroup.value.ownerName;
+    let petName = this.formGroup.value.petName;
+    contact.name = new ContactName(null, petName.toUpperCase(), `${ownerName}'s pet`);
+    let number = new ContactField('mobile', this.formGroup.value.phoneNumber);
     contact.phoneNumbers = [number];
     contact.save().then(
       () => console.log('Contact saved!', contact),
       (error: any) => console.error('Error saving contact.', error)
     );
+    //refresh after submit
+    this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    this.getContacts();
   }
 
   ionViewDidLoad() {
