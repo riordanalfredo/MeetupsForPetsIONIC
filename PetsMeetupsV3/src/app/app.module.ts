@@ -12,32 +12,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Calendar } from '@ionic-native/calendar';
 import { Contacts } from '@ionic-native/contacts';
-import { ContactPageModule } from '../pages/contact/contact.module';
-import { EventPageModule } from '../pages/event/event.module';
-
 
 @NgModule({
-  declarations: [
-    MyApp, 
-    HomePage, 
-    ListPage, 
-    //EventPage, 
-    //ContactPage
-  ],
-  imports: [
-    BrowserModule, 
-    IonicModule.forRoot(MyApp),
-    EventPageModule,
-    ContactPageModule
-  ],
+  declarations: [MyApp, HomePage, ListPage, EventPage, ContactPage],
+  imports: [BrowserModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp, 
-    HomePage, 
-    ListPage, 
-    EventPage, 
-    ContactPage
-  ],
+  entryComponents: [MyApp, HomePage, ListPage, EventPage, ContactPage],
   providers: [
     StatusBar,
     SplashScreen,

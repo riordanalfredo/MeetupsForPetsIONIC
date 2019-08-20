@@ -19,8 +19,8 @@ import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/cont
 export class ContactPage {
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     private contacts: Contacts,
     private sanitizer: DomSanitizer) {}
 
@@ -62,9 +62,9 @@ export class ContactPage {
     );
   }
 
-  ionViewDidLoad() {    
+  ionViewDidLoad() {
     console.log('ionViewDidLoad ContactPage');
   }
-  
+
 
 }
