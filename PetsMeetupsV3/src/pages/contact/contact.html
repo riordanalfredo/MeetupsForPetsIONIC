@@ -1,0 +1,69 @@
+<!--
+  Generated template for the ContactPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Contacts</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form [formGroup] = "formGroup" (ngSubmit)="addContact()">
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          Pet's Name
+        </ion-label>
+        <ion-input type="text" formControlName="petName"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="petName.hasError('required') && petName.touched">
+        <ion-label color="danger">
+          *Pet's name is required
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          Owner's Name
+        </ion-label>
+        <ion-input type="text" formControlName="ownerName"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="ownerName.hasError('required') && ownerName.touched">
+        <ion-label color="danger">
+          *Owner's name is required
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          Phone Number
+        </ion-label>
+        <ion-input type="tel" formControlName="phoneNumber"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="phoneNumber.hasError('required') && phoneNumber.touched">
+        <ion-label color="danger">
+          *Phone number is required
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <button ion-button type="submit">Add Contact</button>
+  </form>
+
+  <ion-list>
+      <ion-item *ngFor="let contact of contactList">
+        <ion-avatar *ngIf="contact.image" item-start>
+          <img [src]="contact.image">
+        </ion-avatar> {{contact.name}}
+        <p>{{contact.number}}</p>
+      </ion-item>
+    </ion-list>  
+</ion-content>
