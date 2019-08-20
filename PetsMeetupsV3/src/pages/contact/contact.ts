@@ -1,7 +1,7 @@
-import { Component} from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts/ngx';
+import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
 
 /**
  * Generated class for the ContactPage page.
@@ -15,6 +15,7 @@ import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/cont
   selector: 'page-contact',
   templateUrl: 'contact.html',
 })
+
 export class ContactPage {
 
   constructor(
@@ -44,12 +45,15 @@ export class ContactPage {
             this.contactList.push(contact);
           }
         }      
-    });
+    })
   }
 
   addContact(): void {
     let contact: Contact = this.contacts.create();
-    contact.name = new ContactName(null, 'Smith', 'John');
+    let contactName = new ContactName(null, 'Smith', 'John');
+    console.log(contact);
+    console.log(contactName);
+    contact.name = contactName;
     let number = new ContactField('mobile', '6471234567');
     contact.phoneNumbers = [number];
     contact.save().then(
