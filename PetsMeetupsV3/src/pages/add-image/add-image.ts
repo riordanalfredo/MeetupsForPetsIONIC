@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { ImageUploadService } from '../../services/image_upload_service';
+import { Subscription } from 'rxjs';
 
 /**
  * Generated class for the AddImagePage page.
@@ -18,8 +20,14 @@ export class AddImagePage {
 
   myPhoto:any;
   picData:any;
+  imgURL: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera) {
+  subscription: Subscription;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, private imgUploadService: ImageUploadService) {
+    this.subscription = this.imgUploadService.getImgURL().subscribe(imgURL => (this.imgURL = imgURL));
+    console.log(this.imgURL);
   }
 
   ionViewDidLoad() {
@@ -45,6 +53,12 @@ export class AddImagePage {
     }, (err) => {
      console.error(err);
     });
+
+    console.log("Added photo");
+
+    // TODO: Sets it to the URL of the uploaded photo from Firebase
+    this.imgURL = "New value";
+    this.imgUploadService.updateImgURL(this.imgURL);
   }
 
 

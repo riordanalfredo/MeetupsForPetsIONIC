@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { AddPetPage } from '../pages/add-pet/add-pet';
 import { EventPage } from '../pages/event/event';
 import { ContactPage } from '../pages/contact/contact';
+import { ImageUploadService } from '../services/image_upload_service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -24,6 +25,7 @@ import { Camera } from '@ionic-native/camera';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ImageUploadService,
     Calendar,
     Camera,
     Contacts
