@@ -11,8 +11,10 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)="registerPet()">
-    <ion-img></ion-img>
+  <ion-img class="pet_avatar" src="assets/imgs/default_pet_img.png"></ion-img>
+
+
+  <form class="pet_details" (ngSubmit)="registerPet()">
     <ion-item>
       <ion-label floating>Name</ion-label>
       <ion-input type="text" [(ngModel)]="pet.name" name="name"></ion-input>
@@ -22,8 +24,11 @@
       <ion-label floating>Location</ion-label>
       <ion-input type="text" [(ngModel)]="pet.description" name="description"></ion-input>
     </ion-item>
-    <button ion-button>Add Avatar</button>
-    <button ion-button type="submit">Add Pet</button>
+
+    <div class="btn_alignment" text-center>
+        <button ion-button (click)="redirectToAddPhoto()">Add Avatar</button>
+        <button ion-button type="submit">Add Pet</button>
+    </div>
   </form>
 
 

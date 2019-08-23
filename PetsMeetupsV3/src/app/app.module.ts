@@ -13,6 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Calendar } from '@ionic-native/calendar';
 import { Contacts } from '@ionic-native/contacts';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [MyApp, HomePage, ListPage, EventPage, AddPetPage, ContactPage],
@@ -24,6 +25,7 @@ import { Contacts } from '@ionic-native/contacts';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Calendar,
+    Camera,
     Contacts
   ]
 })

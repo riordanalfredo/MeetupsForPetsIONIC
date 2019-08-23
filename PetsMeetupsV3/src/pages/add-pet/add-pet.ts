@@ -28,6 +28,14 @@ export class AddPetPage {
   registerPet(){
     console.log(this.pet.name);
     console.log(this.pet.description);
+
+    // Clears inputs after pet has been registered
+    this.pet.name = '';
+    this.pet.description = '';
+  }
+
+  redirectToAddPhoto(){
+    this.navCtrl.push('AddImagePage');
   }
 
 }
