@@ -24,12 +24,13 @@
     </ion-item>
 
     <ion-item>
-      <ion-label floating>Location</ion-label>
-      <ion-input type="text" [(ngModel)]="pet.description" name="description"></ion-input>
+      <ion-label floating>Description</ion-label>
+      <ion-textarea type="text" [(ngModel)]="pet.description" name="description"></ion-textarea>
     </ion-item>
 
     <div class="btn_alignment" text-center>
-      <button ion-button (click)="redirectToAddPhoto()">Add Avatar</button>
+      <button ion-button type="button" (click)="redirectToAddPhoto()">Add Avatar</button>
+      <div class="btn_divider"></div>
       <button ion-button type="submit">Add Pet</button>
     </div>
   </form>

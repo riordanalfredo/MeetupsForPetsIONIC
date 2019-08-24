@@ -15,10 +15,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Calendar } from '@ionic-native/calendar';
 import { Contacts } from '@ionic-native/contacts';
 import { Camera } from '@ionic-native/camera';
+import firebase from 'firebase';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { FIREBASE_CONFIG } from './app.firebase.config';
 
+firebase.initializeApp(FIREBASE_CONFIG);
 @NgModule({
   declarations: [MyApp, HomePage, ListPage, EventPage, AddPetPage, ContactPage],
-  imports: [BrowserModule, IonicModule.forRoot(MyApp)],
+  imports: [BrowserModule, AngularFireModule.initializeApp(FIREBASE_CONFIG), AngularFireDatabaseModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
   entryComponents: [MyApp, HomePage, ListPage, EventPage, AddPetPage, ContactPage],
   providers: [
