@@ -3,6 +3,7 @@ import { Pet } from '../../models/pet'
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ImageUploadService } from '../../services/image_upload_service';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { Toast } from '@ionic-native/toast';
 import { Subscription } from 'rxjs';
 
 /**
@@ -25,7 +26,7 @@ export class AddPetPage {
   subscription: Subscription;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private imgUploadService: ImageUploadService,
-    private afDatabase: AngularFireDatabase) {
+    private afDatabase: AngularFireDatabase, private toast: Toast) {
     this.subscription = this.imgUploadService.getImgURL().subscribe(imgURL => this.imgURL = imgURL);
   }
 
@@ -50,6 +51,14 @@ export class AddPetPage {
     this.pet.name = '';
     this.pet.description = '';
     this.imgURL = "assets/imgs/default_pet_img.png";
+
+
+    this.toast.show(`Your pet has been added`, '2500', 'bottom').subscribe(
+      toast => {
+        console.log(toast);
+      }
+    );
+
   }
 
 

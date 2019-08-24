@@ -15,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Calendar } from '@ionic-native/calendar';
 import { Contacts } from '@ionic-native/contacts';
 import { Camera } from '@ionic-native/camera';
+import { Toast } from '@ionic-native/toast';
 import firebase from 'firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -33,6 +34,7 @@ firebase.initializeApp(FIREBASE_CONFIG);
     ImageUploadService,
     Calendar,
     Camera,
+    Toast,
     Contacts
   ]
 })

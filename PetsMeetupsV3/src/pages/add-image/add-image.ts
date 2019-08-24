@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { Camera, CameraOptions } from "@ionic-native/camera";
 import { ImageUploadService } from "../../services/image_upload_service";
 import { Subscription, Observable } from "rxjs";
+import { Toast } from '@ionic-native/toast';
 import firebase from "firebase";
 /**
  * Generated class for the AddImagePage page.
@@ -29,7 +30,8 @@ export class AddImagePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private camera: Camera,
-    private imgUploadService: ImageUploadService
+    private imgUploadService: ImageUploadService,
+    private toast: Toast
   ) {
     this.subscription = this.imgUploadService
       .getImgURL()
@@ -86,6 +88,16 @@ export class AddImagePage {
         });
       }
     );
+
+    // Moves to previous page with image once finished
+    this.navCtrl.pop();
+
+    this.toast.show(`Avatar has been set`, '2500', 'bottom').subscribe(
+      toast => {
+        console.log(toast);
+      }
+    );
+
   }
 
   uid() {
