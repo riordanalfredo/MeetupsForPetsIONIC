@@ -9,10 +9,12 @@ import { EventPage } from '../pages/event/event';
 import { ContactPage } from '../pages/contact/contact';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { MessagePage } from '../pages/message/message';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Calendar } from '@ionic-native/calendar';
+import { SMS } from '@ionic-native/sms';
 import { Contacts } from '@ionic-native/contacts';
 
 import { AngularFireModule } from '@angular/fire';
@@ -23,10 +25,10 @@ import { DbProvider } from '../providers/db/db';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
-  declarations: [MyApp, HomePage, ListPage, EventPage, ContactPage, LoginPage, SignupPage],
+  declarations: [MyApp, HomePage, ListPage, EventPage, ContactPage, MessagePage, LoginPage, SignupPage],
   imports: [BrowserModule, IonicModule.forRoot(MyApp), AngularFireModule.initializeApp(firebaseConfig), AngularFireDatabaseModule],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, ListPage, EventPage, ContactPage, LoginPage, SignupPage],
+  entryComponents: [MyApp, HomePage, ListPage, EventPage, ContactPage, MessagePage, LoginPage, SignupPage],
   providers: [
     StatusBar,
     SplashScreen,
@@ -35,7 +37,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     Contacts,
     AngularFireAuth,
     AuthProvider,
-    DbProvider
+    DbProvider,
+    SMS,
+    Contacts
   ]
 })
 export class AppModule {}
