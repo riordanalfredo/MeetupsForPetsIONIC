@@ -8,11 +8,13 @@ import { ListPage } from '../pages/list/list';
 import { AddPetPage } from '../pages/add-pet/add-pet';
 import { EventPage } from '../pages/event/event';
 import { ContactPage } from '../pages/contact/contact';
+import { MessagePage } from '../pages/message/message';
 import { ImageUploadService } from '../services/image_upload_service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Calendar } from '@ionic-native/calendar';
+import { SMS } from '@ionic-native/sms';
 import { Contacts } from '@ionic-native/contacts';
 import { Camera } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
@@ -23,10 +25,10 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 
 firebase.initializeApp(FIREBASE_CONFIG);
 @NgModule({
-  declarations: [MyApp, HomePage, ListPage, EventPage, AddPetPage, ContactPage],
+  declarations: [MyApp, HomePage, ListPage, EventPage, MessagePage, AddPetPage, ContactPage],
   imports: [BrowserModule, AngularFireModule.initializeApp(FIREBASE_CONFIG), AngularFireDatabaseModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, ListPage, EventPage, AddPetPage, ContactPage],
+  entryComponents: [MyApp, HomePage, ListPage, EventPage, MessagePage, AddPetPage, ContactPage],
   providers: [
     StatusBar,
     SplashScreen,
@@ -35,6 +37,7 @@ firebase.initializeApp(FIREBASE_CONFIG);
     Calendar,
     Camera,
     Toast,
+    SMS,
     Contacts
   ]
 })

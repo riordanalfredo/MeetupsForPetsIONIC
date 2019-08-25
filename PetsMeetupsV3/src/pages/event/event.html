@@ -8,27 +8,25 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label>Event Name</ion-label>
-      <ion-input [(ngModel)]="title"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Event Location</ion-label>
-      <ion-input [(ngModel)]="location"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Event Notes</ion-label>
-      <ion-input [(ngModel)]="notes"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Start Date</ion-label>
-      <ion-datetime [(ngModel)]="startDate" placeholder="Select Date"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label>End Date</ion-label>
-      <ion-datetime [(ngModel)]="endDate" placeholder="Select Date"></ion-datetime>
-    </ion-item>
-  </ion-list>
+  <ion-item>
+    <ion-label floating>Event Name</ion-label>
+    <ion-input [(ngModel)]="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Event Location</ion-label>
+    <ion-input [(ngModel)]="location"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Event Notes</ion-label>
+    <ion-input [(ngModel)]="notes"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Start Date</ion-label>
+    <ion-datetime [(ngModel)]="startDate" placeholder="Select Date"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>End Date</ion-label>
+    <ion-datetime [(ngModel)]="endDate" placeholder="Select Date"></ion-datetime>
+  </ion-item>
   <button class="full-width-button" ion-button (click)="createEvent()">Create Event</button>
 </ion-content>
