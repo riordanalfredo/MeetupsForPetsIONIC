@@ -7,22 +7,25 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { EventPage } from '../pages/event/event';
 import { ContactPage } from '../pages/contact/contact';
+import { MessagePage } from '../pages/message/message';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Calendar } from '@ionic-native/calendar';
+import { SMS } from '@ionic-native/sms';
 import { Contacts } from '@ionic-native/contacts';
 
 @NgModule({
-  declarations: [MyApp, HomePage, ListPage, EventPage, ContactPage],
+  declarations: [MyApp, HomePage, ListPage, EventPage, MessagePage, ContactPage],
   imports: [BrowserModule, IonicModule.forRoot(MyApp)],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, ListPage, EventPage, ContactPage],
+  entryComponents: [MyApp, HomePage, ListPage, EventPage, MessagePage, ContactPage],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Calendar,
+    SMS,
     Contacts
   ]
 })
