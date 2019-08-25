@@ -4,12 +4,6 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { User } from '../../models/User';
 import { Pet } from '../../models/Pet';
 
-/*
-  Generated class for the DbProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class DbProvider {
 

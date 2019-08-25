@@ -46,20 +46,14 @@ export class LoginPage {
       .then(
         () => this.successfulLogin(),
         error => this.loginError = error.message
-      );
+      ).finally(() => this.showSpinner = false);
   }
 
   successfulLogin() {
-    this.showSpinner = false;
-
     this.toastCtrl.create({
       message: 'Log in successful!',
       duration: 3000
     }).present();
-
-    this.authProvider.getUser().then(user => {
-      console.log(user);
-    });
 
     this.navCtrl.setRoot(HomePage);
   }

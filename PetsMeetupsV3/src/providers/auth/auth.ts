@@ -39,7 +39,7 @@ export class AuthProvider {
             email = this.getSnapshotChild(snapshot, 'email');
             photoUrl = this.getSnapshotChild(snapshot, 'photoUrl');
 
-            return new Promise((resolve, reject) => {
+            return new Promise<User>((resolve, reject) => {
                 if (name == null && mobile == null && email == null)
                     reject('Failed to retrieve user data from database.');
                 else

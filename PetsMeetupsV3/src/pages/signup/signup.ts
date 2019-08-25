@@ -58,8 +58,6 @@ export class SignupPage {
       auth => {
         auth.user.updateProfile({ displayName: data.name }).then(() => {
           this.dbProvider.addUser(new User(auth.user.uid, data.name, data.mobile, data.email, '')).then(() => {
-            this.showSpinner = false;
-
             this.toastCtrl.create({
               message: 'Account created successfully. Please log in.',
               duration: 3000
@@ -70,7 +68,7 @@ export class SignupPage {
         })
       },
       error => this.signupError = error.message
-    );
+    ).finally(() => this.showSpinner = false);
   }
 
   dismissModal() {
