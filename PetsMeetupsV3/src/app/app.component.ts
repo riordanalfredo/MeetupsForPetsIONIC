@@ -33,7 +33,7 @@ export class MyApp {
       { title: 'List', component: ListPage },
       { title: 'Event', component: EventPage },
       { title: 'Messages', component: MessagePage },
-      { title: 'Contacts', component: ContactPage}
+      { title: 'Contacts', component: ContactPage},
       { title: 'Add Pet', component: AddPetPage}
     ];
   }
