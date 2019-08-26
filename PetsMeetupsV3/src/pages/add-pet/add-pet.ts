@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Pet } from '../../models/pet'
+import { Pet } from '../../models/Pet'
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ImageUploadService } from '../../services/image_upload_service';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { Toast } from '@ionic-native/toast';
 import { Subscription } from 'rxjs';
+import { DbProvider } from '../../providers/db/db';
 
 /**
  * Generated class for the AddPetPage page.
@@ -20,13 +20,11 @@ import { Subscription } from 'rxjs';
 })
 export class AddPetPage {
 
-  pet = {} as Pet;
-
   imgURL: string;
   subscription: Subscription;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private imgUploadService: ImageUploadService,
-    private afDatabase: AngularFireDatabase, private toast: Toast) {
+    private afDatabase: DbProvider, private toast: Toast) {
     this.subscription = this.imgUploadService.getImgURL().subscribe(imgURL => this.imgURL = imgURL);
   }
 
@@ -39,27 +37,29 @@ export class AddPetPage {
   }
 
 
-  registerPet(){
-    // Saves the url used to display the avatar of the pet
-    this.pet.avatar_url = this.imgURL;
+  registerPet(event:any){
 
-    // Uploads data to firebase
-    // TODO: Replace with ID from user that has logged in
-    this.afDatabase.list(`users/user_id_1/pets`).push(this.pet).then(() => {console.log('Pet added')});
+    // Creates a new Pet
+    let newPet = new Pet(Math.round(Math.random()*1000000).toString(), event.target.petName.value, event.target.petDescription.value, this.imgURL);
+
+    // TODO: Uploads data to firebase using the service
 
     // Clears inputs after pet has been registered
-    this.pet.name = '';
-    this.pet.description = '';
+    event.target.petName.value = '';
+    event.target.petDescription.value = '';
     this.imgURL = "assets/imgs/default_pet_img.png";
 
-
+    /*
     this.toast.show(`Your pet has been added`, '2500', 'bottom').subscribe(
       toast => {
         console.log(toast);
       }
     );
-
+    */
   }
+
+
+
 
 
 }

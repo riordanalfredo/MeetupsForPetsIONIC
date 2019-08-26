@@ -17,15 +17,15 @@
   <ion-img class="pet_avatar" [src]="imgURL"></ion-img>
 
 
-  <form class="pet_details" (ngSubmit)="registerPet()">
+  <form class="pet_details" (ngSubmit)="registerPet($event)">
     <ion-item>
       <ion-label floating>Name</ion-label>
-      <ion-input type="text" [(ngModel)]="pet.name" name="name"></ion-input>
+      <ion-input type="text" name="petName"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Description</ion-label>
-      <ion-textarea type="text" [(ngModel)]="pet.description" name="description"></ion-textarea>
+      <ion-textarea type="text" name="petDescription"></ion-textarea>
     </ion-item>
 
     <div class="btn_alignment" text-center>
