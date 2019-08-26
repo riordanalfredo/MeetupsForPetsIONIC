@@ -100,6 +100,7 @@ export class AddImagePage {
 
   }
 
+  // Generates random id for storage
   uid() {
     var d = new Date().getTime();
     var uuid = "xxxxxxxx-xxxx-4xxx-yxxx".replace(/[xy]/g, function(c) {

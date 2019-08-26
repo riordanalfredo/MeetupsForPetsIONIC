@@ -5,6 +5,7 @@ import { ImageUploadService } from '../../services/image_upload_service';
 import { Toast } from '@ionic-native/toast';
 import { Subscription } from 'rxjs';
 import { DbProvider } from '../../providers/db/db';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the AddPetPage page.
@@ -22,9 +23,11 @@ export class AddPetPage {
 
   imgURL: string;
   subscription: Subscription;
+  petName:string;
+  petDesc: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private imgUploadService: ImageUploadService,
-    private afDatabase: DbProvider, private toast: Toast) {
+    private afDatabase: DbProvider, private toast: Toast, private authService: AuthProvider) {
     this.subscription = this.imgUploadService.getImgURL().subscribe(imgURL => this.imgURL = imgURL);
   }
 
@@ -37,25 +40,30 @@ export class AddPetPage {
   }
 
 
-  registerPet(event:any){
+  registerPet(){
 
     // Creates a new Pet
-    let newPet = new Pet(Math.round(Math.random()*1000000).toString(), event.target.petName.value, event.target.petDescription.value, this.imgURL);
+    let newPet = new Pet(Math.round(Math.random()*1000000).toString(), this.petName, this.petDesc, this.imgURL);
 
-    // TODO: Uploads data to firebase using the service
+    // Retrieves the user's ID and uploads pet to the database
+    this.authService.getUser().then(user =>{
+      this.afDatabase.addPet(user.getUserId(), newPet);
+    })
+
 
     // Clears inputs after pet has been registered
-    event.target.petName.value = '';
-    event.target.petDescription.value = '';
+    this.petDesc = "";
+    this.petName = "";
     this.imgURL = "assets/imgs/default_pet_img.png";
 
-    /*
+
+
     this.toast.show(`Your pet has been added`, '2500', 'bottom').subscribe(
       toast => {
         console.log(toast);
       }
     );
-    */
+
   }
 
 
