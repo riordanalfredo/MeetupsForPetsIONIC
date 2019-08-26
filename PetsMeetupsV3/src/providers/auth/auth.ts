@@ -27,6 +27,8 @@ export class AuthProvider {
     }
 
     getUser(): Promise<User> {
+        if (this.user === null) return null;
+        
         let name = '';
         let mobile = 0;
         let email = '';

@@ -68,7 +68,7 @@ export class SignupPage {
         })
       },
       error => this.signupError = error.message
-    ).finally(() => this.showSpinner = false);
+    ).then(() => this.showSpinner = false);
   }
 
   dismissModal() {

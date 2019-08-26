@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -9,6 +9,8 @@ import { EventPage } from '../pages/event/event';
 import { MessagePage } from '../pages/message/message';
 import { ContactPage } from '../pages/contact/contact';
 import { LoginPage } from '../pages/login/login';
+import { AuthProvider } from '../providers/auth/auth';
+import { ProfilePage } from '../pages/profile/profile';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +25,9 @@ export class MyApp {
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    private authProvider: AuthProvider,
+    private modalCtrl: ModalController
   ) {
     this.initializeApp();
 
@@ -33,7 +37,8 @@ export class MyApp {
       { title: 'List', component: ListPage },
       { title: 'Event', component: EventPage },
       { title: 'Messages', component: MessagePage },
-      { title: 'Contacts', component: ContactPage}
+      { title: 'Contacts', component: ContactPage},
+      { title: 'Profile', component: ProfilePage }
     ];
   }
 
@@ -45,7 +50,11 @@ export class MyApp {
       this.splashScreen.hide();
     });
 
-    this.rootPage = LoginPage;
+    this.authProvider.angularFireAuth.authState.subscribe(user => {
+      if (!user) {
+        this.modalCtrl.create(LoginPage).present();
+      }
+    });
   }
 
   openPage(page) {

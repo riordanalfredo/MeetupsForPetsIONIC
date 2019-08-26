@@ -23,12 +23,13 @@ import { firebaseConfig } from '../config';
 import { AuthProvider } from '../providers/auth/auth';
 import { DbProvider } from '../providers/db/db';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ProfilePage } from '../pages/profile/profile';
 
 @NgModule({
-  declarations: [MyApp, HomePage, ListPage, EventPage, ContactPage, MessagePage, LoginPage, SignupPage],
+  declarations: [MyApp, HomePage, ListPage, EventPage, ContactPage, MessagePage, LoginPage, SignupPage, ProfilePage],
   imports: [BrowserModule, IonicModule.forRoot(MyApp), AngularFireModule.initializeApp(firebaseConfig), AngularFireDatabaseModule],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, ListPage, EventPage, ContactPage, MessagePage, LoginPage, SignupPage],
+  entryComponents: [MyApp, HomePage, ListPage, EventPage, ContactPage, MessagePage, LoginPage, SignupPage, ProfilePage],
   providers: [
     StatusBar,
     SplashScreen,

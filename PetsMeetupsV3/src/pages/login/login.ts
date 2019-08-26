@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, ToastController, ModalController, ViewController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { SignupPage } from '../signup/signup';
-import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -17,13 +16,14 @@ export class LoginPage {
   showSpinner: boolean = false;
 
   constructor(
+    private viewCtrl: ViewController,
     private navCtrl: NavController,
     private formBuilder: FormBuilder,
     private authProvider: AuthProvider,
     private toastCtrl: ToastController,
     private modalCtrl: ModalController
   ) {
-    this.loginForm = formBuilder.group({
+    this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
@@ -46,7 +46,7 @@ export class LoginPage {
       .then(
         () => this.successfulLogin(),
         error => this.loginError = error.message
-      ).finally(() => this.showSpinner = false);
+      ).then(() => this.showSpinner = false);
   }
 
   successfulLogin() {
@@ -55,7 +55,8 @@ export class LoginPage {
       duration: 3000
     }).present();
 
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.popToRoot();
+    this.viewCtrl.dismiss();
   }
 
   showSignup() {
