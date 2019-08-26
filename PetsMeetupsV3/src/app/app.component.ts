@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -9,6 +9,9 @@ import { EventPage } from '../pages/event/event';
 import { MessagePage } from '../pages/message/message';
 import { ContactPage } from '../pages/contact/contact';
 import { AddPetPage } from '../pages/add-pet/add-pet'
+import { LoginPage } from '../pages/login/login';
+import { AuthProvider } from '../providers/auth/auth';
+import { ProfilePage } from '../pages/profile/profile';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +26,9 @@ export class MyApp {
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    private authProvider: AuthProvider,
+    private modalCtrl: ModalController
   ) {
     this.initializeApp();
 
@@ -33,8 +38,9 @@ export class MyApp {
       { title: 'List', component: ListPage },
       { title: 'Event', component: EventPage },
       { title: 'Messages', component: MessagePage },
-      { title: 'Contacts', component: ContactPage},
-      { title: 'Add Pet', component: AddPetPage}
+      { title: 'Add Pet', component: AddPetPage},
+      { title: 'Profile', component: ProfilePage },
+      { title: 'Contacts', component: ContactPage}
     ];
   }
 
@@ -44,6 +50,12 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    });
+
+    this.authProvider.angularFireAuth.authState.subscribe(user => {
+      if (!user) {
+        this.modalCtrl.create(LoginPage).present();
+      }
     });
   }
 

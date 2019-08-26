@@ -8,6 +8,8 @@ import { ListPage } from '../pages/list/list';
 import { AddPetPage } from '../pages/add-pet/add-pet';
 import { EventPage } from '../pages/event/event';
 import { ContactPage } from '../pages/contact/contact';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
 import { MessagePage } from '../pages/message/message';
 import { ImageUploadService } from '../services/image_upload_service';
 
@@ -18,23 +20,33 @@ import { SMS } from '@ionic-native/sms';
 import { Contacts } from '@ionic-native/contacts';
 import { Camera } from '@ionic-native/camera';
 import { Toast } from '@ionic-native/toast';
-import firebase from 'firebase';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 
-firebase.initializeApp(FIREBASE_CONFIG);
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuth } from '@angular/fire/auth'
+import { firebaseConfig } from '../config';
+import { AuthProvider } from '../providers/auth/auth';
+import { DbProvider } from '../providers/db/db';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ProfilePage } from '../pages/profile/profile';
+
 @NgModule({
-  declarations: [MyApp, HomePage, ListPage, EventPage, MessagePage, AddPetPage, ContactPage],
-  imports: [BrowserModule, AngularFireModule.initializeApp(FIREBASE_CONFIG), AngularFireDatabaseModule, IonicModule.forRoot(MyApp)],
+  declarations: [MyApp, HomePage, ListPage, EventPage, ContactPage, MessagePage, AddPetPage, LoginPage, SignupPage, ProfilePage],
+  imports: [BrowserModule, IonicModule.forRoot(MyApp), AngularFireModule.initializeApp(firebaseConfig), AngularFireDatabaseModule],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, ListPage, EventPage, MessagePage, AddPetPage, ContactPage],
+  entryComponents: [MyApp, HomePage, ListPage, EventPage, ContactPage, MessagePage, LoginPage, AddPetPage, SignupPage, ProfilePage],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ImageUploadService,
     Calendar,
+    Contacts,
+    AngularFireAuth,
+    AuthProvider,
+    DbProvider,
     Camera,
     Toast,
     SMS,
