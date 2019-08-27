@@ -20,8 +20,9 @@
     </ion-card-header>
     <ion-card-content>
         <h2>{{ pet[1].name }}</h2>
+        <p>{{ pet[0] }}</p>
         <p>{{ pet[1].description }}</p>
-        <button class="full-width-button" ion-button>Meetup</button>
+        <button (click)="meetup(pet)" class="full-width-button" ion-button>Meetup</button>
     </ion-card-content>
   </ion-card>
 </ion-content>

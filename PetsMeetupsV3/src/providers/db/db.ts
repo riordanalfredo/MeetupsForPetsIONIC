@@ -45,6 +45,10 @@ export class DbProvider {
     return this.angularFireDatabase.database.ref('/users/' + userId + '/pets');
   }
 
+  private getUsersPhoneNumber(userId: string) {
+    return this.angularFireDatabase.database.ref('/users/' + userId + '/details/mobile');
+  }
+
   public getAllPets() {
     let petList = [];
 
@@ -52,10 +56,15 @@ export class DbProvider {
       snapshot.forEach(childSnapshot => {
         // Saves the user id to access the pets
         let key = childSnapshot.key;
+        let phone = '';
+        this.getUsersPhoneNumber(key).on('value', snapshot => {
+          phone = snapshot.val();
+        });
         // Find all the pets that belong to a particular user
         this.getAllPetsForUser(key).on('value', snapshot => {
           snapshot.forEach(childSnapshot => {
-            petList.push([childSnapshot.key, childSnapshot.val()]);
+            console.log(phone);
+            petList.push([phone, childSnapshot.val()]);
           });
         });
       });

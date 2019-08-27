@@ -24,11 +24,13 @@ import { firebaseConfig } from '../config';
 import { AuthProvider } from '../providers/auth/auth';
 import { DbProvider } from '../providers/db/db';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { ScheduleMeetupPage } from '../pages/schedule-meetup/schedule-meetup';
 
 @NgModule({
   declarations: [
     MyApp,
     FindPetsPage,
+    ScheduleMeetupPage,
     ListPage,
     EventPage,
     ContactPage,
@@ -47,6 +49,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
   entryComponents: [
     MyApp,
     FindPetsPage,
+    ScheduleMeetupPage,
     ListPage,
     EventPage,
     ContactPage,
