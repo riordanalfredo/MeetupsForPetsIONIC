@@ -13,4 +13,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding> </ion-content>
+<ion-content padding>
+  <ion-item>
+    <ion-label floating>Event Name</ion-label>
+    <ion-input [(ngModel)]="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Event Location</ion-label>
+    <ion-input [(ngModel)]="location"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Event Notes</ion-label>
+    <ion-input [(ngModel)]="notes"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Date</ion-label>
+    <ion-datetime [(ngModel)]="date"></ion-datetime>
+  </ion-item>
+  <button class="full-width-button" ion-button (click)="sendMessage()">Schedule Meetup</button>
+</ion-content>
