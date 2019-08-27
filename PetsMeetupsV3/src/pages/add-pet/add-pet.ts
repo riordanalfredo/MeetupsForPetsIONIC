@@ -48,13 +48,13 @@ export class AddPetPage {
     // Retrieves the user's ID and uploads pet to the database
     this.authService.getUser().then(user =>{
       this.afDatabase.addPet(user.getUserId(), newPet);
+
+      // Clears inputs after pet has been registered
+      this.petDesc = "";
+      this.petName = "";
+      this.imgURL = "assets/imgs/default_pet_img.png";
+
     })
-
-
-    // Clears inputs after pet has been registered
-    this.petDesc = "";
-    this.petName = "";
-    this.imgURL = "assets/imgs/default_pet_img.png";
 
 
 
