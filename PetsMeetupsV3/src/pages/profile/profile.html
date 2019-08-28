@@ -15,7 +15,8 @@
 
 <ion-content padding>
   <ion-avatar id="profile-avatar">
-    <img src="assets/imgs/profile-placeholder.png" />
+    <img *ngIf="user" [src]="user?.getPhotoUrl()" />
+    <ion-spinner *ngIf="!user"></ion-spinner>
   </ion-avatar>
 
   <div id="user-details">
