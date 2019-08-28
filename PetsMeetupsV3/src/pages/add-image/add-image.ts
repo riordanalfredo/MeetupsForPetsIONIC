@@ -1,9 +1,8 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, ToastController } from "ionic-angular";
 import { Camera, CameraOptions } from "@ionic-native/camera";
 import { ImageUploadService } from "../../services/image_upload_service";
 import { Subscription, Observable } from "rxjs";
-import { Toast } from '@ionic-native/toast';
 import firebase from "firebase";
 /**
  * Generated class for the AddImagePage page.
@@ -31,7 +30,7 @@ export class AddImagePage {
     public navParams: NavParams,
     private camera: Camera,
     private imgUploadService: ImageUploadService,
-    private toast: Toast
+    private toastCtrl: ToastController
   ) {
     this.subscription = this.imgUploadService
       .getImgURL()
@@ -92,12 +91,11 @@ export class AddImagePage {
     // Moves to previous page with image once finished
     this.navCtrl.pop();
 
-    this.toast.show(`Avatar has been set`, '2500', 'bottom').subscribe(
-      toast => {
-        console.log(toast);
-      }
-    );
-
+    this.toastCtrl.create({
+      message: 'Avatar has been set',
+      duration: 2500,
+      position: 'bottom'
+    }).present();
   }
 
   // Generates random id for storage

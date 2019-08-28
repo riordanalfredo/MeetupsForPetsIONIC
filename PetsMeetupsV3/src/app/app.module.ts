@@ -19,7 +19,6 @@ import { Calendar } from '@ionic-native/calendar';
 import { SMS } from '@ionic-native/sms';
 import { Contacts } from '@ionic-native/contacts';
 import { Camera } from '@ionic-native/camera';
-import { Toast } from '@ionic-native/toast';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth'
@@ -45,7 +44,6 @@ import { ProfilePage } from '../pages/profile/profile';
     AuthProvider,
     DbProvider,
     Camera,
-    Toast,
     SMS,
     Contacts
   ]

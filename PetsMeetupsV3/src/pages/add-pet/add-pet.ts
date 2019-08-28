@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Pet } from '../../models/Pet'
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ImageUploadService } from '../../services/image_upload_service';
-import { Toast } from '@ionic-native/toast';
 import { Subscription } from 'rxjs';
 import { DbProvider } from '../../providers/db/db';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -27,7 +26,7 @@ export class AddPetPage {
   petDesc: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private imgUploadService: ImageUploadService,
-    private afDatabase: DbProvider, private toast: Toast, private authService: AuthProvider) {
+    private afDatabase: DbProvider, private toastCtrl: ToastController, private authService: AuthProvider) {
     this.subscription = this.imgUploadService.getImgURL().subscribe(imgURL => this.imgURL = imgURL);
   }
 
@@ -54,16 +53,13 @@ export class AddPetPage {
       this.petName = "";
       this.imgURL = "assets/imgs/default_pet_img.png";
 
-    })
+    });
 
-
-
-    this.toast.show(`Your pet has been added`, '2500', 'bottom').subscribe(
-      toast => {
-        console.log(toast);
-      }
-    );
-
+    this.toastCtrl.create({
+      message: 'Your pet has been added',
+      duration: 2500,
+      position: 'bottom'
+    }).present();
   }
 
 
