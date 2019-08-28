@@ -47,10 +47,10 @@ export class DbProvider {
     });
   }
 
-  public getPets(userId: string): Array<Pet> {
+  public async getPets(userId: string): Promise<Array<Pet>> {
     let pets: Array<Pet> = new Array<Pet>();
 
-    this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST).query.once('value').then(snapshot => {
+    await this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST).query.once('value').then(snapshot => {
       snapshot.forEach(petSnapshot => {
         let id = petSnapshot.key;
         let name = petSnapshot.child('name').val();
@@ -61,7 +61,28 @@ export class DbProvider {
       });
     });
 
-    return pets;
+    return new Promise<Array<Pet>>(resolve => resolve(pets));
+  }
+
+  public async getAllUsers(): Promise<Array<User>> {
+    let users: Array<User> = new Array<User>();
+
+    await this.angularFireDatabase.object(this.USERS_LIST).query.once('value').then(snapshot => {
+      snapshot.forEach(userSnapshot => {
+        let userId = userSnapshot.key;
+        let details = userSnapshot.child(this.USER_DETAILS_LIST);
+        
+        this.getPets(userId).then(pets => {
+          let user = new User(userId, details.child('name').val(), details.child('mobile').val(), details.child('email').val(), details.child('photoUrl').val());
+
+          pets.forEach(pet => user.addPet(pet));
+
+          users.push(user);
+        });
+      });
+    });
+
+    return new Promise<Array<User>>(resolve => resolve(users));
   }
 
 }
