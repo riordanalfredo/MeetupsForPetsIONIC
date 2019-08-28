@@ -14,9 +14,11 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-row>
-    <ion-col>
-      <button ion-button (click)="logout()">Log out</button>
-    </ion-col>
-  </ion-row>
+  <ion-avatar id="profile-avatar">
+    <img src="assets/imgs/profile-placeholder.png" />
+  </ion-avatar>
+
+  <div id="name">
+    <h1>{{ user?.getName() }} </h1>
+  </div>
 </ion-content>
