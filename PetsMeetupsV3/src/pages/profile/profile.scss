@@ -4,7 +4,20 @@
     margin: 20px auto;
 }
 
-#name {
+#profile-avatar img {
+    border-radius: 50%;
+}
+
+#user-details {
+    width: 100%;
+    text-align: center;
+}
+
+#logout-button {
+    color: red;
+}
+
+ion-row {
     width: 100%;
     text-align: center;
 }

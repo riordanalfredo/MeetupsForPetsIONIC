@@ -18,7 +18,21 @@
     <img src="assets/imgs/profile-placeholder.png" />
   </ion-avatar>
 
-  <div id="name">
-    <h1>{{ user?.getName() }} </h1>
+  <div id="user-details">
+    <h1>{{ user?.getName() }}</h1>
+    <p>{{ user?.getEmail() }}</p>
+    <p>{{ user?.getMobile() }}</p>
   </div>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button clear>Change Password</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button clear color="danger" (click)="logout()">Log Out</button>
+    </ion-col>
+  </ion-row>
 </ion-content>
