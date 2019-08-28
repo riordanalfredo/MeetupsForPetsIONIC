@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import { EventPage } from '../pages/event/event';
 import { MessagePage } from '../pages/message/message';
 import { ContactPage } from '../pages/contact/contact';
+import { AddPetPage } from '../pages/add-pet/add-pet'
 import { LoginPage } from '../pages/login/login';
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfilePage } from '../pages/profile/profile';
@@ -37,8 +38,9 @@ export class MyApp {
       { title: 'List', component: ListPage },
       { title: 'Event', component: EventPage },
       { title: 'Messages', component: MessagePage },
-      { title: 'Contacts', component: ContactPage},
-      { title: 'Profile', component: ProfilePage }
+      { title: 'Add Pet', component: AddPetPage},
+      { title: 'Profile', component: ProfilePage },
+      { title: 'Contacts', component: ContactPage}
     ];
   }
 
