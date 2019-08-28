@@ -19,7 +19,7 @@ export class AuthProvider {
     }
 
     authenticated() {
-        return this.getUser() != null;
+        return this.user != null;
     }
 
     private getSnapshotChild(snapshot: DataSnapshot, child: string): any {

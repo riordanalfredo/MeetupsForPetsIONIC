@@ -47,4 +47,21 @@ export class DbProvider {
     });
   }
 
+  public getPets(userId: string): Array<Pet> {
+    let pets: Array<Pet> = new Array<Pet>();
+
+    this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST).query.once('value').then(snapshot => {
+      snapshot.forEach(petSnapshot => {
+        let id = petSnapshot.key;
+        let name = petSnapshot.child('name').val();
+        let description = petSnapshot.child('description').val();
+        let avatarUrl = petSnapshot.child('avatarUrl').val();
+
+        pets.push(new Pet(id, name, description, avatarUrl));
+      });
+    });
+
+    return pets;
+  }
+
 }
