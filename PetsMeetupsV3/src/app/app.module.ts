@@ -23,12 +23,14 @@ import { AuthProvider } from '../providers/auth/auth';
 import { DbProvider } from '../providers/db/db';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ProfilePage } from '../pages/profile/profile';
+import { EditDetailsPage } from '../pages/edit-details/edit-details';
+import { EditPasswordPage } from '../pages/edit-password/edit-password';
 
 @NgModule({
-  declarations: [MyApp, HomePage, EventPage, ContactPage, MessagePage, LoginPage, SignupPage, ProfilePage],
+  declarations: [MyApp, HomePage, EventPage, ContactPage, MessagePage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
   imports: [BrowserModule, IonicModule.forRoot(MyApp), AngularFireModule.initializeApp(firebaseConfig), AngularFireDatabaseModule],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, EventPage, ContactPage, MessagePage, LoginPage, SignupPage, ProfilePage],
+  entryComponents: [MyApp, HomePage, EventPage, ContactPage, MessagePage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
   providers: [
     StatusBar,
     SplashScreen,
@@ -42,4 +44,4 @@ import { ProfilePage } from '../pages/profile/profile';
     Contacts
   ]
 })
-export class AppModule {}
+export class AppModule { }

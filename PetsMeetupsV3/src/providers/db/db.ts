@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { User } from '../../models/User';
 import { Pet } from '../../models/Pet';
+import { AuthProvider } from '../auth/auth';
 
 @Injectable()
 export class DbProvider {
@@ -12,7 +13,8 @@ export class DbProvider {
   USER_PETS_LIST = 'pets';
 
   constructor(
-    private angularFireDatabase: AngularFireDatabase
+    private angularFireDatabase: AngularFireDatabase,
+    private authProvider: AuthProvider
   ) {
   }
 
@@ -27,6 +29,14 @@ export class DbProvider {
       email: user.getEmail(),
       photoUrl: user.getPhotoUrl()
     });
+  }
+
+  public updateUserDetails(user: User) {
+    this.authProvider.updateEmail(user.getEmail());
+
+    // addUser updates the details, but creates new details if it is not present.
+    // The function can be reused for updating details.
+    return this.addUser(user);
   }
 
   public addPet(userId: string, pet: Pet) {

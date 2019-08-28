@@ -37,6 +37,10 @@ export class User {
         return this.email;
     }
 
+    public setEmail(email: string) {
+        this.email = email;
+    }
+
     public getPhotoUrl(): string {
         return this.photoUrl;
     }

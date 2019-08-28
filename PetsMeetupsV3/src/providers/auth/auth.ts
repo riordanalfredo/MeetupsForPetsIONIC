@@ -28,18 +28,13 @@ export class AuthProvider {
 
     getUser(): Promise<User> {
         if (this.user === null) return null;
-        
-        let name = '';
-        let mobile = 0;
-        let email = '';
-        let photoUrl = '';
 
         let userDetailsPath = '/users/' + this.user.uid + '/details';
         return this.angularFireDatabase.object(userDetailsPath).query.once('value').then(snapshot => {
-            name = this.getSnapshotChild(snapshot, 'name');
-            mobile = this.getSnapshotChild(snapshot, 'mobile');
-            email = this.getSnapshotChild(snapshot, 'email');
-            photoUrl = this.getSnapshotChild(snapshot, 'photoUrl');
+            let name = this.getSnapshotChild(snapshot, 'name');
+            let mobile = this.getSnapshotChild(snapshot, 'mobile');
+            let email = this.getSnapshotChild(snapshot, 'email');
+            let photoUrl = this.getSnapshotChild(snapshot, 'photoUrl');
 
             return new Promise<User>((resolve, reject) => {
                 if (name == null && mobile == null && email == null)
@@ -62,5 +57,13 @@ export class AuthProvider {
 
     signOut() {
         return this.angularFireAuth.auth.signOut();
+    }
+
+    updatePassword(password: string) {
+        return this.user.updatePassword(password);
+    }
+
+    updateEmail(email: string) {
+        return this.user.updateEmail(email);
     }
 }
