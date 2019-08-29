@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { DbProvider } from '../../providers/db/db';
 import { AuthProvider } from '../../providers/auth/auth';
+import { Pet } from '../../models/Pet';
 
 /**
  * Generated class for the YourPetsPage page.
@@ -18,7 +19,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class YourPetsPage {
 
   allPetsArray = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, private afDatabase: DbProvider, private afAuth: AuthProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private afDatabase: DbProvider, private afAuth: AuthProvider, private alertCtrl: AlertController) {
 
     this.afAuth.getUser().then(user =>{
       this.afDatabase.getPets(user.getUserId()).then(petList => {
@@ -35,4 +36,34 @@ export class YourPetsPage {
     console.log('ionViewDidLoad YourPetsPage');
   }
 
+  redirectToEditPet(pet: Pet){
+    this.navCtrl.push('EditPetPage', {pet: pet});
+  }
+
+  deletePet(pet: Pet){
+
+    let alert = this.alertCtrl.create({
+      title: 'Deleting Pet',
+      message: 'Are you sure you want to remove this pet?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            console.log(pet);
+            console.log('Pet deleted');
+          }
+        }
+      ]
+    });
+    alert.present();
+
+
+  }
 }

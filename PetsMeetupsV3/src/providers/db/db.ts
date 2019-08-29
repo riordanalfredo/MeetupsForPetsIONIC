@@ -39,6 +39,15 @@ export class DbProvider {
     return this.addUser(user);
   }
 
+  public updatePetDetails(userId: string, pet: Pet){
+    let petID = pet.getId();
+    return this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST + '/' + petID).set({
+      name: pet.getName(),
+      description: pet.getDescription(),
+      avatarUrl: pet.getAvatarUrl()
+    });
+  }
+
   public addPet(userId: string, pet: Pet) {
     return this.angularFireDatabase.list(this.getUserList(userId) + '/' + this.USER_PETS_LIST).push({
       name: pet.getName(),
@@ -71,7 +80,7 @@ export class DbProvider {
       snapshot.forEach(userSnapshot => {
         let userId = userSnapshot.key;
         let details = userSnapshot.child(this.USER_DETAILS_LIST);
-        
+
         this.getPets(userId).then(pets => {
           let user = new User(userId, details.child('name').val(), details.child('mobile').val(), details.child('email').val(), details.child('photoUrl').val());
 

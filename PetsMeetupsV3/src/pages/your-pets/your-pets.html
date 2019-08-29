@@ -14,13 +14,13 @@
   <ng-template let-pet ngFor [ngForOf]="allPetsArray">
     <ion-card>
       <ion-card-content>
-        <img class="pet_image" id="pet_avatar" [src]="pet.avatarUrl">
+        <img class="pet_image" [src]="pet.avatarUrl">
         <div class="card_content">
           <ion-card-title class="title-alignment">{{ pet.name }}</ion-card-title>
           <p class="truncate">{{ pet.description }}</p>
           <div class="btn-alignment">
-              <button ion-button clear small>Edit Pet</button>
-              <button ion-button clear small color="danger" type="button">Delete</button>
+              <button ion-button clear small (click)="redirectToEditPet(pet)">Edit Pet</button>
+              <button ion-button clear small color="danger" type="button" (click)="deletePet(pet)">Delete</button>
           </div>
         </div>
       </ion-card-content>
