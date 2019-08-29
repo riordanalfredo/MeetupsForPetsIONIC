@@ -11,6 +11,7 @@ import { AddPetPage } from '../pages/add-pet/add-pet'
 import { LoginPage } from '../pages/login/login';
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfilePage } from '../pages/profile/profile';
+import { YourPetsPage } from '../pages/your-pets/your-pets';
 
 @Component({
   templateUrl: 'app.html'
@@ -38,7 +39,8 @@ export class MyApp {
       { title: 'Messages', component: MessagePage },
       { title: 'Add Pet', component: AddPetPage},
       { title: 'Profile', component: ProfilePage },
-      { title: 'Contacts', component: ContactPage}
+      { title: 'Contacts', component: ContactPage},
+      { title: 'Your Pets', component: YourPetsPage}
     ];
   }
 
