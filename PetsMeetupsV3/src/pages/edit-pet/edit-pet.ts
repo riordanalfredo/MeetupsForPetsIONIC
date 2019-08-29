@@ -1,5 +1,10 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, ToastController } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ToastController
+} from "ionic-angular";
 import { Pet } from "../../models/Pet";
 import { ImageUploadService } from "../../services/image_upload_service";
 import { Subscription } from "rxjs";
@@ -22,6 +27,7 @@ export class EditPetPage {
   pet: any;
   subscription: Subscription;
   imgURL: any;
+  imageAltered: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -33,8 +39,10 @@ export class EditPetPage {
   ) {
     this.pet = this.navParams.get("pet");
     this.subscription = this.imgUploadService
-      .getImgURL()
-      .subscribe(imgURL => (this.imgURL = imgURL));
+    .getImgURL()
+    .subscribe(imgURL => (this.imgURL = imgURL));
+
+    this.imgURL = this.pet.avatarUrl;
   }
 
   ionViewDidLoad() {
@@ -42,12 +50,6 @@ export class EditPetPage {
   }
 
   ionViewDidEnter() {
-    // Timeout to let new avatar for a pet be updated
-    setTimeout(() => {
-      if (this.imgURL !== "assets/imgs/default_pet_img.png") {
-        this.pet.avatarUrl = this.imgURL;
-      }
-    }, 2000);
   }
 
   onUpdate(event: any, pet: Pet) {
@@ -55,21 +57,27 @@ export class EditPetPage {
     this.pet.name = event.target.name.value;
     this.pet.description = event.target.desc.value;
 
+    // Check to see if the image uploaded is a new one
+    if (this.pet.avatarUrl !== this.imgURL &&
+      this.imgURL !== "assets/imgs/default_pet_img.png"
+    ) {
+      this.pet.avatarUrl = this.imgURL;
+    }
 
-    // TODO: Update pet to database
-    this.afAuth.getUser().then(user =>{
-      this.afDatabase.updatePetDetails(user.getUserId(), pet[0])
+    // Updates the details of the pet
+    this.afAuth.getUser().then(user => {
+      this.afDatabase.updatePetDetails(user.getUserId(), pet[0]);
     });
 
     this.navCtrl.pop();
 
-    this.toastCtrl.create({
-      message: 'Your pet details has been updated',
-      duration: 2500,
-      position: 'bottom'
-    }).present();
-
-
+    this.toastCtrl
+      .create({
+        message: "Your pet details has been updated",
+        duration: 2500,
+        position: "bottom"
+      })
+      .present();
   }
 
   redirectUploadImage() {

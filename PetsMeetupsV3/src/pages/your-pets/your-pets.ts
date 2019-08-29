@@ -19,6 +19,8 @@ import { Pet } from '../../models/Pet';
 export class YourPetsPage {
 
   allPetsArray = [];
+  userId: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private afDatabase: DbProvider, private afAuth: AuthProvider, private alertCtrl: AlertController) {
 
     this.afAuth.getUser().then(user =>{
@@ -28,6 +30,7 @@ export class YourPetsPage {
           pets.push(pet);
         })
         this.allPetsArray = pets;
+        this.userId = user.getUserId();
       })
     })
   }
@@ -37,6 +40,7 @@ export class YourPetsPage {
   }
 
   redirectToEditPet(pet: Pet){
+    // Passes the current pet to be edited to the next page
     this.navCtrl.push('EditPetPage', {pet: pet});
   }
 
@@ -56,13 +60,18 @@ export class YourPetsPage {
         {
           text: 'Confirm',
           handler: () => {
-            console.log(pet);
-            console.log('Pet deleted');
+
+            // Removes the pet from the database
+            this.afDatabase.deletePet(this.userId, pet);
+
+            // Removes the pet from the front-end
+            this.allPetsArray = this.allPetsArray.filter(item => item.id != pet.getId());
           }
         }
       ]
     });
     alert.present();
+
 
 
   }

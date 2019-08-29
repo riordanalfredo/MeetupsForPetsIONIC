@@ -13,7 +13,7 @@
 <ion-content padding>
   <div class="edit_divider"></div>
 
-      <img id="pet_avatar" [src]="pet.avatarUrl">
+      <img id="pet_avatar" [src]="imgURL">
       <form (ngSubmit)="onUpdate($event, [pet])">
         <ion-item>
           <ion-label floating>Pet Name</ion-label>

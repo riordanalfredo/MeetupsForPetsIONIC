@@ -39,6 +39,14 @@ export class DbProvider {
     return this.addUser(user);
   }
 
+  public addPet(userId: string, pet: Pet) {
+    return this.angularFireDatabase.list(this.getUserList(userId) + '/' + this.USER_PETS_LIST).push({
+      name: pet.getName(),
+      description: pet.getDescription(),
+      avatarUrl: pet.getAvatarUrl()
+    });
+  }
+
   public updatePetDetails(userId: string, pet: Pet){
     let petID = pet.getId();
     return this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST + '/' + petID).set({
@@ -48,12 +56,9 @@ export class DbProvider {
     });
   }
 
-  public addPet(userId: string, pet: Pet) {
-    return this.angularFireDatabase.list(this.getUserList(userId) + '/' + this.USER_PETS_LIST).push({
-      name: pet.getName(),
-      description: pet.getDescription(),
-      avatarUrl: pet.getAvatarUrl()
-    });
+  public deletePet(userId: string, pet: Pet){
+    let petID = pet.getId();
+    return this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST + '/' + petID).remove();
   }
 
   public async getPets(userId: string): Promise<Array<Pet>> {
