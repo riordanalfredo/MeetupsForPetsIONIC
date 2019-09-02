@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
+import { User } from '../../models/User';
+import { EditDetailsPage } from '../edit-details/edit-details';
+import { EditPasswordPage } from '../edit-password/edit-password';
 
 /**
  * Generated class for the ProfilePage page.
@@ -16,9 +19,13 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class ProfilePage {
 
+  user: User;
+
   constructor(
-    private authProvider: AuthProvider
+    private authProvider: AuthProvider,
+    private modalCtrl: ModalController
   ) {
+    authProvider.getUser().then(user => this.user = user);
   }
 
   ionViewDidLoad() {
@@ -27,6 +34,20 @@ export class ProfilePage {
 
   logout() {
     this.authProvider.signOut();
+  }
+
+  editDetails() {
+    const modal = this.modalCtrl.create(EditDetailsPage);
+    modal.present();
+    modal.onDidDismiss(() => {
+      this.authProvider.getUser().then(user => {
+        this.user = user;
+      });
+    });
+  }
+
+  changePassword() {
+    this.modalCtrl.create(EditPasswordPage).present();
   }
 
 }

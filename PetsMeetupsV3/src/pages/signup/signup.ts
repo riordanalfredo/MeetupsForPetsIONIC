@@ -57,7 +57,7 @@ export class SignupPage {
     this.authProvider.signUpWithEmail(data.email, data.password).then(
       auth => {
         auth.user.updateProfile({ displayName: data.name }).then(() => {
-          this.dbProvider.addUser(new User(auth.user.uid, data.name, data.mobile, data.email, '')).then(() => {
+          this.dbProvider.addUser(new User(auth.user.uid, data.name, data.mobile, data.email, 'assets/imgs/profile-placeholder.png')).then(() => {
             this.toastCtrl.create({
               message: 'Account created successfully. Please log in.',
               duration: 3000
