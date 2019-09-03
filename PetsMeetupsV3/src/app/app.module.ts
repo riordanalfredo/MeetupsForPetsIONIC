@@ -35,7 +35,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
   declarations: [MyApp, FindPetsPage, EventPage, ScheduleMeetupPage, ContactPage, MessagePage, AddPetPage, YourPetsPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
   imports: [BrowserModule, IonicModule.forRoot(MyApp), AngularFireModule.initializeApp(firebaseConfig), AngularFireDatabaseModule],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, FindPetsPage, ScheduleMeetupPage, EventPage, ContactPage, MessagePage, AddPetPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
+  entryComponents: [MyApp, FindPetsPage, YourPetsPage, ScheduleMeetupPage, EventPage, ContactPage, MessagePage, AddPetPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
   providers: [
     StatusBar,
     SplashScreen,
