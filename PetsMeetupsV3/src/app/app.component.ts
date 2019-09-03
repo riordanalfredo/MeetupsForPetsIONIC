@@ -3,7 +3,6 @@ import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { ListPage } from '../pages/list/list';
 import { EventPage } from '../pages/event/event';
 import { MessagePage } from '../pages/message/message';
 import { ContactPage } from '../pages/contact/contact';

@@ -50,7 +50,7 @@ export class DbProvider {
       });
   }
 
-  private getAllUsers() {
+  private getAllUsersRef() {
     return this.angularFireDatabase.database.ref('/users');
   }
 
@@ -65,7 +65,7 @@ export class DbProvider {
   public getAllPets() {
     let petList = [];
 
-    this.getAllUsers().on('value', snapshot => {
+    this.getAllUsersRef().on('value', snapshot => {
       snapshot.forEach(childSnapshot => {
         // Saves the user id to access the pets
         let key = childSnapshot.key;
@@ -110,7 +110,7 @@ export class DbProvider {
       snapshot.forEach(userSnapshot => {
         let userId = userSnapshot.key;
         let details = userSnapshot.child(this.USER_DETAILS_LIST);
-        
+
         this.getPets(userId).then(pets => {
           let user = new User(userId, details.child('name').val(), details.child('mobile').val(), details.child('email').val(), details.child('photoUrl').val());
 
