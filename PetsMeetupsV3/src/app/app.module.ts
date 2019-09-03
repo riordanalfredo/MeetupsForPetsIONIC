@@ -11,6 +11,9 @@ import { SignupPage } from '../pages/signup/signup';
 import { MessagePage } from '../pages/message/message';
 import { ProfilePage } from '../pages/profile/profile';
 import { FindPetsPage } from '../pages/find-pets/find-pets';
+import { ScheduleMeetupPage } from '../pages/schedule-meetup/schedule-meetup';
+import { EditDetailsPage } from '../pages/edit-details/edit-details';
+import { EditPasswordPage } from '../pages/edit-password/edit-password';
 import { ImageUploadService } from '../services/image_upload_service';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,22 +29,21 @@ import { firebaseConfig } from '../config';
 import { AuthProvider } from '../providers/auth/auth';
 import { DbProvider } from '../providers/db/db';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { ScheduleMeetupPage } from '../pages/schedule-meetup/schedule-meetup';
-import { ProfilePage } from '../pages/profile/profile';
-import { EditDetailsPage } from '../pages/edit-details/edit-details';
-import { EditPasswordPage } from '../pages/edit-password/edit-password';
 
 @NgModule({
   declarations: [
     MyApp,
     FindPetsPage,
+    AddPetPage,
     ScheduleMeetupPage,
     EventPage,
     ContactPage,
     MessagePage,
     LoginPage,
     SignupPage,
-    ProfilePage
+    ProfilePage,
+    EditDetailsPage,
+    EditPasswordPage
   ],
   imports: [
     BrowserModule,
@@ -53,13 +55,16 @@ import { EditPasswordPage } from '../pages/edit-password/edit-password';
   entryComponents: [
     MyApp,
     FindPetsPage,
+    AddPetPage,
     ScheduleMeetupPage,
     EventPage,
     ContactPage,
     MessagePage,
     LoginPage,
     SignupPage,
-    ProfilePage
+    ProfilePage,
+    EditDetailsPage,
+    EditPasswordPage
   ],
   providers: [
     StatusBar,

@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { User } from '../../models/User';
@@ -76,7 +75,6 @@ export class DbProvider {
         // Find all the pets that belong to a particular user
         this.getAllPetsForUser(key).on('value', snapshot => {
           snapshot.forEach(childSnapshot => {
-            console.log(phone);
             petList.push([phone, childSnapshot.val()]);
           });
         });
