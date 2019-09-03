@@ -14,21 +14,20 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let meetup of fakeData">
+  <ion-card *ngFor="let pet of petsData">
     <ion-item>
-      <ion-avatar *ngIf="meetup.petPhoto" item-start>
-        <img [src]="meetup.petPhoto">
+      <ion-avatar *ngIf="assets/img/pet.png" item-start>
+        <img [src]="assets/img/pet.png">
       </ion-avatar>
-      <h2>{{meetup.petName}}</h2>
-      <p>{{meetup.petDetails}}</p>
+      <h2>{{pet.name}}</h2>
     </ion-item>
   
-    <ion-item *ngIf="meetup.mainPhoto">
-        <img [src]="meetup.mainPhoto">
+    <ion-item *ngIf="pet.avatarUrl">
+        <img [src]="pet.avatarUrl">
     </ion-item>
     
     <ion-card-content >
-      <p>{{meetup.locationDescription}}</p>
+      <p>{{pet.description}}</p>
     </ion-card-content>
   
     <ion-row>

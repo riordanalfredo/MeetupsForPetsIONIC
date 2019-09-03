@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MessagePage } from '../message/message';
 import { EventPage } from '../event/event';
 import { DbProvider } from '../../providers/db/db';
+import { Pet } from '../../models/pet';
+import { User } from '../../models/User';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AuthProvider } from '../../providers/auth/auth';
 /**
@@ -18,13 +20,18 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'list-of-meetups.html',
 })
 export class ListOfMeetupsPage {
-  petsData = [];
+
+  petsData : Array<Pet>;
+  usersData : Array<User>;
   constructor( 
     public navCtrl: NavController, 
     public navParams: NavParams,
     private authProvider: AuthProvider,
     private db: DbProvider,) {
-      this.db.getAllPets().then(array => this.petsData = array);
+      this.db.getAllPets().then(array => {
+        this.petsData = array;
+        console.log(this.petsData);
+      });
     }
 
   fakeData = [
@@ -74,7 +81,6 @@ export class ListOfMeetupsPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.petsData);
     console.log('ionViewDidLoad ListOfMeetupsPage');
   }
 
