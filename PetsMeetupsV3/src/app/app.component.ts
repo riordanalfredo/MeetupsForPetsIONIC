@@ -3,7 +3,6 @@ import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
 import { EventPage } from '../pages/event/event';
 import { MessagePage } from '../pages/message/message';
 import { ContactPage } from '../pages/contact/contact';
@@ -11,6 +10,7 @@ import { AddPetPage } from '../pages/add-pet/add-pet'
 import { LoginPage } from '../pages/login/login';
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfilePage } from '../pages/profile/profile';
+import { FindPetsPage } from '../pages/find-pets/find-pets';
 import { YourPetsPage } from '../pages/your-pets/your-pets';
 
 @Component({
@@ -19,7 +19,7 @@ import { YourPetsPage } from '../pages/your-pets/your-pets';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = FindPetsPage;
 
   pages: Array<{ title: string; component: any }>;
 
@@ -34,7 +34,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
+      { title: 'Find Pets', component: FindPetsPage },
       { title: 'Event', component: EventPage },
       { title: 'Messages', component: MessagePage },
       { title: 'Add Pet', component: AddPetPage},

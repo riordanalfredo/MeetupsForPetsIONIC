@@ -3,13 +3,18 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { AddPetPage } from '../pages/add-pet/add-pet';
 import { EventPage } from '../pages/event/event';
 import { ContactPage } from '../pages/contact/contact';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { MessagePage } from '../pages/message/message';
+import { ProfilePage } from '../pages/profile/profile';
+import { FindPetsPage } from '../pages/find-pets/find-pets';
+import { ScheduleMeetupPage } from '../pages/schedule-meetup/schedule-meetup';
+import { EditDetailsPage } from '../pages/edit-details/edit-details';
+import { EditPasswordPage } from '../pages/edit-password/edit-password';
+import { YourPetsPage } from '../pages/your-pets/your-pets';
 import { ImageUploadService } from '../services/image_upload_service';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -20,21 +25,17 @@ import { Contacts } from '@ionic-native/contacts';
 import { Camera } from '@ionic-native/camera';
 
 import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuth } from '@angular/fire/auth'
+import { AngularFireAuth } from '@angular/fire/auth';
 import { firebaseConfig } from '../config';
 import { AuthProvider } from '../providers/auth/auth';
 import { DbProvider } from '../providers/db/db';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { ProfilePage } from '../pages/profile/profile';
-import { EditDetailsPage } from '../pages/edit-details/edit-details';
-import { EditPasswordPage } from '../pages/edit-password/edit-password';
-import { YourPetsPage } from '../pages/your-pets/your-pets';
 
 @NgModule({
-  declarations: [MyApp, HomePage, EventPage, ContactPage, MessagePage, AddPetPage, YourPetsPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
+  declarations: [MyApp, FindPetsPage, EventPage, ScheduleMeetupPage, ContactPage, MessagePage, AddPetPage, YourPetsPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
   imports: [BrowserModule, IonicModule.forRoot(MyApp), AngularFireModule.initializeApp(firebaseConfig), AngularFireDatabaseModule],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, EventPage, ContactPage, MessagePage, AddPetPage, YourPetsPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
+  entryComponents: [MyApp, FindPetsPage, ScheduleMeetupPage, EventPage, ContactPage, MessagePage, AddPetPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
   providers: [
     StatusBar,
     SplashScreen,
