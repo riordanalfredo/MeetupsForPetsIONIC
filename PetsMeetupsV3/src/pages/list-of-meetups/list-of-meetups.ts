@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MessagePage } from '../message/message';
 import { EventPage } from '../event/event';
+import { DbProvider } from '../../providers/db/db';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AuthProvider } from '../../providers/auth/auth';
 /**
  * Generated class for the ListOfMeetupsPage page.
  *
@@ -15,9 +18,15 @@ import { EventPage } from '../event/event';
   templateUrl: 'list-of-meetups.html',
 })
 export class ListOfMeetupsPage {
+  petsData = [];
+  constructor( 
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private authProvider: AuthProvider,
+    private db: DbProvider,) {
+      this.db.getAllPets().then(array => this.petsData = array);
+    }
 
-  constructor( public navCtrl: NavController, public navParams: NavParams ) {
-  }
   fakeData = [
     { 
       petName: 'Dogo',
@@ -65,6 +74,7 @@ export class ListOfMeetupsPage {
   }
 
   ionViewDidLoad() {
+    console.log(this.petsData);
     console.log('ionViewDidLoad ListOfMeetupsPage');
   }
 

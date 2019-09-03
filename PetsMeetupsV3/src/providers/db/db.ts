@@ -85,4 +85,18 @@ export class DbProvider {
     return new Promise<Array<User>>(resolve => resolve(users));
   }
 
+
+  public async getAllPets(): Promise<Array<Pet>> {
+    let returnedPets: Array<Pet> = new Array<Pet>();
+    await this.angularFireDatabase.object(this.USERS_LIST).query.once('value').then(snapshot => {
+      snapshot.forEach(userSnapshot => {
+        let userId = userSnapshot.key;
+        this.getPets(userId).then(pets => {
+          pets.forEach(pet => returnedPets.push(pet));
+        });
+      });
+    });
+
+    return new Promise<Array<Pet>>(resolve => resolve(returnedPets));
+  }
 }
