@@ -5,37 +5,37 @@ export class Pet {
   private avatarUrl: string;
 
   constructor(id: string, name: string, description: string, avatarUrl: string) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.avatarUrl = avatarUrl;
+      this.id = id;
+      this.name = name;
+      this.description = description;
+      this.avatarUrl = avatarUrl;
   }
 
   public getId(): string {
-    return this.id;
+      return this.id;
   }
 
   public getName(): string {
-    return this.name;
+      return this.name;
   }
 
   public setName(name: string) {
-    this.name = name;
+      this.name = name;
   }
 
   public getDescription(): string {
-    return this.description;
+      return this.description;
   }
 
   public setDescription(description: string) {
-    this.description = description;
+      this.description = description;
   }
 
   public getAvatarUrl(): string {
-    return this.avatarUrl;
+      return this.avatarUrl;
   }
 
   public setAvatarUrl(avatarUrl: string) {
-    this.avatarUrl = avatarUrl;
+      this.avatarUrl = avatarUrl;
   }
 }
