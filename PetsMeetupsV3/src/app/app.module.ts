@@ -14,6 +14,7 @@ import { FindPetsPage } from '../pages/find-pets/find-pets';
 import { ScheduleMeetupPage } from '../pages/schedule-meetup/schedule-meetup';
 import { EditDetailsPage } from '../pages/edit-details/edit-details';
 import { EditPasswordPage } from '../pages/edit-password/edit-password';
+import { YourPetsPage } from '../pages/your-pets/your-pets';
 import { ImageUploadService } from '../services/image_upload_service';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -31,41 +32,10 @@ import { DbProvider } from '../providers/db/db';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    FindPetsPage,
-    AddPetPage,
-    ScheduleMeetupPage,
-    EventPage,
-    ContactPage,
-    MessagePage,
-    LoginPage,
-    SignupPage,
-    ProfilePage,
-    EditDetailsPage,
-    EditPasswordPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
-  ],
+  declarations: [MyApp, FindPetsPage, EventPage, ScheduleMeetupPage, ContactPage, MessagePage, AddPetPage, YourPetsPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
+  imports: [BrowserModule, IonicModule.forRoot(MyApp), AngularFireModule.initializeApp(firebaseConfig), AngularFireDatabaseModule],
   bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    FindPetsPage,
-    AddPetPage,
-    ScheduleMeetupPage,
-    EventPage,
-    ContactPage,
-    MessagePage,
-    LoginPage,
-    SignupPage,
-    ProfilePage,
-    EditDetailsPage,
-    EditPasswordPage
-  ],
+  entryComponents: [MyApp, FindPetsPage, YourPetsPage, ScheduleMeetupPage, EventPage, ContactPage, MessagePage, AddPetPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
   providers: [
     StatusBar,
     SplashScreen,
