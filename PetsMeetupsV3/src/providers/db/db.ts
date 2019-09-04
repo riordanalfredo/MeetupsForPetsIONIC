@@ -84,6 +84,20 @@ export class DbProvider {
     return petList;
   }
 
+  public updatePetDetails(userId: string, pet: Pet){
+    let petID = pet.getId();
+    return this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST + '/' + petID).set({
+      name: pet.getName(),
+      description: pet.getDescription(),
+      avatarUrl: pet.getAvatarUrl()
+    });
+  }
+
+  public deletePet(userId: string, pet: Pet){
+    let petID = pet.getId();
+    return this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST + '/' + petID).remove();
+  }
+
   public async getPets(userId: string): Promise<Array<Pet>> {
     let pets: Array<Pet> = new Array<Pet>();
 

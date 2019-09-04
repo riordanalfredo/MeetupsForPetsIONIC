@@ -1,0 +1,28 @@
+page-edit-pet {
+
+}
+
+#pet_avatar{
+  position: relative;
+  object-fit: contain;
+  object-position: center;
+  overflow: hidden;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  min-height: 200px;
+  max-height: 250px;
+  background-color: white;
+}
+
+.edit_divider{
+  height: 20px;
+}
+
+.editBtn-alginment{
+  display: flex;
+  padding: 50px;
+  align-self: center;
+  justify-content: center;
+}

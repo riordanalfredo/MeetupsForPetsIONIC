@@ -93,7 +93,7 @@ export class AddImagePage {
 
     this.toastCtrl.create({
       message: 'Avatar has been set',
-      duration: 2500,
+      duration: 1500,
       position: 'bottom'
     }).present();
   }
