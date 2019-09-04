@@ -15,7 +15,7 @@ import { ScheduleMeetupPage } from '../pages/schedule-meetup/schedule-meetup';
 import { EditDetailsPage } from '../pages/edit-details/edit-details';
 import { EditPasswordPage } from '../pages/edit-password/edit-password';
 import { YourPetsPage } from '../pages/your-pets/your-pets';
-import { ImageUploadService } from '../services/image_upload_service';
+import { EditPetPage } from '../pages/edit-pet/edit-pet';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -30,17 +30,54 @@ import { firebaseConfig } from '../config';
 import { AuthProvider } from '../providers/auth/auth';
 import { DbProvider } from '../providers/db/db';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage'
+import { ImageCaptureProvider } from '../providers/image-capture/image-capture';
 
 @NgModule({
-  declarations: [MyApp, FindPetsPage, EventPage, ScheduleMeetupPage, ContactPage, MessagePage, AddPetPage, YourPetsPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
-  imports: [BrowserModule, IonicModule.forRoot(MyApp), AngularFireModule.initializeApp(firebaseConfig), AngularFireDatabaseModule],
+  declarations: [
+    MyApp,
+    FindPetsPage,
+    EventPage,
+    ScheduleMeetupPage,
+    ContactPage,
+    MessagePage,
+    AddPetPage,
+    YourPetsPage,
+    LoginPage,
+    SignupPage,
+    ProfilePage,
+    EditDetailsPage,
+    EditPasswordPage,
+    EditPetPage
+  ],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
+  ],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, FindPetsPage, YourPetsPage, ScheduleMeetupPage, EventPage, ContactPage, MessagePage, AddPetPage, LoginPage, SignupPage, ProfilePage, EditDetailsPage, EditPasswordPage],
+  entryComponents: [
+    MyApp,
+    FindPetsPage,
+    YourPetsPage,
+    ScheduleMeetupPage,
+    EventPage,
+    ContactPage,
+    MessagePage,
+    AddPetPage,
+    LoginPage,
+    SignupPage,
+    ProfilePage,
+    EditDetailsPage,
+    EditPasswordPage,
+    EditPetPage
+  ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    ImageUploadService,
     Calendar,
     Contacts,
     AngularFireAuth,
@@ -48,7 +85,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     DbProvider,
     Camera,
     SMS,
-    Contacts
+    Contacts,
+    ImageCaptureProvider
   ]
 })
 export class AppModule { }

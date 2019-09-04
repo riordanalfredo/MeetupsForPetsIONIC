@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { Pet } from '../../models/Pet'
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { ImageUploadService } from '../../services/image_upload_service';
-import { Subscription } from 'rxjs';
+import { IonicPage, NavController, NavParams, ToastController, ViewController, AlertController } from 'ionic-angular';
 import { DbProvider } from '../../providers/db/db';
-import { AuthProvider } from '../../providers/auth/auth';
+import { AngularFireUploadTask } from '@angular/fire/storage';
+import { ImageCaptureProvider } from '../../providers/image-capture/image-capture';
 
 /**
  * Generated class for the AddPetPage page.
@@ -19,51 +18,63 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'add-pet.html',
 })
 export class AddPetPage {
-
-  imgURL: string;
-  subscription: Subscription;
-  petName:string;
+  petName: string;
   petDesc: string;
+  defaultPetImage: string = 'assets/imgs/default_pet_img.png';
+  image: any;
+  showSpinner: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private imgUploadService: ImageUploadService,
-    private afDatabase: DbProvider, private toastCtrl: ToastController, private authService: AuthProvider) {
-    this.subscription = this.imgUploadService.getImgURL().subscribe(imgURL => this.imgURL = imgURL);
+  constructor(public navCtrl: NavController,
+    public viewCtrl: ViewController,
+    public navParams: NavParams,
+    private afDatabase: DbProvider,
+    private toastCtrl: ToastController,
+    private imageCapture: ImageCaptureProvider) {
+    this.image = this.defaultPetImage;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPetPage');
   }
 
-  redirectToAddPhoto(){
-    this.navCtrl.push('AddImagePage');
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
+  addPhoto() {
+    this.imageCapture.getPhoto().then(image => this.image = image);
+  }
 
-  registerPet(){
+  addPet() {
+    this.showSpinner = true;
+    const pet: Pet = new Pet('', this.petName, this.petDesc, '');
 
-    // Creates a new Pet
-    let newPet = new Pet(Math.round(Math.random()*1000000).toString(), this.petName, this.petDesc, this.imgURL);
+    if (this.image == this.defaultPetImage) {
+      pet.setAvatarUrl(this.defaultPetImage);
+      this.uploadPet(pet);
+    } else {
+      let task: AngularFireUploadTask = this.afDatabase.uploadPetImage(this.image);
 
-    // Retrieves the user's ID and uploads pet to the database
-    this.authService.getUser().then(user =>{
-      this.afDatabase.addPet(user.getUserId(), newPet);
+      task.then(snapshot => {
+        snapshot.ref.getDownloadURL().then(downloadUrl => {
+          pet.setAvatarUrl(downloadUrl);
+          this.uploadPet(pet);
+        });
+      }).catch(reason => {
+        this.showSpinner = false;
+        console.log(reason);
+      });
+    }
+  }
 
-      // Clears inputs after pet has been registered
-      this.petDesc = "";
-      this.petName = "";
-      this.imgURL = "assets/imgs/default_pet_img.png";
-
+  uploadPet(pet: Pet) {
+    this.afDatabase.addPet(pet).then(() => {
+      this.showSpinner = false;
+      this.toastCtrl.create({
+        message: 'Your pet has been added',
+        duration: 2500,
+        position: 'bottom'
+      }).present().then(() => this.dismiss());
     });
-
-    this.toastCtrl.create({
-      message: 'Your pet has been added',
-      duration: 2500,
-      position: 'bottom'
-    }).present();
   }
-
-
-
-
-
 }
