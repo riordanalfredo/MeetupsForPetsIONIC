@@ -23,7 +23,7 @@ export class SignupPage {
     private formBuilder: FormBuilder,
     private dbProvider: DbProvider
   ) {
-    this.signupForm = formBuilder.group({
+    this.signupForm = this.formBuilder.group({
       name: ['', Validators.compose([Validators.required])],
       mobile: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
       email: ['', Validators.compose([Validators.required, Validators.email])],

@@ -2,12 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { HomePage } from '../pages/home/home';
-import { ListOfMeetupsPage } from '../pages/list-of-meetups/list-of-meetups';
 import { EventPage } from '../pages/event/event';
-import { HistoryPage } from '../pages/history/history';
-import { MessagePage } from '../pages/message/message';
 import { ContactPage } from '../pages/contact/contact';
 import { AddPetPage } from '../pages/add-pet/add-pet'
 import { LoginPage } from '../pages/login/login';
@@ -37,12 +32,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List of Meetups', component: ListOfMeetupsPage },
       { title: 'Find Pets', component: FindPetsPage },
       { title: 'Event', component: EventPage },
-      { title: 'History', component: HistoryPage },
-      { title: 'Messages', component: MessagePage },
       { title: 'Add Pet', component: AddPetPage},
       { title: 'Profile', component: ProfilePage },
       { title: 'Contacts', component: ContactPage},
