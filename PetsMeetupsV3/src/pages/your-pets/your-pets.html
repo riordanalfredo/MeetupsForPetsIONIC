@@ -14,19 +14,19 @@
 </ion-header>
 
 <ion-content padding>
-  <ng-template let-pet ngFor [ngForOf]="allPetsArray">
-    <ion-card>
-      <ion-card-content>
-        <img class="pet_image" [src]="pet.avatarUrl">
-        <div class="card_content">
-          <ion-card-title class="title-alignment">{{ pet.name }}</ion-card-title>
-          <p class="truncate">{{ pet.description }}</p>
-          <div class="btn-alignment">
-              <button ion-button clear small (click)="redirectToEditPet(pet)">Edit Pet</button>
-              <button ion-button clear small color="danger" type="button" (click)="deletePet(pet)">Delete</button>
-          </div>
+  <ion-card *ngFor="let pet of allPetsArray">
+    <ion-card-header>
+      <img [src]="pet.avatarUrl" />
+    </ion-card-header>
+    <ion-card-content>
+      <div>
+        <ion-card-title>{{ pet.name }}</ion-card-title>
+        <p>{{ pet.description }}</p>
+        <div>
+          <button ion-button clear small (click)="redirectToEditPet(pet)">Edit Pet</button>
+          <button ion-button clear small color="danger" (click)="deletePet(pet)">Delete</button>
         </div>
-      </ion-card-content>
-    </ion-card>
-  </ng-template>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
