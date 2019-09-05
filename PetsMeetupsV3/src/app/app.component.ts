@@ -6,7 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { EventPage } from '../pages/event/event';
 import { MessagePage } from '../pages/message/message';
 import { ContactPage } from '../pages/contact/contact';
-import { AddPetPage } from '../pages/add-pet/add-pet'
 import { LoginPage } from '../pages/login/login';
 import { AuthProvider } from '../providers/auth/auth';
 import { ProfilePage } from '../pages/profile/profile';
@@ -37,10 +36,9 @@ export class MyApp {
       { title: 'Find Pets', component: FindPetsPage },
       { title: 'Event', component: EventPage },
       { title: 'Messages', component: MessagePage },
-      { title: 'Add Pet', component: AddPetPage},
+      { title: 'Your Pets', component: YourPetsPage},
       { title: 'Profile', component: ProfilePage },
       { title: 'Contacts', component: ContactPage},
-      { title: 'Your Pets', component: YourPetsPage}
     ];
   }
 

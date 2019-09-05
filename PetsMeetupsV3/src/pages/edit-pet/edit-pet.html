@@ -7,26 +7,34 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Edit Pet</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="dismiss()">CANCEL</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div class="edit_divider"></div>
+  <img [src]="image">
+  <form (ngSubmit)="update()">
+    <ion-item>
+      <ion-label floating>Pet Name</ion-label>
+      <ion-input type="text" name="name" [(ngModel)]="name"></ion-input>
+    </ion-item>
 
-      <img id="pet_avatar" [src]="imgURL">
-      <form (ngSubmit)="onUpdate($event, [pet])">
-        <ion-item>
-          <ion-label floating>Pet Name</ion-label>
-          <ion-input type="text" name="name" [value]="pet.name"></ion-input>
-        </ion-item>
+    <ion-item>
+      <ion-label floating>Pet Description</ion-label>
+      <ion-textarea type="text" name="desc" [(ngModel)]="desc"></ion-textarea>
+    </ion-item>
 
-        <ion-item>
-          <ion-label floating>Pet Description</ion-label>
-          <ion-textarea type="text" name="desc" [value]="pet.description"></ion-textarea>
-        </ion-item>
-        <div class="editBtn-alginment">
-            <button ion-button type="submit">Update</button>
-            <button ion-button type="button" (click)="redirectUploadImage()">Edit Avatar</button>
-        </div>
-      </form>
+    <ion-row padding>
+      <ion-col>
+        <button ion-button clear type="button" (click)="changePhoto()">Change Image</button>
+      </ion-col>
+
+      <ion-col>
+        <button ion-button type="submit">Update</button>
+        <ion-spinner *ngIf="showSpinner"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>

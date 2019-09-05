@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase, } from '@angular/fire/database';
 import { User } from '../../models/User';
 import { Pet } from '../../models/Pet';
 import { AuthProvider } from '../auth/auth';
+import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 
 @Injectable()
 export class DbProvider {
@@ -12,6 +13,7 @@ export class DbProvider {
 
   constructor(
     private angularFireDatabase: AngularFireDatabase,
+    private angularFireStorage: AngularFireStorage,
     private authProvider: AuthProvider
   ) {
   }
@@ -39,14 +41,16 @@ export class DbProvider {
     return this.addUser(user);
   }
 
-  public addPet(userId: string, pet: Pet) {
-    return this.angularFireDatabase
-      .list(this.getUserList(userId) + '/' + this.USER_PETS_LIST)
-      .push({
-        name: pet.getName(),
-        description: pet.getDescription(),
-        avatarUrl: pet.getAvatarUrl()
-      });
+  public async addPet(pet: Pet) {
+    return await this.authProvider.getUser().then(user => {
+      this.angularFireDatabase
+        .list(this.getUserList(user.getUserId()) + '/' + this.USER_PETS_LIST)
+        .push({
+          name: pet.getName(),
+          description: pet.getDescription(),
+          avatarUrl: pet.getAvatarUrl()
+        });
+    });
   }
 
   private getAllUsersRef() {
@@ -84,31 +88,42 @@ export class DbProvider {
     return petList;
   }
 
-  public updatePetDetails(userId: string, pet: Pet){
-    let petID = pet.getId();
-    return this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST + '/' + petID).set({
-      name: pet.getName(),
-      description: pet.getDescription(),
-      avatarUrl: pet.getAvatarUrl()
+  public async updatePetDetails(pet: Pet): Promise<void> {
+    return new Promise<void>(resolve => {
+      this.authProvider.getUser().then(user => {
+        this.angularFireDatabase.object(this.getUserList(user.getUserId()) + '/' + this.USER_PETS_LIST + '/' + pet.getId()).set({
+          name: pet.getName(),
+          description: pet.getDescription(),
+          avatarUrl: pet.getAvatarUrl()
+        }).then(() => resolve())
+        .catch(reason => console.log(reason));
+      });
     });
   }
 
-  public deletePet(userId: string, pet: Pet){
-    let petID = pet.getId();
-    return this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST + '/' + petID).remove();
+  public async deletePet(pet: Pet): Promise<void> {
+    return new Promise<void>(resolve => {
+      this.authProvider.getUser().then(user => {
+        this.deletePetImage(pet).then(() => {
+          this.angularFireDatabase.object(this.getUserList(user.getUserId()) + '/' + this.USER_PETS_LIST + '/' + pet.getId()).remove().then(() => resolve());
+        });
+      });
+    });
   }
 
-  public async getPets(userId: string): Promise<Array<Pet>> {
+  public async getPets(): Promise<Array<Pet>> {
     let pets: Array<Pet> = new Array<Pet>();
 
-    await this.angularFireDatabase.object(this.getUserList(userId) + '/' + this.USER_PETS_LIST).query.once('value').then(snapshot => {
-      snapshot.forEach(petSnapshot => {
-        let id = petSnapshot.key;
-        let name = petSnapshot.child('name').val();
-        let description = petSnapshot.child('description').val();
-        let avatarUrl = petSnapshot.child('avatarUrl').val();
+    await this.authProvider.getUser().then(user => {
+      this.angularFireDatabase.object(this.getUserList(user.getUserId()) + '/' + this.USER_PETS_LIST).query.once('value').then(snapshot => {
+        snapshot.forEach(petSnapshot => {
+          let id = petSnapshot.key;
+          let name = petSnapshot.child('name').val();
+          let description = petSnapshot.child('description').val();
+          let avatarUrl = petSnapshot.child('avatarUrl').val();
 
-        pets.push(new Pet(id, name, description, avatarUrl));
+          pets.push(new Pet(id, name, description, avatarUrl));
+        });
       });
     });
 
@@ -123,7 +138,7 @@ export class DbProvider {
         let userId = userSnapshot.key;
         let details = userSnapshot.child(this.USER_DETAILS_LIST);
 
-        this.getPets(userId).then(pets => {
+        this.getPets().then(pets => {
           let user = new User(userId, details.child('name').val(), details.child('mobile').val(), details.child('email').val(), details.child('photoUrl').val());
 
           pets.forEach(pet => user.addPet(pet));
@@ -134,6 +149,19 @@ export class DbProvider {
     });
 
     return new Promise<Array<User>>(resolve => resolve(users));
+  }
+
+  public uploadPetImage(image: any): AngularFireUploadTask {
+    const imagePath = `pet_${new Date().getTime()}.jpg`;
+
+    return this.angularFireStorage.ref(imagePath).putString(image, 'data_url');
+  }
+
+  public async deletePetImage(pet: Pet): Promise<void> {
+    return new Promise<void>(resolve => {
+      let petRef = pet.getAvatarUrl().match(/pet_.*jpg/)[0];
+      this.angularFireStorage.ref(petRef).delete().subscribe(() => resolve());
+    });
   }
 
 }

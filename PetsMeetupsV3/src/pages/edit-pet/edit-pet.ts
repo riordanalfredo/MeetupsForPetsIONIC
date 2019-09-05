@@ -1,15 +1,14 @@
 import { Component } from "@angular/core";
 import {
   IonicPage,
-  NavController,
   NavParams,
-  ToastController
+  ToastController,
+  ViewController
 } from "ionic-angular";
 import { Pet } from "../../models/Pet";
-import { ImageUploadService } from "../../services/image_upload_service";
 import { Subscription } from "rxjs";
 import { DbProvider } from "../../providers/db/db";
-import { AuthProvider } from "../../providers/auth/auth";
+import { ImageCaptureProvider } from "../../providers/image-capture/image-capture";
 
 /**
  * Generated class for the EditPetPage page.
@@ -24,63 +23,73 @@ import { AuthProvider } from "../../providers/auth/auth";
   templateUrl: "edit-pet.html"
 })
 export class EditPetPage {
-  pet: any;
+  name: string;
+  desc: string;
+  pet: Pet;
   subscription: Subscription;
-  imgURL: any;
+  image: any;
   imageAltered: boolean = false;
+  showSpinner: boolean = false;
 
   constructor(
-    public navCtrl: NavController,
+    public viewCtrl: ViewController,
     public navParams: NavParams,
-    private imgUploadService: ImageUploadService,
     private toastCtrl: ToastController,
     private afDatabase: DbProvider,
-    private afAuth: AuthProvider
+    private imageCapture: ImageCaptureProvider
   ) {
-    this.pet = this.navParams.get("pet");
-    this.subscription = this.imgUploadService
-    .getImgURL()
-    .subscribe(imgURL => (this.imgURL = imgURL));
-
-    this.imgURL = this.pet.avatarUrl;
+    this.pet = this.navParams.get('pet');
+    this.image = this.pet.getAvatarUrl();
+    this.name = this.pet.getName();
+    this.desc = this.pet.getDescription();
   }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad EditPetPage");
   }
 
-  ionViewDidEnter() {
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 
-  onUpdate(event: any, pet: Pet) {
-    // Update details of pet
-    this.pet.name = event.target.name.value;
-    this.pet.description = event.target.desc.value;
-
-    // Check to see if the image uploaded is a new one
-    if (this.pet.avatarUrl !== this.imgURL &&
-      this.imgURL !== "assets/imgs/default_pet_img.png"
-    ) {
-      this.pet.avatarUrl = this.imgURL;
-    }
-
-    // Updates the details of the pet
-    this.afAuth.getUser().then(user => {
-      this.afDatabase.updatePetDetails(user.getUserId(), pet[0]);
+  changePhoto() {
+    this.imageCapture.getPhoto().then(image => {
+      this.image = image;
+      this.imageAltered = true;
     });
+  }
 
-    this.navCtrl.pop();
+  update() {
+    this.showSpinner = true;
+    this.pet.setName(this.name);
+    this.pet.setDescription(this.desc);
+    
+    if (this.imageAltered === true) {
+      // Delete previous image
+      this.afDatabase.deletePetImage(this.pet).then(() => {
+        // Upload new image
+        this.afDatabase.uploadPetImage(this.image).then(uploadTask => {
+          // Get the download url
+          uploadTask.ref.getDownloadURL().then(downloadUrl => {
+            this.pet.setAvatarUrl(downloadUrl);
+            this.updatePetDetails(this.pet);
+          });
+        });
+      });
+    } else {
+      this.updatePetDetails(this.pet);
+    }
+  }
 
-    this.toastCtrl
-      .create({
+  updatePetDetails(pet: Pet) {
+    this.afDatabase.updatePetDetails(pet).then(() => {
+      this.showSpinner = false;
+      this.toastCtrl.create({
         message: "Your pet details has been updated",
         duration: 2500,
         position: "bottom"
-      })
-      .present();
-  }
-
-  redirectUploadImage() {
-    this.navCtrl.push("AddImagePage");
+      }).present();
+      this.dismiss();
+    });
   }
 }

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { DbProvider } from '../../providers/db/db';
-import { AuthProvider } from '../../providers/auth/auth';
 import { Pet } from '../../models/Pet';
+import { AddPetPage } from '../add-pet/add-pet';
+import { EditPetPage } from '../edit-pet/edit-pet';
 
 /**
  * Generated class for the YourPetsPage page.
@@ -19,33 +20,41 @@ import { Pet } from '../../models/Pet';
 export class YourPetsPage {
 
   allPetsArray = [];
-  userId: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private afDatabase: DbProvider, private afAuth: AuthProvider, private alertCtrl: AlertController) {
-
-    this.afAuth.getUser().then(user =>{
-      this.afDatabase.getPets(user.getUserId()).then(petList => {
-        let pets = [];
-        petList.forEach(pet => {
-          pets.push(pet);
-        })
-        this.allPetsArray = pets;
-        this.userId = user.getUserId();
-      })
-    })
+  constructor(
+    public navParams: NavParams,
+    private afDatabase: DbProvider,
+    private alertCtrl: AlertController,
+    private modalCtrl: ModalController) {
+    this.getPets();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad YourPetsPage');
   }
 
-  redirectToEditPet(pet: Pet){
+  redirectToEditPet(pet: Pet) {
     // Passes the current pet to be edited to the next page
-    this.navCtrl.push('EditPetPage', {pet: pet});
+    this.modalCtrl.create(EditPetPage, { pet: pet }).present();
   }
 
-  deletePet(pet: Pet){
+  getPets() {
+    this.afDatabase.getPets().then(petList => {
+      let pets = [];
+      petList.forEach(pet => {
+        pets.push(pet);
+      })
+      this.allPetsArray = pets;
+    });
+  }
 
+  addPet() {
+    const modal = this.modalCtrl.create(AddPetPage);
+    modal.present();
+    modal.onDidDismiss(() => this.getPets());
+  }
+
+  deletePet(pet: Pet) {
     let alert = this.alertCtrl.create({
       title: 'Deleting Pet',
       message: 'Are you sure you want to remove this pet?',
@@ -62,17 +71,14 @@ export class YourPetsPage {
           handler: () => {
 
             // Removes the pet from the database
-            this.afDatabase.deletePet(this.userId, pet);
-
-            // Removes the pet from the front-end
-            this.allPetsArray = this.allPetsArray.filter(item => item.id != pet.getId());
+            this.afDatabase.deletePet(pet).then(() => {
+              // Removes the pet from the front-end
+              this.allPetsArray = this.allPetsArray.filter(item => item.id != pet.getId());
+            });
           }
         }
       ]
     });
     alert.present();
-
-
-
   }
 }
