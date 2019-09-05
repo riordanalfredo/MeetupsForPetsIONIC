@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
@@ -20,14 +20,17 @@ export class ContactPage {
   petName: AbstractControl;
   ownerName: AbstractControl;
   phoneNumber: AbstractControl;
+  isCordova: boolean = false;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     private contacts: Contacts,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    public platform: Platform
   ) {
+    this.isCordova = this.platform.is('cordova');
     this.getContacts();
 
     this.formGroup = formBuilder.group({
@@ -43,43 +46,47 @@ export class ContactPage {
 
   contactList = [];
   getContacts(): void {
-    this.contacts
-      .find(['displayName', 'phoneNumbers', 'photos'], { multiple: true, hasPhoneNumber: true })
-      .then(contacts => {
-        for (var i = 0; i < contacts.length; i++) {
-          if (contacts[i].displayName !== null) {
-            var contact = {};
-            contact['name'] = contacts[i].displayName;
-            contact['number'] = contacts[i].phoneNumbers[0].value;
-            if (contacts[i].photos != null) {
-              console.log(contacts[i].photos);
-              contact['image'] = this.sanitizer.bypassSecurityTrustUrl(contacts[i].photos[0].value);
-              console.log(contact);
-            } else {
-              contact['image'] = 'assets/dummy-profile-pic.png';
+    if (this.isCordova) {
+      this.contacts
+        .find(['displayName', 'phoneNumbers', 'photos'], { multiple: true, hasPhoneNumber: true })
+        .then(contacts => {
+          for (var i = 0; i < contacts.length; i++) {
+            if (contacts[i].displayName !== null) {
+              var contact = {};
+              contact['name'] = contacts[i].displayName;
+              contact['number'] = contacts[i].phoneNumbers[0].value;
+              if (contacts[i].photos != null) {
+                console.log(contacts[i].photos);
+                contact['image'] = this.sanitizer.bypassSecurityTrustUrl(contacts[i].photos[0].value);
+                console.log(contact);
+              } else {
+                contact['image'] = 'assets/dummy-profile-pic.png';
+              }
+              this.contactList.push(contact);
             }
-            this.contactList.push(contact);
           }
-        }
-      });
+        });
+    }
   }
 
   addContact(): void {
-    let contact: Contact = this.contacts.create();
-    let ownerName = this.formGroup.value.ownerName;
-    let petName = this.formGroup.value.petName;
-    contact.name = new ContactName(null, petName.toUpperCase(), `${ownerName}'s pet`);
-    let number = new ContactField('mobile', this.formGroup.value.phoneNumber);
-    contact.phoneNumbers = [number];
-    contact
-      .save()
-      .then(
-        () => console.log('Contact saved!', contact),
-        (error: any) => console.error('Error saving contact.', error)
-      );
-    //refresh after submit
-    this.navCtrl.setRoot(this.navCtrl.getActive().component);
-    this.getContacts();
+    if (this.isCordova) {
+      let contact: Contact = this.contacts.create();
+      let ownerName = this.formGroup.value.ownerName;
+      let petName = this.formGroup.value.petName;
+      contact.name = new ContactName(null, petName.toUpperCase(), `${ownerName}'s pet`);
+      let number = new ContactField('mobile', this.formGroup.value.phoneNumber);
+      contact.phoneNumbers = [number];
+      contact
+        .save()
+        .then(
+          () => console.log('Contact saved!', contact),
+          (error: any) => console.error('Error saving contact.', error)
+        );
+      //refresh after submit
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
+      this.getContacts();
+    }
   }
 
   ionViewDidLoad() {
