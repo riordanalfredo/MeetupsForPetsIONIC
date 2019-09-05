@@ -6,21 +6,23 @@
 -->
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
     <ion-title>Add Pet</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="dismiss()">
+        CANCEL
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-img class="pet_avatar" [src]="imgURL"></ion-img>
+  <ion-img class="pet_avatar" [src]="image"></ion-img>
 
-
-  <form class="pet_details" (ngSubmit)="registerPet()">
+  <form class="pet_details" (ngSubmit)="addPet()">
     <ion-item>
       <ion-label floating>Name</ion-label>
-      <ion-input type="text" [(ngModel)] = "petName" name="petName"></ion-input>
+      <ion-input type="text" [(ngModel)]="petName" name="petName"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -28,13 +30,16 @@
       <ion-textarea type="text" [(ngModel)]="petDesc" name="petDescription"></ion-textarea>
     </ion-item>
 
-    <div class="btn_alignment" text-center>
-      <button ion-button type="button" (click)="redirectToAddPhoto()">Add Avatar</button>
-      <div class="btn_divider"></div>
-      <button ion-button type="submit">Add Pet</button>
-    </div>
+    <ion-row padding>
+      <ion-col>
+        <button ion-button type="button" clear (click)="addPhoto()">Add Image</button>
+      </ion-col>
+
+      <ion-col>
+        <button ion-button type="submit">Done</button>
+        <ion-spinner *ngIf="showSpinner"></ion-spinner>
+      </ion-col>
+    </ion-row>
   </form>
-
-
 
 </ion-content>

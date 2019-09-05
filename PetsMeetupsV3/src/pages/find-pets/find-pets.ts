@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DbProvider } from '../../providers/db/db';
-import { MessagePage } from '../message/message';
 import { ScheduleMeetupPage } from '../schedule-meetup/schedule-meetup';
 
 /**
