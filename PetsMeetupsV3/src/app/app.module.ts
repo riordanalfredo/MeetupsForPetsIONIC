@@ -8,9 +8,9 @@ import { EventPage } from '../pages/event/event';
 import { ContactPage } from '../pages/contact/contact';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-import { MessagePage } from '../pages/message/message';
 import { ProfilePage } from '../pages/profile/profile';
 import { FindPetsPage } from '../pages/find-pets/find-pets';
+import { MessagePage } from '../pages/message/message';
 import { ScheduleMeetupPage } from '../pages/schedule-meetup/schedule-meetup';
 import { EditDetailsPage } from '../pages/edit-details/edit-details';
 import { EditPasswordPage } from '../pages/edit-password/edit-password';
@@ -39,8 +39,8 @@ import { ImageCaptureProvider } from '../providers/image-capture/image-capture';
     FindPetsPage,
     EventPage,
     ScheduleMeetupPage,
-    ContactPage,
     MessagePage,
+    ContactPage,
     AddPetPage,
     YourPetsPage,
     LoginPage,
@@ -63,9 +63,9 @@ import { ImageCaptureProvider } from '../providers/image-capture/image-capture';
     FindPetsPage,
     YourPetsPage,
     ScheduleMeetupPage,
+    MessagePage,
     EventPage,
     ContactPage,
-    MessagePage,
     AddPetPage,
     LoginPage,
     SignupPage,

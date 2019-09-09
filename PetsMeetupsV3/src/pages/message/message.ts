@@ -19,7 +19,9 @@ export class MessagePage {
   phoneNumber: string;
   message: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private sms: SMS) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sms: SMS) {
+    this.phoneNumber = this.navParams.get('phone');
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MessagePage');

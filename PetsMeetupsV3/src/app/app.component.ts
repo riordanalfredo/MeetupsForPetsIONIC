@@ -2,9 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { EventPage } from '../pages/event/event';
-import { MessagePage } from '../pages/message/message';
 import { ContactPage } from '../pages/contact/contact';
 import { LoginPage } from '../pages/login/login';
 import { AuthProvider } from '../providers/auth/auth';
@@ -20,7 +18,7 @@ export class MyApp {
 
   rootPage: any = FindPetsPage;
 
-  pages: Array<{ title: string; component: any }>;
+  pages: Array<{ title: string; component: any, color: any }>;
 
   constructor(
     public platform: Platform,
@@ -33,12 +31,11 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Find Pets', component: FindPetsPage },
-      { title: 'Event', component: EventPage },
-      { title: 'Messages', component: MessagePage },
-      { title: 'Your Pets', component: YourPetsPage},
-      { title: 'Profile', component: ProfilePage },
-      { title: 'Contacts', component: ContactPage},
+      { title: 'Find Pets', component: FindPetsPage, color:"warning"},
+      { title: 'Event', component: EventPage, color:"light"},
+      { title: 'Your Pets', component: YourPetsPage, color:"light"},
+      { title: 'Profile', component: ProfilePage, color:"light" },
+      { title: 'Contacts', component: ContactPage, color:"light"},
     ];
   }
 
@@ -61,5 +58,18 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+    page.color='warning';
+
+    for (let p of this.pages) {
+
+      if(p.title==page.title)
+      {
+        p.color='warning';
+      }
+      else
+      {
+        p.color='light';
+      }
+    }
   }
 }
