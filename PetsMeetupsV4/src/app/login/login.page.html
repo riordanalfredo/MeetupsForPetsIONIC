@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="login()" [formGroup]="loginForm">
+    <ion-list inset>
+
+      <ion-item>
+        <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div padding-horizontal>
+      <div class="form-error" *ngIf="loginForm.controls['password'].hasError('minlength')">
+        Password length should be at least 6 characters.
+      </div>
+
+      <div class="form-error">{{ loginError }}</div>
+
+      <ion-row>
+        <ion-col>
+          <button ion-button type="submit" [disabled]="!loginForm.valid">Login</button>
+          <ion-spinner *ngIf="showSpinner"></ion-spinner>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button clear (click)="showSignup()">Sign Up</button>
+    </ion-col>
+  </ion-row>
+</ion-content>
