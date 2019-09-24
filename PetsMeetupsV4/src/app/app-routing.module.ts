@@ -14,7 +14,9 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
-  },  { path: 'your-pets', loadChildren: './your-pets/your-pets.module#YourPetsPageModule' }
+  },
+  { path: 'your-pets', loadChildren: './your-pets/your-pets.module#YourPetsPageModule' },
+  { path: 'add-pet', loadChildren: './add-pet/add-pet.module#AddPetPageModule' }
 
 ];
 

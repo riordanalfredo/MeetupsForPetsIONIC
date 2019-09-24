@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavParams, AlertController, ModalController } from '@ionic/angular';
 import { DbProvider } from '../providers/db/db';
+import { AddPetPage } from '../add-pet/add-pet.page';
+import { Pet } from 'src/models/Pet';
 
 @Component({
   selector: 'app-your-pets',
@@ -32,16 +34,16 @@ export class YourPetsPage implements OnInit {
     });
   }
 
-  /*
-  addPet() {
-    const modal = this.modalCtrl.create(AddPetPage);
+  
+  async addPet() {
+    const modal = await this.modalCtrl.create({component: AddPetPage });
     modal.present();
-    modal.onDidDismiss(() => this.getPets());
+    modal.onDidDismiss().then(() => this.getPets());
   }
 
-  deletePet(pet: Pet) {
-    let alert = this.alertCtrl.create({
-      title: 'Deleting Pet',
+  async deletePet(pet: Pet) {
+    let alert = await this.alertCtrl.create({
+      header: 'Deleting Pet',
       message: 'Are you sure you want to remove this pet?',
       buttons: [
         {
@@ -66,5 +68,5 @@ export class YourPetsPage implements OnInit {
     });
     alert.present();
   }
-  */
+  
 }
