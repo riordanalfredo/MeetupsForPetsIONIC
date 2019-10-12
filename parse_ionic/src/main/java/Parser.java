@@ -3,29 +3,55 @@ import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.io.*;
+import java.nio.file.*;
 
 public class Parser {
 
     private static String projectPath;
     private static String filePath;
+    private static String oldDirectory;
+    private static String newDirectory;
 
     public static void main(String[] args) {
-        projectPath = "D:\\MeetupsForPetsIONIC-master\\PetsMeetupsV3";
+        // get current working space directory
+        String currentPath = System.getProperty("user.dir");
+        Path projectPathString = Paths.get(currentPath).getParent();
+
+        // initialise all paths
+        projectPath = projectPathString.toString() ;
         filePath = "src\\pages\\add-pet\\add-pet.html";
-        // Get a file handle for the html file
-        File input = new File(projectPath + "\\" + filePath);
+        oldDirectory = "PetsMeetupsV3";
+        newDirectory = "PetsMeetupsV4"; // target directory
+        System.out.println(projectPathString);
+
+        // TODO: make this input variable mutable!
+        File input = new File(projectPath + "\\"+  oldDirectory + "\\" + filePath);
+
         // Only parse if file is html
         if (input.isFile() && input.getName().endsWith(".html")) {
+            //
+            // parse button tags
+            //
             parseButtons(input);
+
+            //
+            // parse navbar tags
+            //
+            String fileV4Navbar = parseNavbar(input);
+            System.out.println(fileV4Navbar);
+
+            /*
+             * It seems that the `input` variable here is not modified after calling
+             * `parseButtons` function.
+             * TODO: Need to find a way to handle running multiple various functions
+             * to generate a final result of from a single `input` variable.
+             */
         }
     }
-
     private static void parseButtons(File input) {
         // DOM structure of the file
         Document doc;
-
         try{
             doc = Jsoup.parse(input, "UTF-8", "");
             // Select all buttons
@@ -53,13 +79,50 @@ public class Parser {
                 System.out.println(v4Button.toString() + "\n");
                 // Replace the old button with the new button in the DOM structure
                 button.replaceWith(v4Button);
+
+                // Adding children / text
+                String v3ButtonText = button.text();
+                System.out.println("v3 button children: " + v3ButtonText);
+                v4Button.append(v3ButtonText);
             }
             // The new DOM structure can be given to the model
             // to be generated using Acceleo
             System.out.println(doc.toString());
-
+            // return as a file
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static String parseNavbar(File f){
+        // DOM structure of the file
+        Document doc;
+        try {
+            doc = Jsoup.parse(f, "UTF-8", "");
+            // Select all navbar
+            Elements navbars = doc.select("ion-navbar");
+            for (Element v3Navbar : navbars) {
+                Element v4Navbar = new Element("ion-toolbar");
+
+                //Loop through old tag attributes to get all attributes
+                for (Attribute attribute : v3Navbar.attributes()) {
+                    v4Navbar.attr(attribute.getKey(), attribute.getValue());
+                }
+
+                // Replace old tags with new tags
+                v3Navbar.replaceWith(v4Navbar);
+
+                // Adding children into new tags
+                Elements v3NavbarChildren = v3Navbar.children();
+                for( Element v3Child : v3NavbarChildren){
+                    v4Navbar.appendChild(v3Child);
+                }
+            }
+            return doc.toString();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return "error in parsing Navbar";
     }
 }
