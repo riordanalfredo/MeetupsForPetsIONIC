@@ -33,8 +33,8 @@ public class Parser {
             //
             // parse button tags
             //
-            parseButtons(input);
-
+            String buttonsv4 = migrateButtons(projectPath, filePath);
+            System.out.println(buttonsv4);
             //
             // parse navbar tags
             //
@@ -47,9 +47,21 @@ public class Parser {
              * TODO: Need to find a way to handle running multiple various functions
              * to generate a final result of from a single `input` variable.
              */
+
+            /*
+             * TODO: Proposed solution to using multiple parse fucntions
+             *  Instead of having each function use a separate Input variable,
+             *  use a common one. Isolate the parts of the code that deal with specific
+             *  components into functions like migrateButtons, etc. Have the parse function
+             *  call the other methods in sequence.
+             */
         }
     }
-    private static void parseButtons(File input) {
+
+    private static String migrateButtons(String projectPath, String filePath) {
+        oldDirectory = "PetsMeetupsV3";
+        // TODO: make this input variable mutable!
+        File input = new File(projectPath + "\\"+  oldDirectory + "\\" + filePath);
         // DOM structure of the file
         Document doc;
         try{
@@ -88,10 +100,12 @@ public class Parser {
             // The new DOM structure can be given to the model
             // to be generated using Acceleo
             System.out.println(doc.toString());
-            // return as a file
+            return doc.toString();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return "";
     }
 
     private static String parseNavbar(File f){
