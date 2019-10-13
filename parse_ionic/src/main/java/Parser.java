@@ -3,6 +3,8 @@ import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.w3c.dom.Attr;
+
 import java.io.*;
 import java.nio.file.*;
 
@@ -56,6 +58,43 @@ public class Parser {
              *  call the other methods in sequence.
              */
         }
+    }
+
+    private static String migrateLabel(String projectPath, String filePath) {
+        oldDirectory = "PetsMeetupsV3";
+        // TODO: make this input variable mutable!
+        File input = new File(projectPath + "\\"+  oldDirectory + "\\" + filePath);
+
+        Document doc;
+
+        try {
+            doc = Jsoup.parse(input, "UTF-8", "");
+            Elements labels = doc.select("ion-label");
+
+            for (Element label: labels) {
+                Element v4Label = new Element("ion-label");
+                for (Attribute attribute: label.attributes()) {
+                    if (!attribute.toString().equals("ion-label")) {
+                        if (attribute.toString().equals("floating")) {
+                            v4Label.attr("position", "floating");
+                        } else {
+                            v4Label.attr(attribute.getKey(), attribute.getValue());
+                        }
+                    }
+                }
+
+                label.replaceWith(v4Label);
+                String labelText = label.text();
+                v4Label.append(labelText);
+            }
+
+            return doc.toString();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
     }
 
     private static String migrateButtons(String projectPath, String filePath) {
