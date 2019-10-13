@@ -19,14 +19,13 @@ public class Parser {
         Path projectPathString = Paths.get(currentPath).getParent();
 
         // initialise all paths
-        projectPath = projectPathString.toString() ;
+        projectPath = projectPathString.toString() + "\\PetsMeetupsV3";
         filePath = "src\\pages\\add-pet\\add-pet.html";
-        oldDirectory = "PetsMeetupsV3";
-        newDirectory = "PetsMeetupsV4"; // target directory
+        newDirectory = "PetsMeetupsV4"; // TODO: target directory
         System.out.println(projectPathString);
 
         // TODO: make this input variable mutable!
-        File input = new File(projectPath + "\\"+  oldDirectory + "\\" + filePath);
+        File input = new File(projectPath + "\\" + filePath);
 
         // Only parse if file is html
         if (input.isFile() && input.getName().endsWith(".html")) {
@@ -38,7 +37,7 @@ public class Parser {
             //
             // parse navbar tags
             //
-            String fileV4Navbar = parseNavbar(input);
+            String fileV4Navbar = parseNavbar(projectPath, filePath);
             System.out.println(fileV4Navbar);
 
             /*
@@ -94,35 +93,42 @@ public class Parser {
         }
     }
 
-    private static String parseNavbar(File f){
-        // DOM structure of the file
-        Document doc;
-        try {
-            doc = Jsoup.parse(f, "UTF-8", "");
-            // Select all navbar
-            Elements navbars = doc.select("ion-navbar");
-            for (Element v3Navbar : navbars) {
-                Element v4Navbar = new Element("ion-toolbar");
+    private static String parseNavbar(String projectPath, String filePath) {
 
-                //Loop through old tag attributes to get all attributes
-                for (Attribute attribute : v3Navbar.attributes()) {
-                    v4Navbar.attr(attribute.getKey(), attribute.getValue());
+        // get current working space directory
+        File f = new File(projectPath + "\\" + filePath);
+        if (f.isFile() && f.getName().endsWith(".html")) {
+            Document doc;
+            try {
+                doc = Jsoup.parse(f, "UTF-8", "");
+
+                // Select all navbar
+                Elements navbars = doc.select("ion-navbar");
+                for (Element v3Navbar : navbars) {
+                    Element v4Navbar = new Element("ion-toolbar");
+
+                    //Loop through old tag attributes to get all attributes
+                    for (Attribute attribute : v3Navbar.attributes()) {
+                        v4Navbar.attr(attribute.getKey(), attribute.getValue());
+                    }
+
+                    // Replace old tags with new tags
+                    v3Navbar.replaceWith(v4Navbar);
+
+                    // Adding children into new tags
+                    Elements v3NavbarChildren = v3Navbar.children();
+                    for (Element v3Child : v3NavbarChildren) {
+                        v4Navbar.appendChild(v3Child);
+                    }
                 }
-
-                // Replace old tags with new tags
-                v3Navbar.replaceWith(v4Navbar);
-
-                // Adding children into new tags
-                Elements v3NavbarChildren = v3Navbar.children();
-                for( Element v3Child : v3NavbarChildren){
-                    v4Navbar.appendChild(v3Child);
-                }
+                return doc.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            return doc.toString();
+            return "error in parsing Navbar";
         }
-        catch (IOException e){
-            e.printStackTrace();
+        else{
+            return "NOT HTML file";
         }
-        return "error in parsing Navbar";
     }
 }
