@@ -14,6 +14,7 @@ public class ComponentParser {
 
         System.out.println(testParser.migrateIonViewDidLoad(projectPath, filePath));
         System.out.println(testParser.migrateIonicPageAnnotation(projectPath, filePath));
+        System.out.println(testParser.migrateIonicAngularImports(projectPath, filePath));
     }
 
     public String migrateIonViewDidLoad(String projectPath, String filePath){
@@ -36,6 +37,21 @@ public class ComponentParser {
             newVersion = new String(Files.readAllBytes(Paths.get(projectPath + filePath)));
             if(newVersion.contains("@IonicPage()")){
                 newVersion = newVersion.replaceAll("@IonicPage\\(\\)","");
+            }
+            return newVersion;
+        }catch(IOException e){
+            System.out.println(e);
+        }
+        return "";
+    }
+
+
+    public String migrateIonicAngularImports(String projectPath, String filePath){
+        String newVersion = "";
+        try{
+            newVersion = new String(Files.readAllBytes(Paths.get(projectPath + filePath)));
+            if(newVersion.contains("ionic-angular")){
+                newVersion = newVersion.replaceAll("ionic-angular","@ionic/angular");
             }
             return newVersion;
         }catch(IOException e){
