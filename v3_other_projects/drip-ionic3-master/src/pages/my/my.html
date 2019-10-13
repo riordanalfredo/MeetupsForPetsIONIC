@@ -1,0 +1,128 @@
+<ion-header no-border>
+  <ion-toolbar color="white">
+    <ion-title>我</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goPage('setting')">
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content class="page-my">
+      <ion-list class="avatar-list">
+        <ion-item>
+          <ion-avatar item-start (click)="goUserHomePage()">
+          <img src="{{user?.avatar_url || 'assets/img/default-avatar.jpg'}}">
+           </ion-avatar>
+          <h2>
+            {{user?.nickname || '还没有昵称'}}
+          </h2>
+          <p (click)="goWalletPage()" *ngIf="!isAudit">
+            <!--<svg class="icon svg-iconfont" aria-hidden="true" *ngIf="user?.is_vip">-->
+              <!--<use xlink:href="#icon-jinbi">-->
+              <!--</use>-->
+            <!--</svg>-->
+              <img src="assets/img/coin.png" style="width: 18px;height: 18px;">
+              <span style="">{{user?.coin || '0'}}</span>
+          </p>
+          <dp-vip-button item-end [user]="user" [showFree]="true"></dp-vip-button>
+          <!--<ion-icon name="arrow-forward" item-end></ion-icon>-->
+        </ion-item>
+      </ion-list>
+
+
+  <ion-row class="follow-row">
+    <ion-col text-center (click)="goUserFollowingPage()">
+      <strong ion-text class="num">{{user?.follow_count || '0'}}</strong>
+      <ion-note>关注</ion-note>
+    </ion-col>
+    <ion-col text-center (click)="goUserFollowerPage()">
+      <strong ion-text class="num" >{{user?.fans_count || '0'}}</strong>
+      <ion-note>粉丝</ion-note>
+    </ion-col>
+    <ion-col text-center (click)="goUserHomePage()">
+      <strong ion-text class="num">{{user?.event_count || '0'}}</strong>
+      <ion-note>动态</ion-note>
+    </ion-col>
+  </ion-row>
+
+  <div class="setting-list" padding-top>
+  <ion-list text-center>
+    <ion-row>
+      <ion-col (click)="goPage('top')">
+        <ion-card>
+          <ion-card-header>
+            <ion-icon name="ios-podium-outline">
+            </ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <span class="title">排行榜</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-icon name="ios-calendar-outline">
+            </ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <span class="title">周报</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-icon name="ios-ribbon-outline">
+            </ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <span class="title">徽章</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+    <ion-row style="margin-top: 1px;">
+      <ion-col (click)="goPage('my-archive')">
+        <ion-card>
+          <ion-card-header>
+            <ion-icon name="ios-archive-outline">
+            </ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <span class="title">我的归档</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-icon name="ios-star-outline">
+            </ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <span class="title">我的收藏</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-icon name="ios-more-outline">
+            </ion-icon>
+          </ion-card-header>
+          <ion-card-content>
+            <span class="title">敬请期待</span>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+  </div>
+</ion-content>

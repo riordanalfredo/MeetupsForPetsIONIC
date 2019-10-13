@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-title>{{user?.nickname}} 的粉丝</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="下拉刷新"
+            refreshingSpinner="circles"
+            refreshingText="加载中...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <dp-loader *ngIf="isLoading"></dp-loader>
+
+  <ion-list *ngIf="users.length>0">
+    <ion-item *ngFor="let user of users" (click)="goUserHomePage(user)">
+      <ion-avatar item-start >
+        <img [src]="user.avatar_url || 'assets/img/default-avatar.jpg'">
+      </ion-avatar>
+      <h2>{{user.nickname || '水滴用户'}}</h2>
+      <p>{{user.signature}}</p>
+
+      <dp-follow-button [followStatus]="user.is_following" [followUser]="user.id"
+                        item-end  (click)="doFollow(user,$event)"></dp-follow-button>
+    </ion-item>
+  </ion-list>
+
+  <div text-center style="position: absolute;left: 0;right: 0;top: 40%;" *ngIf="users.length == 0">
+    <p>暂时还没有粉丝</p>
+  </div>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多数据">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

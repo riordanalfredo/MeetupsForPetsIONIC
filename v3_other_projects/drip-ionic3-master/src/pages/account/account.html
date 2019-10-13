@@ -1,0 +1,63 @@
+<ion-header>
+    <ion-navbar color="white">
+        <ion-title>账号管理</ion-title>
+        <ion-buttons end>
+            <button ion-button clear (click)="goChangePasswordPage()">
+                修改密码
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content class="page-account">
+    <ion-list>
+        <ion-item (click)="doBindPhone()">
+            手机号
+            <ion-note clear item-end>
+                {{user?.phone || '未绑定'}}
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-note>
+        </ion-item>
+        <ion-item (click)="doBindEmail()">
+            电子邮箱
+            <ion-note clear item-end>
+                {{user?.email || '未绑定'}}
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-note>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-list-header>
+            第三方账号
+        </ion-list-header>
+        <ion-item (click)="doBindWechat()">
+            微信
+            <ion-note clear item-end>
+                {{ user.binds?.wechat || '未绑定'}}
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-note>
+        </ion-item>
+        <ion-item (click)="doBindWeibo()">
+            微博
+            <ion-note clear item-end>
+                {{ user.binds?.weibo || '未绑定'}}
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-note>
+        </ion-item>
+        <ion-item (click)="doBindQQ()">
+            QQ
+            <ion-note clear item-end>
+                {{ user.binds?.qq || '未绑定'}}
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-note>
+        </ion-item>
+    </ion-list>
+
+    <div padding>
+        <button ion-button block outline color="danger" (click)="doLogout()">退出账号</button>
+    </div>
+
+
+</ion-content>

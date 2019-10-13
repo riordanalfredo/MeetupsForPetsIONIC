@@ -1,0 +1,50 @@
+<ion-header no-border>
+  <ion-navbar color="white">
+    <ion-title>{{user?.nickname+' 的关注' || '关注列表' }} </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goUserSearchPage()">
+        <ion-icon name="ios-person-add-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="下拉刷新"
+            refreshingSpinner="circles"
+            refreshingText="加载中...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="users.length>0">
+    <ion-item *ngFor="let user of users" class="like-item" (click)="goUserHomePage(user)">
+      <ion-avatar item-start >
+        <img [src]="user.avatar_url || 'assets/img/default-avatar.jpg'">
+      </ion-avatar>
+      <h2>{{user.nickname || '还没有昵称'}}</h2>
+      <p>{{user.signature}}</p>
+
+      <dp-follow-button [followStatus]="user.is_following" [followUser]="user.id"
+                        item-end  (click)="doFollow(user,$event)"></dp-follow-button>
+
+      <!--<button small round item-end ion-button (click)="doFollow(user,$event)" *ngIf="!user.is_following">关注</button>-->
+      <!--<button small round item-end ion-button outline (click)="doUnFollow(user,$event)"  *ngIf="user.is_following">已关注</button>-->
+    </ion-item>
+  </ion-list>
+
+  <div text-center style="position: absolute;left: 0;right: 0;top: 40%;" *ngIf="users.length == 0">
+    <p>暂时还没有关注的人</p>
+  </div>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多数据">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

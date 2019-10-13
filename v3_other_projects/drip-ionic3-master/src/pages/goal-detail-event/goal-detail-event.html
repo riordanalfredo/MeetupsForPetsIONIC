@@ -1,0 +1,28 @@
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+                pullingIcon="arrow-dropdown"
+                pullingText="下拉刷新"
+                refreshingSpinner="circles"
+                refreshingText="加载中...">
+        </ion-refresher-content>
+    </ion-refresher>
+
+    <dp-loader *ngIf="isLoading"></dp-loader>
+
+    <dp-event [eventSource]="events" *ngIf="events.length>0"></dp-event>
+
+    <div text-center style="position: absolute;left: 0;right: 0;top: 40%;" *ngIf="!isLoading&&events.length == 0">
+        <!--<p>暂无动态</p>-->
+        <img src="assets/img/noevents.png">
+    </div>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content
+                loadingSpinner="bubbles"
+                loadingText="加载更多">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+</ion-content>

@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-navbar color="white">
+        <ion-title>编辑资料</ion-title>
+        <ion-buttons end>
+            <button ion-button clear (click)="saveProfile()">
+               保存
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content class="page-profile">
+    <ion-list>
+        <ion-item (click)="onChangeAvatar()">
+            头像
+            <ion-avatar item-end>
+                <img [src]="profile.avatar_url || 'assets/img/default-avatar.jpg'">
+            </ion-avatar>
+            <ion-note clear item-end>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-note>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>昵称</ion-label>
+            <ion-input item-right [(ngModel)]="profile.nickname" text-right
+                       maxlength="10"
+                       type="text"></ion-input>
+            <ion-note clear item-end>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-note>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>性别</ion-label>
+            <ion-select [(ngModel)]="profile.sex">
+                <ion-option value="1">男</ion-option>
+                <ion-option value="2">女</ion-option>
+                <ion-option value="">不设置</ion-option>
+            </ion-select>
+            <ion-note clear item-end>
+                <ion-icon name="arrow-forward"></ion-icon>
+            </ion-note>
+        </ion-item>
+    </ion-list>
+
+    <!--<ion-list>-->
+        <!--<ion-item>-->
+            <!--<ion-label>出生年月</ion-label>-->
+            <!--<ion-datetime placeholder="无" (ionCancel)="onClearBirthday()" displayFormat="YYYY-MM"-->
+                          <!--pickerFormat="YYYY MMM" cancelText="取消" doneText="保存" [(ngModel)]="user.birthday"-->
+                          <!--min="1900-01" (ionChange)="updateUser('sex',user.birthday)"></ion-datetime>-->
+            <!--<ion-note clear item-end>-->
+                <!--<ion-icon name="arrow-forward"></ion-icon>-->
+            <!--</ion-note>-->
+        <!--</ion-item>-->
+
+        <!--<ion-item>-->
+            <!--<ion-label>所在城市</ion-label>-->
+            <!--<ion-multi-picker id="cities" item-content [multiPickerColumns]="cityColumns"-->
+                              <!--placeholder="无" ></ion-multi-picker>-->
+            <!--<ion-note clear item-end>-->
+                <!--<ion-icon name="arrow-forward"></ion-icon>-->
+            <!--</ion-note>-->
+        <!--</ion-item>-->
+    <!--</ion-list>-->
+
+    <ion-list>
+        <ion-item>
+            简介
+        </ion-item>
+        <ion-item>
+            <ion-textarea rows="4" placeholder="用简短的话介绍你自己" [(ngModel)]="profile.signature"></ion-textarea>
+        </ion-item>
+    </ion-list>
+</ion-content>

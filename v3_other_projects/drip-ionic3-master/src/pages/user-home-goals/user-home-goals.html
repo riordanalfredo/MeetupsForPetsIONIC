@@ -1,0 +1,22 @@
+
+<ion-content >
+
+  <ion-list *ngIf="goals.length>0">
+
+    <ion-item-group>
+      <!--<ion-item-divider color="light">进行中（{{goals.length}}）</ion-item-divider>-->
+      <ion-item *ngFor="let goal of goals" class="goal-item" (click)="goGoalHomePage(goal.id)">
+        <h2>{{goal.name}}</h2>
+        <p>{{goal.desc}}</p>
+        <div item-end text-center class="days">
+          <p>{{goal.total_days}}天</p>
+          <ion-note>累计打卡</ion-note>
+        </div>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+
+  <div text-center style="position: absolute;left: 0;right: 0;top: 40%;" *ngIf="goals.length == 0">
+    <p>暂时还没有目标</p>
+  </div>
+</ion-content>

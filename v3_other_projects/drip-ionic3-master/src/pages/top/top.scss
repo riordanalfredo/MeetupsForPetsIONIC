@@ -1,0 +1,65 @@
+page-top{
+
+  //ion-content {
+  //  background-color: color($colors,primary)!important;
+  //}
+
+  //ion-select {
+  //  //width:80px;
+  //  position: absolute;
+  //  top:5px;
+  //  right:10px;
+  //  //margin-right:10px;
+  //  //color:#fff;
+  //  max-width:20%;
+  //  display: flex;
+  //  flex:1;
+  //  align-items: center;
+  //  height:100%;
+  //}
+
+  ion-avatar>img {
+    width: 48px!important;
+    height: 48px!important;
+  }
+
+  .select-icon-inner {
+    //color:#fff!important;
+  }
+
+  ion-item {
+    border-bottom: 1px solid #e8e8e8!important;
+  }
+
+  .my-avatar {
+    img {
+      width:64px;
+      height:64px;
+      border-radius: 50%;
+      margin:0 auto;
+    }
+  }
+  .medal0{
+      color: #c2b51e;
+    }
+  .medal1{
+    color: #C0C0C0;
+  }
+  .medal2{
+    color: #c28c5f;
+  }
+
+  .no {
+    min-width: 24px;
+    font-size: 1.8rem;
+    color:#488aff;
+    text-align: center;
+  }
+
+  .count{
+    color:black;
+    font-size:2.2rem!important;
+    font-weight:500;
+    font-family: "Oswald","Segoe UI", "Noto Sans", sans-serif;
+  }
+}

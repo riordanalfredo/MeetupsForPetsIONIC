@@ -1,0 +1,132 @@
+page-welcome {
+  //background-image:url('../assets/img/welcome_bg.jpg');
+  ion-content {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0,0,0,.4);
+  }
+
+  //font-family:"Aldrich";
+
+  //.container {
+  //  height:10%;
+  //}
+  .wrap-mask{
+    height:100%;
+    width:100%;
+
+  }
+
+  .title {
+    position:absolute;
+    top:20%;
+    left:0;
+    right:0;
+    color:#fff;
+    text-align:center;
+    h2 {
+      text-align: center;
+      margin: auto;
+    }
+  }
+
+  .title2 {
+    position:absolute;
+    top:55%;
+    left:0;
+    right:0;
+    color:#fff;
+    text-align:center;
+    font-size:2rem;
+    span {
+      text-align: center;
+      margin: auto;
+    }
+  }
+
+
+  .days {
+    font-size:5em;
+    position:absolute;
+    top:30%;
+    left:0;
+    right:0;
+    color:#fff;
+    text-align:center;
+    //color:#488aff;
+    padding:20px;
+
+    .day{
+      background-color:#fff;
+      color:#488aff;
+    }
+  }
+
+  .line {
+    position: absolute;
+    top: 47%;
+    height: 3px;
+    left: 10px;
+    right: 0;
+    z-index: 100;
+    //background-color: #fff;
+    width: 80%;
+  }
+
+  .quote{
+    position:absolute;
+    top:35%;
+    right:0;
+    left:0;
+    color:#fff;
+    padding:0 40px;
+    font-weight: 800;
+    font-size:1.5rem;
+    text-align:center;
+
+    .quote-content {
+      width:100%;
+      font-size:1.8rem;
+      text-align:center;
+    }
+
+    .quote-people {
+      width:100%;
+      text-align: right;
+    }
+
+  }
+
+  .date {
+    color:#fff;
+    font-weight:700;
+    padding:10px;
+    font-family:"Aldrich";
+    position:absolute;
+    top:10px;
+    left:0;
+    right:0;
+  }
+
+  .action {
+    position:absolute;
+    top:75%;
+    left:0;
+    right:0;
+    color:#fff;
+    padding:0 40px;
+  }
+
+
+  .timer {
+    background-color: #403c3c;
+    color:#fff;
+    position: fixed;
+    right:5%;
+    bottom: 5%;
+    padding:5px;
+  }
+
+
+
+}

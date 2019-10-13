@@ -1,0 +1,22 @@
+{
+  "name": "visionapi",
+  "version": "1.0.0",
+  "description": "recive photo and analize",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon server.js"
+  },
+  "author": "Kevin Dias",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/vision": "^0.23.0",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "multer": "^1.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.7"
+  }
+}

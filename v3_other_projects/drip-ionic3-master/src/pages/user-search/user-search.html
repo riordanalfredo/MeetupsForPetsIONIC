@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-title>查找用户</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchText" (ionInput)="getUsers($event)" placeholder="请输入用户昵称"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <ion-avatar item-start >
+        <img [src]="user.avatar_url || 'assets/img/default-avatar.jpg'">
+      </ion-avatar>
+      <h2>{{user.nickname || '还没有昵称'}}</h2>
+      <p>{{user.signature}}</p>
+      <dp-follow-button [followStatus]="user.is_following" [followUser]="user.id"
+                        item-end ></dp-follow-button>
+    </ion-item>
+  </ion-list>
+
+  <div text-center style="position: absolute;left: 0;right: 0;top: 40%;" *ngIf="users.length == 0">
+    <p>暂时还没有关注的人</p>
+  </div>
+</ion-content>

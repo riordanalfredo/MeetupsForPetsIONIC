@@ -1,0 +1,19 @@
+<ion-content class="login-page" padding no-bounce>
+
+    <div class="drip"></div>
+
+    <ion-row padding>
+        <ion-col (click)="goLoginDefaultPage()">
+            <button class="login-button" ion-button round block color="light">手机号/邮箱</button>
+        </ion-col>
+    </ion-row>
+
+    <dp-third-login></dp-third-login>
+
+    <ion-row padding text-center class="register-title">
+        <ion-col>
+            <span ion-text>还没有账号？<a (click)="goRegisterPage()">立即注册</a></span>
+        </ion-col>
+    </ion-row>
+
+</ion-content>

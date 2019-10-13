@@ -1,0 +1,23 @@
+page-like {
+    .opacity{
+        background-color: transparent;
+        position:relative;
+        z-index:-1;
+    }
+       
+    .bring_to_front{
+        position:absolute;
+        z-index:1000;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;; 
+    }
+
+    .scroll-content {
+     overflow-x: unset;
+     overflow-y: unset;
+      
+    }
+}

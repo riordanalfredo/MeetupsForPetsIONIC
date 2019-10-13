@@ -1,0 +1,14 @@
+ion-modal {
+    ion-backdrop {
+        visibility: visible;
+        z-index: 0
+    }
+    .modal-wrapper {
+        width: 86%;
+        height: 75%;
+        margin: 7%;
+        position: absolute;
+        border-radius: 13px;
+        overflow: hidden;
+    }
+}

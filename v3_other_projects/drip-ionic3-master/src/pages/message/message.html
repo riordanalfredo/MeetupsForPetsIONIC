@@ -1,0 +1,114 @@
+<ion-header no-border>
+    <ion-navbar>
+        <ion-title>消息中心</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+    <ion-list no-lines text-center class="gray-list">
+        <ion-row>
+            <ion-col>
+                <ion-card padding-top (click)="goPage('message-comment')">
+                    <ion-card-header>
+                        <ion-icon name="ios-chatboxes">
+                            <ion-badge color="danger" *ngIf="messages.comment_count>0">{{messages.comment_count}}
+                            </ion-badge>
+                        </ion-icon>
+                    </ion-card-header>
+                    <ion-card-content>
+                        评论
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+
+            <ion-col>
+                <ion-card padding-top (click)="goPage('message-like')">
+                    <ion-card-header>
+
+                        <ion-icon name="ios-thumbs-up" item-start></ion-icon>
+                        <!--赞-->
+                        <!--<ion-badge item-end color="danger" *ngIf="messages.like_count>0">{{messages.like_count}}</ion-badge>-->
+                        <!--<ion-note clear item-end>-->
+                        <!--<ion-icon name="arrow-forward"></ion-icon>-->
+                        <!--</ion-note>-->
+                    </ion-card-header>
+                    <ion-card-content>
+                        赞
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card padding-top (click)="goPage('message-fan')">
+                    <ion-card-header>
+                        <ion-icon name="ios-contacts">
+                            <ion-badge color="danger" *ngIf="messages.fan_count>0">{{messages.fan_count}}</ion-badge>
+                        </ion-icon>
+                    </ion-card-header>
+                    <ion-card-content>
+                        粉丝
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col>
+                <ion-card padding-top (click)="goPage('message-at')">
+                    <ion-card-header>
+                        <ion-icon name="ios-at" item-start>
+                            <ion-badge color="danger" *ngIf="messages.at_count>0">{{messages.at_count}}
+                            </ion-badge>
+                        </ion-icon>
+                    </ion-card-header>
+                    <ion-card-content>
+                        @
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+
+            <ion-col>
+                <ion-card padding-top (click)="goPage('message-notice')">
+                    <ion-card-header>
+                        <ion-icon name="ios-notifications" item-start>
+                            <ion-badge color="danger" *ngIf="messages.notice_count>0">{{messages.notice_count}}
+                            </ion-badge>
+                        </ion-icon>
+                    </ion-card-header>
+                    <ion-card-content>
+                        通知
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+
+            <ion-col>
+                <ion-card padding-top (click)="goPage('message-private')">
+                    <ion-card-header>
+                        <ion-icon name="ios-chatbubbles" item-start>
+                            <ion-badge color="danger" *ngIf="messages.private_count>0">{{messages.private_count}}
+                            </ion-badge>
+                        </ion-icon>
+                    </ion-card-header>
+                    <ion-card-content>
+                        私信
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+
+        </ion-row>
+    </ion-list>
+    <div>
+        <ion-list>
+            <ion-card (click)="goPage('post-detail',{'id':post.id,'post':post})" *ngFor="let post of posts">
+                <ion-card-content>
+                    <ion-card-title>
+                        {{post.title}}
+                    </ion-card-title>
+                    <p>
+                        {{post.subtitle}}
+                    </p>
+                </ion-card-content>
+                <img [src]="post.image"/>
+            </ion-card>
+        </ion-list>
+    </div>
+</ion-content>

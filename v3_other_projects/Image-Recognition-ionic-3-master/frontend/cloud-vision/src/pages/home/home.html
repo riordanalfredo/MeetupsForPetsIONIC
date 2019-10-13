@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Camera</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+              <lottie-animation-view
+                [options]="lottieCamera"
+                [width]="300"
+                [height]="400"
+                (animCreated)="handleAnimation($event)">
+              </lottie-animation-view>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button ion-button class="btn"  color="custom" round (click)="takePhoto()">Take Photo</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+</ion-content>

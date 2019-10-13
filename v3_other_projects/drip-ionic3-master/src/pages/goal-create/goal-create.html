@@ -1,0 +1,116 @@
+<ion-header no-border>
+    <ion-navbar>
+        <ion-title>{{action=='create'?'创建目标':'编辑目标'}}</ion-title>
+        <!--<ion-buttons end *ngIf="action=='update'">-->
+            <!--<button ion-button icon-only (click)="deleteGoal()">-->
+                <!--<ion-icon name="trash"></ion-icon>-->
+            <!--</button>-->
+        <!--</ion-buttons>-->
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding-top>
+    <ion-list no-lines class="gray-list">
+        <ion-item>
+            <ion-label stacked>目标名称</ion-label>
+            <ion-input mode="wp" placeholder="不超过30字符" [(ngModel)]="goal.name" maxlength="20"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>目标(计数)</ion-label>
+            <ion-icon item-end name="add" (click)="goItemPage()" *ngIf="user.is_vip"></ion-icon>
+        </ion-item>
+
+        <ion-card (click)="goItemPage(item)" *ngFor="let item of goal.items;let i = index"
+                  [ngClass]="{'no-margin-top':i==0}">
+            <ion-item-sliding>
+                <ion-item>
+                    <ion-label>{{item.name}}</ion-label>
+                    <ion-note item-end>{{item.expect+item.unit}}/天</ion-note>
+                    <!--<ion-icon align="right" float-right name="ios-arrow-forward"></ion-icon>-->
+                </ion-item>
+                <ion-item-options *ngIf="goal.items.length>1">
+                    <button ion-button color="danger" (click)="deleteItem(item)">
+                        删除
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-card>
+
+        <!--<ion-card (click)="goItemPage()" *ngIf="user.is_vip">-->
+        <!--<ion-card-header>-->
+        <!--&lt;!&ndash;<ion-icon name="add-circle" align="left" color="gray"></ion-icon>&ndash;&gt;-->
+        <!--添加-->
+        <!--&lt;!&ndash;<ion-icon align="right" float-right name="ios-arrow-forward"></ion-icon>&ndash;&gt;-->
+        <!--</ion-card-header>-->
+        <!--</ion-card>-->
+
+
+        <ion-item>
+            <ion-label stacked>日期</ion-label>
+        </ion-item>
+        <ion-card (click)="goDatePage()" class="no-margin-top">
+            <ion-item>
+                <h2 *ngIf="goal.date_type == 1">长期</h2>
+                <h2 *ngIf="goal.date_type == 2">{{goal.expect_days}}天</h2>
+                <p *ngIf="goal.date_type == 2">从{{goal.start_date}}到{{goal.end_date}}</p>
+                <ion-icon item-end name="ios-arrow-forward"></ion-icon>
+            </ion-item>
+        </ion-card>
+
+        <ion-item>
+            <ion-label stacked>频率</ion-label>
+        </ion-item>
+        <ion-card (click)="goFreqPage()" class="no-margin-top">
+            <ion-item>
+                <h2>{{freqText}}</h2>
+                <p *ngIf="goal.time_type==2">{{goal.start_time}}-{{goal.end_time}}</p>
+                <ion-icon item-end name="ios-arrow-forward"></ion-icon>
+            </ion-item>
+        </ion-card>
+
+        <ion-item>
+            <ion-label stacked>提醒</ion-label>
+        </ion-item>
+        <ion-card (click)="goRemindPage()" class="no-margin-top">
+            <ion-item>
+                {{this.goal.remind_time || '无'}}
+                <ion-icon item-end name="ios-arrow-forward"></ion-icon>
+            </ion-item>
+        </ion-card>
+
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label>图标</ion-label>
+                </ion-item>
+                <ion-item (click)="goIconPage()">
+                    <i class="iconfont icon-{{goal.icon}}" [ngStyle]="{'color': (goal.color|getColor)}" item-start></i>
+                </ion-item>
+            </ion-col>
+
+            <ion-col>
+                <ion-item>
+                    <ion-label>颜色</ion-label>
+                </ion-item>
+                <ion-item (click)="goColorPage()">
+                        <button [ngStyle]="{'background-color': (goal.color|getColor)}" class="color-btn"></button>
+                </ion-item>
+            </ion-col>
+
+            <ion-col col-6></ion-col>
+        </ion-row>
+
+        <ion-card>
+            <ion-item>
+                <ion-label stacked>是否公开</ion-label>
+                <ion-toggle [(ngModel)]="goal.is_public" [color]="goal.color" checked="false"></ion-toggle>
+            </ion-item>
+        </ion-card>
+    </ion-list>
+
+    <div padding>
+        <button ion-button block (click)="save()" [color]="goal.color">提交</button>
+    </div>
+
+</ion-content>

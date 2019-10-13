@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>点赞列表</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <dp-loader *ngIf="isLoading"></dp-loader>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="下拉刷新"
+            refreshingSpinner="circles"
+            refreshingText="加载中...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let like of likes" class="like-item" (click)="goUserHomePage(like.user)">
+      <ion-avatar item-start >
+        <img [src]="like.user.avatar_url || 'assets/img/default-avatar.jpg'">
+      </ion-avatar>
+      <h2>{{like.user.nickname || '还没有昵称'}}</h2>
+      <p>{{like.user.signature}}</p>
+
+      <dp-follow-button [followStatus]="like.user.is_following" [followUser]="like.user.id"
+                        item-end ></dp-follow-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多数据">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

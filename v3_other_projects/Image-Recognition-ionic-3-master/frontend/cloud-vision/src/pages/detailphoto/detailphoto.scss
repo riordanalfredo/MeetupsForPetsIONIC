@@ -1,0 +1,33 @@
+page-detailphoto {
+
+    ion-icon {
+        display: inline-block;
+        font-size: 2.2em;
+    }
+    
+    ion-slides {
+        display: block;
+        width: 100%;
+        height: 85%;
+    }
+
+    ion-card {
+        margin-bottom: 2em;
+      }
+    
+      ion-card-content {
+        background-color: #F4F5F8;
+      }
+    
+      ion-card img {
+        width: 100% !important;
+        height: 200px !important;
+        max-height: 200px !important;
+        display: block;
+        margin: 20px auto;
+      }
+
+    .swiper-pagination-bullet-active {
+        background:rgb(255,127,80) !important;
+    }
+}

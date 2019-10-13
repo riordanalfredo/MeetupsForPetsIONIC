@@ -1,0 +1,55 @@
+<ion-content>
+    <ion-list>
+        <ion-item-divider>
+            基本信息
+        </ion-item-divider>
+        <ion-item>
+            目标名称
+            <ion-note item-end>{{goal.name}}</ion-note>
+        </ion-item>
+        <ion-item>
+            开始日期
+            <ion-note item-end>{{goal.start_date|| '无'}}</ion-note>
+        </ion-item>
+        <ion-item>
+            结束日期
+            <ion-note item-end>{{goal.end_date || '无'}}</ion-note>
+        </ion-item>
+        <ion-item>
+            是否公开
+            <ion-note item-end>{{goal.is_public==1?'公开':'隐私'}}</ion-note>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item-divider>
+            打卡规则
+        </ion-item-divider>
+        <ion-item>
+            打卡频率
+            <ion-note item-end *ngIf="!goal.weekday">每天</ion-note>
+        </ion-item>
+        <ion-item>
+            打卡时间
+            <ion-note item-end>{{goal.start_time}}-{{goal.end_time}}</ion-note>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-item-divider>
+            打卡数据
+        </ion-item-divider>
+        <ion-item>
+            总打卡天数
+            <ion-note item-end> {{goal.total_days}}</ion-note>
+        </ion-item>
+        <ion-item>
+            总打卡次数
+            <ion-note item-end>{{goal.total_count}}</ion-note>
+        </ion-item>
+        <ion-item>
+            连续打卡天数
+            <ion-note item-end>{{goal.series_days}}</ion-note>
+        </ion-item>
+    </ion-list>
+</ion-content>

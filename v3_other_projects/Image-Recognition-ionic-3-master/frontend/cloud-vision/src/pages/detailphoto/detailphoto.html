@@ -1,0 +1,35 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Details</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="buttons-components-page">
+
+    <ion-slides pager>
+        <ion-slide *ngFor="let imgs of visually_Similar_Images">
+            <ion-card>
+                <ion-card-content >
+                  <img src="{{imgs}}" />
+                </ion-card-content>
+            
+                <ion-item>
+                  <button ion-button clear item-start color="custom" (click)="like()"> <ion-icon name="heart"> </ion-icon> 	&nbsp; Similar</button>
+                  <button ion-button clear item-end color="custom"> <ion-icon name="sad" ></ion-icon> &nbsp; Not Similar</button>
+                </ion-item>
+
+              </ion-card>
+        </ion-slide>
+      </ion-slides>
+
+    
+    <ion-list *ngFor="let entities of web_Entities">
+      <ion-item>
+          {{entities}}
+      </ion-item>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-title>评论</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="下拉刷新"
+            refreshingSpinner="circles"
+            refreshingText="加载中...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+      <ion-card *ngFor="let message of messages">
+          <ion-item  (click)="goUserHomePage(message.sender.id)">
+          <ion-avatar item-start >
+            <img [src]="message.sender.avatar_url">
+          </ion-avatar>
+          <h2>{{message.sender.nickname}}</h2>
+          <p>{{message.created_at}}</p>
+          <button ion-button outline item-end (click)="doReply(message,$event)">回复</button>
+        </ion-item>
+          <ion-card-content>
+              <p *ngIf="!message.reply_comment">评论了你: {{message.comment.content}}</p>
+              <p *ngIf="message.reply_comment">回复了你: {{message.comment.content}}</p>
+
+              <blockquote *ngIf="message.reply_comment">
+                  <span ion-text color="primary" (click)="goUserHomePage(message.reply_comment.user?.id)">{{message.reply_comment.user?.nickname}}</span>
+                  {{message.reply_comment.content}}
+              </blockquote>
+
+              <ion-item (click)="goEventDetailPage(message.resource.id)">
+                  <ion-thumbnail item-start *ngIf="message.resource.image">
+                      <img [src]="message.resource.image">
+                  </ion-thumbnail>
+                  <p>{{message.resource.content | slice:0:50}}</p>
+              </ion-item>
+          </ion-card-content>
+      </ion-card>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="bubbles"
+            loadingText="加载更多">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>
+
+<ion-footer>
+    <ion-item *ngIf="isShowReply">
+        <ion-input type="text" item-start placeholder="回复 {{replyMessage.sender?.nickname}}" [(ngModel)]="replyContent"></ion-input>
+        <button clear ion-button item-end (click)="submitReply()">发布</button>
+    </ion-item>
+</ion-footer>

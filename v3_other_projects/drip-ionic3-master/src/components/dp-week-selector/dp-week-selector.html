@@ -1,0 +1,11 @@
+<div class="weekday-selector">
+    <ul>
+        <li *ngFor="let day of days; let idx = index"
+            (click)="onSelected(idx)"
+            [class.selected]="day.isSelected"
+            [ngStyle]="{'background-color':getColor(day)}"
+            >
+            <span>{{day.name}}</span>
+        </li>
+    </ul>
+</div>

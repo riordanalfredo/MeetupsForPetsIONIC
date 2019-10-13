@@ -23,9 +23,7 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2209399f-51e9-45d3-99f8-7dae0cec5165" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Parser.java" afterDir="false" />
-    </list>
+    <list default="true" id="2209399f-51e9-45d3-99f8-7dae0cec5165" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -41,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+            <state relative-caret-position="-604">
+              <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,7 +87,7 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="66" />
     <option name="y" value="-20" />
     <option name="width" value="1398" />
@@ -160,12 +158,12 @@
       <workItem from="1570597197661" duration="1162000" />
       <workItem from="1570682661783" duration="259000" />
       <workItem from="1570846899466" duration="7021000" />
-      <workItem from="1571005315748" duration="802000" />
+      <workItem from="1571005315748" duration="1448000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7823000" />
+    <option name="totallyTimeSpent" value="8469000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -177,7 +175,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10506425" />
@@ -190,7 +188,7 @@
       <window_info anchor="bottom" id="TeamCity" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3900325" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.38957477" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946696" weight="0.39934355" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -259,8 +257,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+        <state relative-caret-position="-604">
+          <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
