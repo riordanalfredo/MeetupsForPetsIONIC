@@ -62,19 +62,16 @@ export class AddPetPage implements OnInit {
     }
   }
 
-  async presentPetToast(){
-    let toast = await this.toastCtrl.create({
-      message: 'Your pet has been added',
-      duration: 2500,
-      position: 'bottom'
-    });
-    toast.present().then(() => this.dismiss());
-  }
-
   uploadPet(pet: Pet) {
     this.afDatabase.addPet(pet).then(() => {
       this.showSpinner = false;
-      this.presentPetToast();
+
+      this.toastCtrl.create({
+        message: 'Your pet has been added',
+        duration: 2500,
+        position: 'bottom'
+      }).then(toast => toast.present());
+
     });
   }
 
