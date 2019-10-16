@@ -41,8 +41,8 @@ export class YourPetsPage implements OnInit {
     modal.onDidDismiss().then(() => this.getPets());
   }
 
-  async deletePet(pet: Pet) {
-    let alert = await this.alertCtrl.create({
+  deletePet(pet: Pet) {
+    this.alertCtrl.create({
       header: 'Deleting Pet',
       message: 'Are you sure you want to remove this pet?',
       buttons: [
@@ -65,8 +65,7 @@ export class YourPetsPage implements OnInit {
           }
         }
       ]
-    });
-    alert.present();
+    }).then(alert => alert.present());
   }
   
 }
