@@ -15,7 +15,7 @@ public class Parser {
     private static String oldDirectory;
     private static String newDirectory;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // get current working space directory
         String currentPath = System.getProperty("user.dir");
         Path projectPathString = Paths.get(currentPath).getParent();
@@ -26,6 +26,9 @@ public class Parser {
         oldDirectory = "PetsMeetupsV3";
         newDirectory = "PetsMeetupsV4"; // target directory
         System.out.println(projectPathString);
+
+        renamePageFiles(projectPath + "\\"+  oldDirectory + "\\" + filePath,
+                projectPath + "\\"+  oldDirectory + "\\" + "src\\pages\\add-pet");
 
         // TODO: make this input variable mutable!
         File input = new File(projectPath + "\\"+  oldDirectory + "\\" + filePath);
@@ -58,6 +61,22 @@ public class Parser {
              *  call the other methods in sequence.
              */
         }
+    }
+
+    private static void renamePageFiles(String oldDirectory, String newDirectory) throws IOException {
+        File page = new File(oldDirectory);
+
+        if (page.isFile()) {
+            String filename = page.getName();
+            if (filename.endsWith(".html")) {
+                String prefix = filename.split("\\.")[0];
+                String newFilename = prefix + ".page" + ".html";
+                // Note: renameTo can take a new directory location,
+                // so it can move files as well
+                page.renameTo(new File(newDirectory + "\\" + newFilename));
+            }
+        }
+
     }
 
     private static String migrateLabel(String projectPath, String filePath) {
