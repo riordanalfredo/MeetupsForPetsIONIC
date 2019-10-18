@@ -22,13 +22,12 @@ public class Parser {
 
         // initialise all paths
         projectPath = projectPathString.toString() ;
-        filePath = "src\\pages\\add-pet\\add-pet.html";
+        filePath = "src\\pages\\add-pet\\add-pet.ts";
         oldDirectory = "PetsMeetupsV3";
         newDirectory = "PetsMeetupsV4"; // target directory
         System.out.println(projectPathString);
 
-        renamePageFiles(projectPath + "\\"+  oldDirectory + "\\" + filePath,
-                projectPath + "\\"+  oldDirectory + "\\" + "src\\pages\\add-pet");
+        renameFiles(projectPath, filePath);
 
         // TODO: make this input variable mutable!
         File input = new File(projectPath + "\\"+  oldDirectory + "\\" + filePath);
@@ -63,18 +62,25 @@ public class Parser {
         }
     }
 
-    private static void renamePageFiles(String oldDirectory, String newDirectory) throws IOException {
-        File page = new File(oldDirectory);
+    private static void renameFiles(String projectPath, String filePath) {
+        File page = new File(projectPath + "\\"+  oldDirectory + "\\" + filePath);
 
-        if (page.isFile()) {
-            String filename = page.getName();
-            if (filename.endsWith(".html")) {
-                String prefix = filename.split("\\.")[0];
-                String newFilename = prefix + ".page" + ".html";
-                // Note: renameTo can take a new directory location,
-                // so it can move files as well
-                page.renameTo(new File(newDirectory + "\\" + newFilename));
+        String filename = page.getName();
+        if (filename.endsWith(".html") || filename.endsWith(".ts")) {
+            String[] fileComponents = filename.split("\\.");
+            String prefix = fileComponents[0];
+            String suffix = fileComponents[1];
+            String newFilename = prefix + ".page." + suffix;
+            // Here I want to rename the files in the same directory
+            // So I'm just removing the last bit of the filepath
+            String[] filePathComponents = filePath.split("\\\\");
+            String directory = projectPath + "\\" + oldDirectory + "\\";
+            for (int i = 0; i < filePathComponents.length - 1; i++) {
+                directory += filePathComponents[i] + "\\";
             }
+            // Note: renameTo can take a new directory location,
+            // so it can move files as well
+            page.renameTo(new File(directory + newFilename));
         }
 
     }
