@@ -63,26 +63,27 @@ public class Parser {
     }
 
     private static void renameFiles(String projectPath, String filePath) {
-        File page = new File(projectPath + "\\"+  oldDirectory + "\\" + filePath);
-
-        String filename = page.getName();
-        if (filename.endsWith(".html") || filename.endsWith(".ts")) {
-            String[] fileComponents = filename.split("\\.");
-            String prefix = fileComponents[0];
-            String suffix = fileComponents[1];
-            String newFilename = prefix + ".page." + suffix;
-            // Here I want to rename the files in the same directory
-            // So I'm just removing the last bit of the filepath
-            String[] filePathComponents = filePath.split("\\\\");
-            String directory = projectPath + "\\" + oldDirectory + "\\";
-            for (int i = 0; i < filePathComponents.length - 1; i++) {
-                directory += filePathComponents[i] + "\\";
-            }
-            // Note: renameTo can take a new directory location,
-            // so it can move files as well
-            page.renameTo(new File(directory + newFilename));
+        String[] filePathComponents = filePath.split("\\\\");
+        String directory = projectPath + "\\" + oldDirectory + "\\";
+        for (int i = 0; i < filePathComponents.length - 1; i++) {
+            directory += filePathComponents[i] + "\\";
         }
 
+        File pageDirectory = new File(directory);
+        File[] allFiles = pageDirectory.listFiles();
+
+        for (File file: allFiles) {
+            String filename = file.getName();
+            if (filename.endsWith(".html") ||
+                    (filename.endsWith(".ts") && !filename.contains(".module")) ||
+                    filename.endsWith(".scss")) {
+                String[] fileComponents = filename.split("\\.");
+                String prefix = fileComponents[0];
+                String suffix = fileComponents[1];
+                String newFilename = prefix + ".page." + suffix;
+                file.renameTo(new File(directory + newFilename));
+            }
+        }
     }
 
     private static String migrateLabel(String projectPath, String filePath) {
