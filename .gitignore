@@ -60,3 +60,14 @@ typings/
 # next.js build output
 .next
 PetsMeetupsV3/package-lock.json
+.idea/encodings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/jsLinters/jshint.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml
+parse_ionic/.idea/encodings.xml
+parse_ionic/.idea/misc.xml
+parse_ionic/.idea/misc.xml
+parse_ionic/.idea/workspace.xml
+parse_ionic/target/classes/META-INF/parse_ionic.kotlin_module
