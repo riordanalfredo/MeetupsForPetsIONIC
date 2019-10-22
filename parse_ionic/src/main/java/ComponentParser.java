@@ -13,9 +13,9 @@ public class ComponentParser {
         ComponentParser testParser = new ComponentParser();
 
         //System.out.println(testParser.migrateIonViewDidLoad(projectPath, filePath));
-        //System.out.println(testParser.migrateIonicPageAnnotation(projectPath, filePath));
+        System.out.println(testParser.migrateIonicPageAnnotation(projectPath, filePath));
         //System.out.println(testParser.migrateIonicAngularImports(projectPath, filePath));
-        System.out.println(testParser.migrateInjectable(projectPath, servicePath));
+        //System.out.println(testParser.migrateInjectable(projectPath, servicePath));
     }
 
     public String migrateIonViewDidLoad(String projectPath, String filePath){
@@ -36,8 +36,11 @@ public class ComponentParser {
         String newVersion = "";
         try{
             newVersion = new String(Files.readAllBytes(Paths.get(projectPath + filePath)));
-            if(newVersion.contains("@IonicPage()")){
-                newVersion = newVersion.replaceAll("@IonicPage\\(\\)","");
+            if(newVersion.contains("@IonicPage")){
+                newVersion = newVersion.replaceAll("@IonicPage\\(.*\\)", "");
+            }
+            if(newVersion.contains("IonicPage")){
+                newVersion = newVersion.replaceAll("IonicPage,\\s+", "").replaceAll(",\\s+IonicPage", "");
             }
             return newVersion;
         }catch(IOException e){
