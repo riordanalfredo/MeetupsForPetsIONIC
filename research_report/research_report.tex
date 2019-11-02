@@ -8,6 +8,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{subfig}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -33,11 +34,11 @@ email address or ORCID}
 Melbourne, Australia \\
 riordan.alfredo@gmail.com}
 \and
-\IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+\IEEEauthorblockN{ Raymond Nguyen }
+\IEEEauthorblockA{\textit{Faculty of IT} \\
+\textit{Monash University}\\
+Melbourne, Australia \\
+rmngu2@student.monash.edu}
 }
 
 \maketitle
@@ -53,24 +54,69 @@ component, formatting, style, styling, insert
 \end{IEEEkeywords}
 
 \section{Introduction}
-This document is a model and instructions for \LaTeX.
-Please observe the conference page limits. 
+At some point in the software lifecycle, the current system must be migrated into a new system or version. 
+Software migration is the intricate process of moving an application from one environment or version to another. 
+Software migration in general, usually consumes lots of resources, time, and effort. 
+\\ According to the online article (IBM, 2014), it described several common challenges in migrating software applications. In terms of business aspects, these include: determining when to migrate, resistance of users culture and the migration itself not being completed on time. 
+For the technical aspects, these include: minimizing disruption of mission critical applications and ensuring that the application functions correctly after migration.
+\\ These migration challenges are common for new technologies, especially for web and mobile-based applications as they are constantly changing. Recently, hybrid apps have become popular as an alternative to native mobile applications. Hybrid applications host a web application inside a 
+native webview while utilizing bridges that allow access to native app functions such as camera access, geolocation, etc. 
+This means that developers are able to carry over their expertise with web technologies to mobile app development without needing to learn native tech stacks. 
+\\ A key example of this is the Ionic Framework which is a very popular hybrid application development framework that employs a ‘write once, deploy anywhere’ approach. The latest version of Ionic (version 4) was 
+a complete rewrite that makes it incompatible with projects written in Ionic 3, which makes it a suitable candidate for the research project.
+\\ There are several differences between Ionic 3 and 4, which makes it worth the port, including compatibility with any front-end framework as opposed to Ionic 3’s tight coupling with Angular. 
+There are quite a few issues that can deter development teams from doing a manual port to Ionic 4 which includes breaking changes to the library versions used in both framework versions. Despite there being a guide into how to manually migrate from an Ionic 3 project to an Ionic 4 project, 
+there are still a vast number of forums dedicated to help solve the manual migration process. 
+\\ One potential solution to solve these problems is to create models to help generate code to support the migration process. 
+This might be achieved with a software engineering technique called model-driven development. Model-driven approaches are used mainly in software design to generally 
+simplify a complex process of the system into a higher-level abstraction. By abstracting the migration process into a code generation tool, it could possibly speed up the 
+migration process with high accuracy and consistency as intended. In addition, it would benefit developers as it is a more efficient way to deal with the migration problems.
+\\ Finally, applying a model driven approach would not just be applicable to the Ionic framework, but potentially other web frameworks as well. 
+Therefore, model-driven approaches might solve software migration problems towards hybrid app development in regards to technical and business aspects 
+that industry is currently facing. Using a model-driven approach as well as focusing on Ionic versions 3 and 4, the research undertaken will determine whether 
+the issue of model driven approaches for migration can be applied.
+\newline \newline Looking into the problem a bit more, we have devised a main research question below.
+\newline \newline \textbf{Can model-driven development provide a valid migration solution?}
+\newline \newline Branching away from this primary question, we can ask further questions that target specific concerns about the migration tool we are proposing to create using model-driven development:
+\begin{enumerate}
+    \item Can it account for major changes like different libraries/versions?
+    \newline Looking at the Ionic Framework, there are specific libraries or versions used in a project that may differ from one version to another. 
+    These may involve small changes like simply changing the name to match the new version or larger changes such as changing the way the application handles routing to different pages. 
+    Our research will involve taking a look at some of these changes.
+    \item Is generated code of acceptable quality?
+    \newline With the model being used to help convert one Ionic 3 project file to a compatible Ionic 4 version, there can be a chance that the migration may not be perfect. 
+    There might be flaws with the output of the conversion which breaks the integrity of the original file. Our research will also observe the quality of the code and take note of any changes.
+    \item Can the tool be used for other case studies?
+    \newline Our modelling tool will be primarily used for our case study (Meetup For Pets) however every Ionic project is expected to be different. 
+    Our research will observe to see if the tool will be applicable not just for our case study, but for other Ionic 3 projects as well. 
+\end{enumerate}
+The contributions of this work are as follows:
+\begin{itemize}
+    \item We will introduce a case study Ionic 3 application (MeetUp For Pets) built primarily to test the viability of a proposed model
+    \item A metamodel will be built as well as a model which performs code generation to convert from Ionic 3 to Ionic 4
+    \item Our findings and evaluations will then be presented on the feasibility of using a model driven approach for migrating using the Ionic Framework as the primary focus
+\end{itemize}
 
 \section{Approach}
 
 \subsection{Case Study}
-
-The IEEEtran class file is used to format your paper and style the text. All margins, 
-column widths, line spaces, and text fonts are prescribed; please do not 
-alter them. You may note peculiarities. For example, the head margin
-measures proportionately more than is customary. This measurement 
-and others are deliberate, using specifications that anticipate your paper 
-as one part of the entire proceedings, and not as an independent document. 
-Please do not revise any of the current designations.
+As a proof-of-concept, the application that will be developed for our case study will be called \textbf{Meetups for Pets}. It is a hybrid application written 
+in Ionic version 3 to connect pet enthusiasts to promote face-to-face interactions with pets and their owners. The users will have the ability to organise a 
+meetups with each pet’s owner. The main purpose of this case study is to test the model-driven migration tool, this can be shown in \ref{fig:meetupIonic}
+\begin{figure}%
+    \centering
+    \subfloat[The home page of Meetup for Pets]{{\includegraphics[scale=0.1]{find_pets.png} }}%
+    \qquad
+    \subfloat[A list of pets that a user owns]{{\includegraphics[scale=0.1]{your_pets.png} }}%
+    \caption{Meetup For Pets Ionic 3 Application}%
+    \label{fig:meetupIonic}%
+\end{figure}
+\\ In a real-world scenario, an application would normally take advantage of the hardware capabilities of the device it is running on. 
+Therefore, there are some Ionic native framework features that were included, such as camera, contacts, calendar, and messaging.
+\\ Using the case study above, we attempted to perform some manual migration to look deeper into the issues that may arise when migrating. 
 
 
 \subsection{The Modelling Tool}
-
 \section{Evaluation}
 Before you begin to format your paper, first write and save the content as a 
 separate text file. Complete all content and organizational editing before 
