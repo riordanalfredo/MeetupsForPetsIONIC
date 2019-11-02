@@ -27,8 +27,7 @@ City, Country \\
 email address or ORCID}
 \and
 \IEEEauthorblockN{Riordan Dervin Alfredo}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
+\IEEEauthorblockA{\textit{Faculty of IT, Monash University} \\
 Melbourne, Australia \\
 riordan.alfredo@gmail.com}
 \and
@@ -293,20 +292,73 @@ element symbols.
 For papers published in translation journals, please give the English 
 citation first, followed by the original foreign-language citation \cite{b6}.
 
+% @Author: Riordan Dervin Alfredo, 2/11/2019 %
 \section{Related Work}
-In regards to the software migration of the hybrid app, there are other different
-researches that are alike in techniques, scales, and results. These are; FASMM: Fast and Accessible Software Migration Method \cite{b2}, Model-Driven Engineering for Software Migration 
-in a Large Industrial Context \cite{b3}, Software Engineering Challenges for Migration to the Service Cloud Paradigm \cite{b3}, 
-Web Application Migration with Closure Reconstruction \cite{b5}, Reverse Engineering Strategies for Software Migration \cite{b6} 
+In regards to the software migration that utilises model driven engineering methods,
+there are already several studies that were conducted extensively before.
+Those are; FASMM: 
+Fast and Accessible Software Migration Method \cite{b2}, Reverse Engineering 
+Strategies for Software Migration \cite{b6}, Model-Driven Engineering 
+for Software Migration in a Large Industrial Context \cite{b3},  
+Towards a Model-Driven Approach for Planning a 
+Standard-Based Migration of Enterprise Applications to SOA  \cite{b5}, and
+Migrating C/C++ Software to Mobile Platforms in the ADM Context \cite{b4}
+
+Our study is closely related to the FASMM approaches \cite{b2} as this research
+provides extensive guides for software developers that have limited 
+resources (time, budget, workforce $\ldots$) to conduct software migration. 
+Also, \cite{b6} provides specific methods to conduct reverse-engineering 
+that is involved our process.
+
+In \cite{b3} and \cite{b5} studies are proving the feasibility of model-driven engineering
+in other contexts from our studies. Those contexts are migration to another completely new framework, 
+migration to a new architecture (legacy achitecture to service-oriented architecture), and migration
+of mobile applications. They also provided insights of how model-driven engineering processes in software migration
+to be economically profitable and provides cost-effectiveness. 
+
+The \cite{b4} study is related to our work in terms of processing different kind of 
+programming languages and paradigms to produce a functional mobile application. In
+our case, the extension type of generated codes are still maintained. This study also
+gives insight how the model-driven development feasible in producing fully functional 
+mobile applications from different kind of programming languages, which is technically 
+how hybrid application system / architecture works. 
+
+Each related work are explained in details below:
+
 \subsection{ FASMM: Fast and Accessible Software Migration Method }
-\subsection{ Model-Driven Engineering for Software Migration in a Large Industrial Context }
-\subsection{ Software Engineering Challenges for Migration to the Service Cloud Paradigm }
-\subsection{ Web Application Migration with Closure Reconstruction  }
+
 \subsection{ Reverse Engineering Strategies for Software Migration }
+
+\subsection{ Model-Driven Engineering for Software Migration in a Large Industrial Context }
+This paper describes the process of migrating a large-scale software application from Mainframe to J2EE
+using Model-Driven Engineering process.The migration process in this study starts by describing the general 
+processes of current legacy system.
+
+First, a parser is created to make an abstract systax tree from the legacy code. Then, it is processed
+by a transformation to build a model that conforms to the meta-model of the legacy language.
+During the second stage, all symbols are resolved and bound to appropriate model elements.
+Afterwards, from code model, reverse-engineering process is conducted to produce a platform independent 
+model. Finally, this model will be mapped into a platform specific model that can be used to generate code
+for the final product of the migrated application. Below are the general picture of process that
+undertakes the similar process as this research study:
+
+\begin{figure}[htbp]
+\centerline{\includegraphics{fig2.png}}
+\caption{Model-driven migration principle \cite{b3}}
+\label{fig}
+\end{figure}
+
+\subsection{ Migrating C/C++ Software to Mobile Platforms in the ADM Context }
+https://pdfs.semanticscholar.org/8968/7958518252817c4bbe02c77fcef5a48a8d3c.pdf
+
+\subsection{ Towards a Model-Driven Approach for Planning a Standard-Based Migration of Enterprise Applications to SOA }
 
 \section{Conclusion}
 
-In conclusion, the models that was 
+There are still many challenges to be taken down that produce the proposed method for
+hybrid android  migration 
+
+Talk about Future works here:
 
 
 \begin{thebibliography}{00}
