@@ -284,12 +284,17 @@ make a generalized migration tool for this specific feature a lot harder to impl
 \section{Related Work}
 In regards to the software migration that utilises model driven engineering methods,
 there are already several studies that were conducted extensively before.
-Those are; FASMM: Fast and Accessible Software Migration Method \cite{b3}, Reverse Engineering 
+Those are; Migrating C/C++ Software to Mobile Platforms in the ADM Context \cite{b2},
+FASMM: Fast and Accessible Software Migration Method \cite{b3}, Reverse Engineering 
 Strategies for Software Migration \cite{b4}, Model-Driven Engineering 
-for Software Migration in a Large Industrial Context \cite{b5},  
+for Software Migration in a Large Industrial Context \cite{b5}, and
 Towards a Model-Driven Approach for Planning a 
-Standard-Based Migration of Enterprise Applications to SOA  \cite{b6}, and
-Migrating C/C++ Software to Mobile Platforms in the ADM Context \cite{b2}
+Standard-Based Migration of Enterprise Applications to SOA \cite{b6}
+
+This \cite{b2} study is related to our work in terms of processing different kinds of 
+programming languages and paradigms to generate mobile application code. It is also 
+the main feasible example of a model-driven approach in the software migration of native-mobile applications,
+which is in our case is the migration of the hybrid mobile application.
 
 Our study is closely related to the FASMM approach \cite{b3} as this research
 provides extensive guides for software developers that have limited 
@@ -304,12 +309,20 @@ of different languages to specific mobile application framework.
 They also provided insights on how model-driven engineering processes are economically
 profitable and are cost-effective. 
 
-This \cite{b2} study is related to our work in terms of processing different kinds of 
-programming languages and paradigms to generate mobile application code. It is also 
-the main feasible example of a model-driven approach in the software migration of mobile applications,
-which is in our case is the migration of the hybrid mobile application.
-
 The related work is explained in detail as shown below. 
+
+\subsection{ Migrating C/C++ Software to Mobile Platforms in the ADM Context }
+This study took an example of C/C++ language to produce Android, iOS, and Windows mobile applications. 
+In our study, the extension type of the generated code is still maintained, but the main code-generation process with this study 
+is technically similar. 
+
+Furthermore, this study gives insight in regards to the feasibility of a model-driven development approach that is 
+advanced to ADM (Architecture-Driven Modernization) within a similar domain, mobile application migration. 
+The ADM approach that is described in this study could potentially be part of our future works. 
+The validation tool that is used in this study is the same as what we are using in our approach, which is the Eclipse Modelling Framework.
+Mobile applications are formed using different kinds of programming languages, which is technically 
+how hybrid application systems work. 
+
 
 \subsection{ FASMM: Fast and Accessible Software Migration Method }
 % TODO: Add explanation for this paper, if page limit permits it %
@@ -330,50 +343,38 @@ for the final product of the migrated application.
 \subsection{ Towards a Model-Driven Approach for Planning a Standard-Based Migration of Enterprise Applications to SOA }
 % TODO: Add explanation for this paper, if page limit permits it %
 
-\subsection{ Migrating C/C++ Software to Mobile Platforms in the ADM Context }
-This study took an example of C/C++ language to produce an Android, iOS, and Windows mobile application. 
-In our study, the extension type of the generated code is still maintained,
-but the main code-generation process is technically similar. 
-
-Furthermore, this study gives insight in regards to the feasibility of a model-driven development approach that is 
-advanced to ADM (Architecture-Driven Modernization) within a similar domain, mobile application migration. 
-The ADM approach that is described in this study could potentially be part of our future works. 
-The validation tool that is used in this study is the same as what we are using in our approach, which is the Eclipse Modelling Framework.
-Mobile applications are formed using different kinds of programming languages, which is technically 
-how hybrid application systems work. 
-
 \section{Conclusion}
-In conclusion, our study contributes to the success and feasibility for another area 
-of software migration with model-driven engineering methodologies, focusing on the hybrid application domain.
-At this stage, our approach only proves a small fraction of the hybrid application domain because 
-this study only focused on one framework (Ionic) and selected specific versions (migrating version 3 to version 4). 
+In conclusion, our study contributes to another area in software migration with 
+model-driven engineering methodologies, focusing on the hybrid application domain.
+At this stage, our approach only proves a small fraction of the hybrid application migration because 
+this study only focused on one framework (Ionic) and only based on the selected versions (version 3 to version 4).
 
-At the moment, within these constraints, the tool that we had created only handles basic migration functionalities.
+At the moment, within various constraints, the validation tool that we had developed only handles basic migration functionalities.
 More specifically it is only using string parsing, transformations, and code-generation. These processes might
 be insufficient to handle more complex functionalities as described in our limitations.
 
-There are still many other challenges to tackle in the proposed methods to fully migrate the Ionic version 3 project
-to version 4. This is due to our proposed approach focusing on the feasibility of the concept of attempting to migrate the hybrid application 
-completely. Despite all of these challenges and limitations, our approach could potentitally open-up more paths for further research
-in the software migration of hybrid applications by utilising model-driven engineering approaches.  
+This leads to many other challenges that need to be tackled in the proposed methods to fully migrate the Ionic version 3 project
+to version 4. The main goal in this study is to prove the feasibility of migration hybrid application with model-driven engineering
+methods, and it is proven to be true. Therefore, building fully-functional software migration tool for hybrid application is intentionally 
+left for future work. 
 
 \section{Future Work}
-Here, we used the Eclipse Modeling Framework as our validator and main tool to help migrate the Ionic framework 
-from version 3 to version 4. Within this tool, the abstraction level is intentionally increased for the 
-cohesiveness and extensibility of migration functions. while also reducing coupling between 
-functions. Future researchers could upgrade more complex functionalities based on the limitations that 
-we had listed above.
+Here, we used the Eclipse Modeling Framework as validator and main migration tool to handle migration process of 
+the Ionic framework from version 3 to version 4. Within this tool, the abstraction level was intentionally 
+increased for the cohesiveness and extensibility of migration functions. By following our approaches and methodologies, 
+future researchers could add and upgrade the tool to handle more complex functionalities according 
+to limitations as described above.
 
-The main reason is the tool that we had created was only able to solve basic migration problems. 
-It requires more extensive research to solve more complex functionalites, such as dealing with 
-architectural changes to arrange files in the correct directories. The potential of
-higher-level model-driven approaches could possibly be exercised in ADM (Architecture-Driven Modernization) \cite{b2}. 
+At the moment, our approaches are only applicable to solve basic software migration problems in hybrid application. 
+It requires more extensive researches to solve more complex functionalites, such as dealing with 
+architectural changes to arrange files in the correct directories. ADM (Architecture-Driven Modernization) method 
+\cite{b2} could potentially be the candidate to solve this issue. 
 
-There will be time in the future for this tool to be mature so that it can migrate Ionic Framework applications from version 
-3 to version 4 thoroughly, without introducing any migration bugs.
+There will be time in the future for this tool to be mature enough so that the migration of Ionic Framework applications 
+from version  3 to version 4 can be done thoroughly, without introducing any migration bugs.
 This tool is also envisioned to handle migration of Ionic framework from 
-any versions to the latest. In the future, by following our approaches and adding on further research, 
-it could potentially migrate other different hybrid application framework versions as well.
+any versions to the latest. In the future, by following our approaches and adding on further researches, 
+it could potentially migrate the other hybrid application frameworks.
 
 \begin{thebibliography}{00}
 \bibitem{b1} "IBM Knowledge Center", Ibm.com, 2019. [Online]. Available: \url{https://www.ibm.com/support/knowledgecenter/en/SSEP7J_10.2.1/com.ibm.swg.ba.cognos.ug_mfdm.10.2.1.doc/c_mfdm_chal_mig.html}. [Accessed: 07-Sep-2019].
