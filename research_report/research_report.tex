@@ -8,6 +8,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{float}
 \usepackage{subfig}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
@@ -23,22 +24,26 @@
 City, Country \\
 email address or ORCID}
 \and
-\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address or ORCID}
+
+\IEEEauthorblockN{Mubtasim Mahmud}
+\IEEEauthorblockA{\textit{Faculty of IT} \\
+\textit{Monash University}\\
+Melbourne, Australia \\
+mubtasimmahmud20@gmail.com}
 \and
+
 \IEEEauthorblockN{Riordan Dervin Alfredo}
-\IEEEauthorblockA{\textit{Faculty of IT, Monash University} \\
+\IEEEauthorblockA{\textit{Faculty of IT} \\
+\textit{Monash University}\\
 Melbourne, Australia \\
 riordan.alfredo@gmail.com}
 \and
+
 \IEEEauthorblockN{ Raymond Nguyen }
 \IEEEauthorblockA{\textit{Faculty of IT} \\
 \textit{Monash University}\\
 Melbourne, Australia \\
-rmngu2@student.monash.edu}
+rbnguyen1357@yahoo.com.au}
 }
 
 \maketitle
@@ -115,11 +120,99 @@ meetups with each pet’s owner. The main purpose of this case study is to test 
 Therefore, there are some Ionic native framework features that were included, such as camera, contacts, calendar, and messaging.
 \\ Using the case study above, we attempted to perform some manual migration to look deeper into the issues that may arise when migrating. 
 
-
 \subsection{The Modelling Tool}
 \section{Evaluation}
 
+The results of the migration tool we developed were quite favorable. The case study
+involved migrating three categories of changes:
+\begin{enumerate}
+    \item HTML markup
+    \item Typescript code
+    \item Architectural changes (file and folder structure)
+\end{enumerate}
+
+\subsection{HTML Markup}
+The migration tool tackles the problem by separating the full
+text into components (.i.e buttons, labels, etc.). This is the most
+general category, as the migration process for different components
+has a lot of common procedures.
+
+\begin{figure}
+    \centering
+    \subfloat[Ionic 3]{
+        \includegraphics[width=0.8\linewidth]{button.PNG}
+        \label{fig:ion3button}
+    }
+    \qquad
+    \subfloat[Ionic 4]{
+        \includegraphics[width=0.8\linewidth]{buttonv4.PNG}
+        \label{fig:ion4button}
+    }
+    \caption{Ionic 3-4 Button Migration (Markup)}
+    \label{fig:ionicButtonMigration}
+\end{figure}
+
+\subsection{Typescript code}
+Migration of Typescript code involves looking through code files
+to find specific tokens and changing them to fit the Ionic 4 specification.
+Unlike HTML markup, every different migration process in this category is almost
+completely different, and can only be generalized in broad terms, such as find-and-replace
+functionality.
+
+\begin{figure}
+    \centering
+    \subfloat[Ionic 3]{
+        \includegraphics[width=0.8\linewidth]{lifecycle.PNG}
+        \label{fig:lifecycle3}
+    }
+    \qquad
+    \subfloat[Ionic 4]{
+        \includegraphics[width=0.8\linewidth]{lifecyclev4.PNG}
+        \label{fig:lifecycle4}
+    }
+    \caption{Ionic 3-4 Lifecycle Methods Migration (Typescript)}
+    \label{fig:ionicLifecycleMigration}
+\end{figure}
+
+\subsection{Architectural Changes}
+The structure of an Ionic 4 project is drastically different from an Ionic 3 project,
+making its migration a very specific process. The tool focuses on a small subset, which
+involves reorganizing files associated with one specific feature of an app to the equivalent Ionic 4
+folder structure, as well as renaming them to fit the new convention.
+
+\begin{figure}
+    \centering
+    \subfloat[Ionic Feature Migration Output]{
+        \includegraphics[width=0.8\linewidth]{files.PNG}
+        \label{fig:ionFiles}
+    }
+    \caption{Ionic 3-4 File Rename-and-Relocate Migration (Architectural)}
+    \label{fig:ionicFileMigration}
+\end{figure}
+
+
 \section{Discussion/Experiences}
+The overall consensus is that model-driven development is a feasible approach
+for software migration, especially regarding this case study in particular.
+\newline \newline
+For HTML markup in particular, automating component-wise migration is remarkably simple, and it
+is well within the scope of possibility to create a general function that will migrate any Ionic
+3 component to its Ionic 4 equivalent, provided a library of changes specific to each component
+is collated for use by this function.
+\newline \newline
+Typescript code can be a little more complicated to deal with. During development of the tool,
+we encountered some difficulty with porting over two components in particular - \textbf{Toasts} and
+\textbf{Alerts}. The difficulty stems from the asynchronous nature of the two in Ionic 4 as opposed to their
+counterparts in Ionic 3 - handler function callbacks and deeply nested toasts and alerts have to be handled differently,
+which makes migrating these a more involved process than just pure automation.
+\newline \newline
+Architectural changes vary in difficulty. A project-wide relocation and renaming of files is well within the
+scope of possibility, but changes to the routing mechanisms adopted in the different versions are drastic and
+require significant changes to the codebase. Ionic 4 uses the routing functionality provided by the frontend framework
+specified when creating a project using its command-line interface, meaning that a separate migration process would need
+to be adopted for, say, React vs. Angular, for example. Ionic 3 used its own proprietary router on the other hand, which means
+at least that part of the code is easier to deal with. While Ionic 4 adopted this change in order to be future-proof, this does
+make a generalized migration tool for this specific feature a lot harder to implement.
 
 % @Author: Riordan Dervin Alfredo, 2/11/2019 %
 \section{Related Work}
