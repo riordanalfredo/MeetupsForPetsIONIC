@@ -318,14 +318,22 @@ is technically similar.
 
 Furthermore, this study gives insight in regards to the feasibility of a model-driven development approach that is 
 advanced to ADM (Architecture-Driven Modernization) within a similar domain, mobile application migration. 
-The ADM approach that is described in this study could potentially be part of our future works. 
-The validation tool that is used in this study is the same as what we are using in our approach, which is the Eclipse Modelling Framework.
+The validation tool that is used in this study is the same as what we are using in our approach, which is the Eclipse Modelling Framework \cite{b2}.
 Mobile applications are formed using different kinds of programming languages, which is technically 
-how hybrid application systems work. 
-
+how hybrid application systems work.
+The ADM approach that is described in this study could potentially be part of our future works. 
 
 \subsection{ FASMM: Fast and Accessible Software Migration Method }
-% TODO: Add explanation for this paper, if page limit permits it %
+This study provides extensive guides and methods to conduct software migration. The migration
+process that it is aiming is at the short and non-optimised migration phase.
+It is frequently quickly done and not necessarily in an optimized way. For example,
+inaccurate functionalities implementation, loose new architecture, and non-capitalised gained knowledge
+during the migration \cite{b3}. These conditions are relatable with the environemnt of our current study.
+
+Therefore, our study followed the described methodologies that enables validation of 
+hybrid application migration process with model-driven engineering techniques. It also allows
+capitalising knowledge as transformation rules, to make it highly reusable in the future migration projects
+\cite{b3}.
 
 \subsection{ Model-Driven Engineering for Software Migration in a Large Industrial Context }
 This paper describes the process of migrating a large-scale software application from Mainframe to J2EE
@@ -338,10 +346,17 @@ During the second stage, all symbols are resolved and bound to the appropriate m
 
 Afterwards, from the model representing the code, a reverse-engineering process is conducted to produce a platform independent 
 model. Finally, this model will be mapped into a platform specific model that can be used to generate code
-for the final product of the migrated application. 
+for the final product of the migrated application \cite{b5}.
 
 \subsection{ Towards a Model-Driven Approach for Planning a Standard-Based Migration of Enterprise Applications to SOA }
-% TODO: Add explanation for this paper, if page limit permits it %
+This study represents the feasibility of model-driven approaches to be used in the software migration context in general.
+Our proposed method that utilises model transformation to generate the migrated code conforms with this 
+research arguments. The migration system that it utilises are a sequential execution of model transformation \cite{b6}
+that is quite similar to our approach. 
+
+However, this research uses much more complex software migration modelling 
+methodologies that is slightly irrelevant with our current study objectives. These are including
+the usage of service model and migration path model to defines common meta-data for semantic integration \cite{b6}.
 
 \section{Conclusion}
 In conclusion, our study contributes to another area in software migration with 
@@ -367,8 +382,9 @@ to limitations as described above.
 
 At the moment, our approaches are only applicable to solve basic software migration problems in hybrid application. 
 It requires more extensive researches to solve more complex functionalites, such as dealing with 
-architectural changes to arrange files in the correct directories. ADM (Architecture-Driven Modernization) method 
-\cite{b2} could potentially be the candidate to solve this issue. 
+architectural changes to arrange files in the correct directories. ADM (Architecture-Driven Modernization) and 
+KDM (Knowledge Discovery Metamodel) methods \cite{b2} \cite{b6} could potentially be the candidates to solve 
+current limitations in this study. 
 
 There will be time in the future for this tool to be mature enough so that the migration of Ionic Framework applications 
 from version  3 to version 4 can be done thoroughly, without introducing any migration bugs.
