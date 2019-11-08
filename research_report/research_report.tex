@@ -187,7 +187,7 @@ The model gives flexibility to the user by allowing a \textit{Component} to be r
 As a proof-of-concept, the application that will be developed for our case study will be called \textbf{Meetups for Pets}. It is a hybrid application written
 in Ionic version 3 to connect pet enthusiasts to promote face-to-face interactions with pets and their owners. The users will have the ability to organise a
 meetups with each pet’s owner. The main purpose of this case study is to test the model-driven migration tool, this can be shown in Figure \ref{fig:meetupIonic}
-\begin{figure}%
+\begin{figure}[!htb]%
     \centering
     \subfloat[The home page of Meetup for Pets]{{\includegraphics[scale=0.1]{find_pets.png} }}%
     \qquad
@@ -201,12 +201,11 @@ Therefore, there are some Ionic native framework features that were included, su
 had generated the correct Ionic 4 code.
 
 \subsection{The Model}
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering{\includegraphics[width=\linewidth,height=\textheight,keepaspectratio]{model.png}}
 \caption{Migration Tool Model}
 \label{fig:model}
 \end{figure}
-
 \subsection{Code Generation}
 The results of the migration tool we developed were quite favorable. The case study
 involved migrating three categories of changes:
