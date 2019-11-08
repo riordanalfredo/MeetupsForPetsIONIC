@@ -44,7 +44,7 @@ Melbourne, Australia \\
 \textit{Monash University}\\
 Melbourne, Australia \\
 \href{mailto:rbnguyen1357@yahoo.com.au}{rbnguyen1357@yahoo.com.au}}
-\and 
+\and
 
 \IEEEauthorblockN{Tomaž Kosar$^{5}$}
 \IEEEauthorblockA{\textit{Faculty of Electrical Engineering and Computer Science} \\
@@ -59,39 +59,39 @@ Maribor, Slovenia \\
 Software migration is a common problem for developers working in industry or even working on personal projects. It is usually time consuming
 and difficult to test if it has been done correctly. Nowadays may web application frameworks have different versions which makes it difficult
 to migrate given how frequently they change. One key example is the Ionic Framework which is used to help build desktop as well as mobile applications,
-with a simple "write once, deploy anywhere" type of strategy. The Ionic Framework has a manual migration guide that can help developers migrate from 
-different versions. We believe that the tedious work involved can be mitigated partially through automation. Therefore we propose a 
+with a simple "write once, deploy anywhere" type of strategy. The Ionic Framework has a manual migration guide that can help developers migrate from
+different versions. We believe that the tedious work involved can be mitigated partially through automation. Therefore we propose a
 model-driven apporach to aid the migration process. By focusing on a model-driven approach, we can develop a model
 which is a representation of the system which will generate code for a specific version. Our approach was applied to a case study in order to validate
-whether this approach was successful or not. 
+whether this approach was successful or not.
 \end{abstract}
 
 \section{Introduction}
-At some point in the software lifecycle, the current system must be migrated into a new system or version. 
-Software migration is the intricate process of moving an application from one environment or version to another. 
-Software migration in general, usually consumes lots of resources, time, and effort. 
-\\ According to the online article (IBM, 2014) \cite{b1}, it described several common challenges in migrating software applications. In terms of business aspects, these include: determining when to migrate, resistance of users culture and the migration itself not being completed on time. 
+At some point in the software lifecycle, the current system must be migrated into a new system or version.
+Software migration is the intricate process of moving an application from one environment or version to another.
+Software migration in general, usually consumes lots of resources, time, and effort.
+\\ According to the online article (IBM, 2014) \cite{b1}, it described several common challenges in migrating software applications. In terms of business aspects, these include: determining when to migrate, resistance of users culture and the migration itself not being completed on time.
 For the technical aspects, these include: minimizing disruption of mission critical applications and ensuring that the application functions correctly after migration.
-\\ These migration challenges are common for new technologies, especially for web and mobile-based applications as they are constantly changing \cite{b5}. Recently, hybrid apps have become popular as an alternative to native mobile applications due to its overall benefits \cite{b2}. Hybrid applications host a web application inside a 
-native webview while utilizing bridges that allow access to native app functions such as camera access, geolocation, etc. 
-This means that developers are able to carry over their expertise with web technologies to mobile app development without needing to learn native tech stacks. 
-\\ A key example of this is the Ionic Framework which is a very popular hybrid application development framework that employs a ‘write once and run anywhere’ \cite{b3} approach. The latest version of Ionic (version 4) was 
+\\ These migration challenges are common for new technologies, especially for web and mobile-based applications as they are constantly changing \cite{b5}. Recently, hybrid apps have become popular as an alternative to native mobile applications due to its overall benefits \cite{b2}. Hybrid applications host a web application inside a
+native webview while utilizing bridges that allow access to native app functions such as camera access, geolocation, etc.
+This means that developers are able to carry over their expertise with web technologies to mobile app development without needing to learn native tech stacks.
+\\ A key example of this is the Ionic Framework which is a very popular hybrid application development framework that employs a ‘write once and run anywhere’ \cite{b3} approach. The latest version of Ionic (version 4) was
 a complete rewrite that makes it incompatible with projects written in Ionic 3, which makes it a suitable candidate for the research project.
-\\ There are several differences between Ionic 3 and 4, which makes it worth the port, including compatibility with any front-end framework as opposed to Ionic 3’s tight coupling with Angular. 
-There are quite a few issues that can deter development teams from doing a manual port to Ionic 4 which includes breaking changes to the library versions used in both framework versions. Despite there being a guide into how to manually migrate from an Ionic 3 project to an Ionic 4 project, 
-there are still a vast number of forums dedicated to help solve the manual migration process. 
-\\ One potential solution to solve these problems is to create models to help generate code to support the migration process. 
-This might be achieved with a software engineering technique called model-driven development \cite{b4}. Model-driven approaches are used mainly in software design to generally 
-simplify a complex process of the system into a higher-level abstraction. By abstracting the migration process into a code generation tool, it could possibly speed up the 
+\\ There are several differences between Ionic 3 and 4, which makes it worth the port, including compatibility with any front-end framework as opposed to Ionic 3’s tight coupling with Angular.
+There are quite a few issues that can deter development teams from doing a manual port to Ionic 4 which includes breaking changes to the library versions used in both framework versions. Despite there being a guide into how to manually migrate from an Ionic 3 project to an Ionic 4 project,
+there are still a vast number of forums dedicated to help solve the manual migration process.
+\\ One potential solution to solve these problems is to create models to help generate code to support the migration process.
+This might be achieved with a software engineering technique called model-driven development \cite{b4}. Model-driven approaches are used mainly in software design to generally
+simplify a complex process of the system into a higher-level abstraction. By abstracting the migration process into a code generation tool, it could possibly speed up the
 migration process with high accuracy and consistency as intended. In addition, it would benefit developers as it is a more efficient way to deal with the migration problems.
-\\ Finally, applying a model driven approach would not just be applicable to the Ionic framework, but potentially other web frameworks as well. 
-Therefore, model-driven approaches might solve software migration problems towards hybrid app development in regards to technical and business aspects 
-that industry is currently facing. Using a model-driven approach as well as focusing on Ionic versions 3 and 4, the research undertaken will determine whether 
-the issue of model driven approaches for migration can be applied. 
+\\ Finally, applying a model driven approach would not just be applicable to the Ionic framework, but potentially other web frameworks as well.
+Therefore, model-driven approaches might solve software migration problems towards hybrid app development in regards to technical and business aspects
+that industry is currently facing. Using a model-driven approach as well as focusing on Ionic versions 3 and 4, the research undertaken will determine whether
+the issue of model driven approaches for migration can be applied.
 \\ This report will go into detail about our research questions and then move into how we approached the problem. Afterwards, we will evaluate our research, looking specifically
 at our case study (Meetup For Pets) and other Ionic version 3 projects. Futhermore, the model will be discussed in detail as well as the code generated using this model. Subsequently,  we will discuss our
 experiences applying a model-driven approach to solve the migration issue and tie in some other related literature to our own work. Eventually, we will formulate a conclusion and mention possible
-future work that our research may have. 
+future work that our research may have.
 \newline \newline The contributions of this work are as follows:
 \begin{itemize}
     \item We will introduce a case study Ionic 3 application (MeetUp For Pets) built primarily to test the viability of a proposed model
@@ -105,15 +105,15 @@ Looking into the problem a bit more, we have devised a main research question be
 \newline \newline Branching away from this primary question, we have additional research questions that target the concerns about the migration tool we are proposing:
 \begin{enumerate}
     \item RQ: Can it account for major changes like different libraries/versions?
-    \newline Looking at the Ionic Framework, there are specific libraries or versions used in a project that may differ from one version to another. 
-    These may involve small changes like simply changing the name to match the new version or larger changes such as changing the way the application handles routing to different pages. 
+    \newline Looking at the Ionic Framework, there are specific libraries or versions used in a project that may differ from one version to another.
+    These may involve small changes like simply changing the name to match the new version or larger changes such as changing the way the application handles routing to different pages.
     Our research will involve taking a look at some of these changes.
     \item RQ: Is generated code of acceptable quality?
-    \newline With the model being used to help convert one Ionic 3 project file to a compatible Ionic 4 version, there can be a chance that the migration may not be perfect. 
+    \newline With the model being used to help convert one Ionic 3 project file to a compatible Ionic 4 version, there can be a chance that the migration may not be perfect.
     There might be flaws with the output of the conversion which breaks the integrity of the original file. Our research will also observe the quality of the code and take note of any changes.
     \item RQ: Can the tool be used for other case studies?
-    \newline Our modelling tool will be primarily used for our case study (Meetup For Pets) however every Ionic project is expected to be different. 
-    Our research will observe to see if the tool will be applicable not just for our case study, but for other Ionic 3 projects as well. 
+    \newline Our modelling tool will be primarily used for our case study (Meetup For Pets) however every Ionic project is expected to be different.
+    Our research will observe to see if the tool will be applicable not just for our case study, but for other Ionic 3 projects as well.
 \end{enumerate}
 
 \section{Approach}
@@ -190,8 +190,8 @@ The model gives flexibility to the user by allowing a \textit{Component} to be r
 \section{Evaluation}
 
 \subsection{Case Study}
-As a proof-of-concept, the application that will be developed for our case study will be called \textbf{Meetups for Pets}. It is a hybrid application written 
-in Ionic version 3 to connect pet enthusiasts to promote face-to-face interactions with pets and their owners. The users will have the ability to organise a 
+As a proof-of-concept, the application that will be developed for our case study will be called \textbf{Meetups for Pets}. It is a hybrid application written
+in Ionic version 3 to connect pet enthusiasts to promote face-to-face interactions with pets and their owners. The users will have the ability to organise a
 meetups with each pet’s owner. The main purpose of this case study is to test the model-driven migration tool, this can be shown in Figure \ref{fig:meetupIonic}
 \begin{figure}%
     \centering
@@ -201,9 +201,9 @@ meetups with each pet’s owner. The main purpose of this case study is to test 
     \caption{Meetup For Pets Ionic 3 Application}%
     \label{fig:meetupIonic}%
 \end{figure}
-\\ In a real-world scenario, an application would normally take advantage of the hardware capabilities of the device it is running on. 
+\\ In a real-world scenario, an application would normally take advantage of the hardware capabilities of the device it is running on.
 Therefore, there are some Ionic native framework features that were included, such as camera, contacts, calendar, and messaging.
-\\ Using the case study above, we attempted to perform some manual migration to look deeper into the issues that may arise when migrating. In our research we had also attempted to use another open-source Ionic 3 application from GitHub \cite{b14} in order to test if our model 
+\\ Using the case study above, we attempted to perform some manual migration to look deeper into the issues that may arise when migrating. In our research we had also attempted to use another open-source Ionic 3 application from GitHub \cite{b14} in order to test if our model
 had generated the correct Ionic 4 code.
 
 \subsection{The Model}
@@ -226,12 +226,12 @@ has a lot of common procedures.
 \begin{figure}[!htb]
     \centering
     \subfloat[Ionic 3]{
-        \includegraphics[width=0.8\linewidth]{button.PNG}
+        \includegraphics[width=0.8\linewidth,height=0.6cm]{button.PNG}
         \label{fig:ion3button}
     }
     \qquad
     \subfloat[Ionic 4]{
-        \includegraphics[width=0.8\linewidth]{buttonv4.PNG}
+        \includegraphics[width=0.8\linewidth,height=1.5cm]{buttonv4.PNG}
         \label{fig:ion4button}
     }
     \caption{Ionic 3-4 Button Migration (Markup)}
@@ -266,10 +266,7 @@ involves reorganizing files associated with one specific feature of an app to th
 folder structure, as well as renaming them to fit the new convention.
 \begin{figure}[!htb]
     \centering
-    \subfloat[Ionic Feature Migration Output]{
-        \includegraphics[width=0.8\linewidth]{files.PNG}
-        \label{fig:ionFiles}
-    }
+    \includegraphics[width=0.8\linewidth,height=5cm,keepaspectratio]{files.PNG}
     \caption{Ionic 3-4 File Rename-and-Relocate Migration (Architectural)}
     \label{fig:ionicFileMigration}
 \end{figure}
@@ -303,26 +300,26 @@ make a generalized migration tool for this specific feature a lot harder to impl
 In regards to the software migration that utilises model driven engineering methods,
 there are already several studies that were conducted extensively before.
 Those are; Migrating C/C++ Software to Mobile Platforms in the ADM Context \cite{b6},
-FASMM: Fast and Accessible Software Migration Method \cite{b7}, Reverse Engineering 
-Strategies for Software Migration \cite{b8}, Model-Driven Engineering 
+FASMM: Fast and Accessible Software Migration Method \cite{b7}, Reverse Engineering
+Strategies for Software Migration \cite{b8}, Model-Driven Engineering
 for Software Migration in a Large Industrial Context \cite{b9}, and
-Towards a Model-Driven Approach for Planning a 
+Towards a Model-Driven Approach for Planning a
 Standard-Based Migration of Enterprise Applications to SOA \cite{b10}
 \newline \newline
-According to Martinez et al.\cite{b6} study is related to our work in terms of processing different kinds of 
-programming languages and paradigms to generate mobile application code. It is also 
+According to Martinez et al.\cite{b6} study is related to our work in terms of processing different kinds of
+programming languages and paradigms to generate mobile application code. It is also
 the main feasible example of a model-driven approach in the software migration of native-mobile applications,
 which is in our case is the migration of the hybrid mobile application.
-This study took an example of C/C++ language to produce Android, iOS, and Windows mobile applications. 
-In our study, the extension type of the generated code is still maintained, but the main code-generation process with this study 
-is technically similar. 
+This study took an example of C/C++ language to produce Android, iOS, and Windows mobile applications.
+In our study, the extension type of the generated code is still maintained, but the main code-generation process with this study
+is technically similar.
 \newline \newline
-Furthermore, this study gives insight in regards to the feasibility of a model-driven development approach that is 
-advanced to ADM (Architecture-Driven Modernization) within a similar domain, mobile application migration. 
+Furthermore, this study gives insight in regards to the feasibility of a model-driven development approach that is
+advanced to ADM (Architecture-Driven Modernization) within a similar domain, mobile application migration.
 The validation tool that is used in this study is the same as what we are using in our approach, which is the Eclipse Modelling Framework \cite{b2}.
-Mobile applications are formed using different kinds of programming languages, which is technically 
+Mobile applications are formed using different kinds of programming languages, which is technically
 how hybrid application systems work.
-The ADM approach that is described in this study could potentially be part of our future works. 
+The ADM approach that is described in this study could potentially be part of our future works.
 \newline \newline
 In terms of methodologies, our study is closely related to the FASMM approach as described by Forite, et al. \cite{b3} .
 This study provides extensive guides and methods to conduct software migration. The migration
@@ -330,39 +327,39 @@ process that it is aiming is at the short and non-optimised migration phase.
 It is frequently quickly done and not necessarily in an optimized way. For example,
 inaccurate functionalities implementation, loose new architecture, and non-capitalised gained knowledge
 during the migration. These conditions are relatable with the environemnt of our current study.
-Therefore, our study followed the described methodologies that enables validation of 
+Therefore, our study followed the described methodologies that enables validation of
 hybrid application migration process with model-driven engineering techniques. It also allows
 capitalising knowledge as transformation rules, to make it highly reusable in the future migration projects.
 \newline \newline
 
 In \cite{b9} and \cite{b10} studies are proving the feasibility of model-driven engineering
-in different domains and contexts from our studies. Those are the migration to a completely new framework, 
+in different domains and contexts from our studies. Those are the migration to a completely new framework,
 migration to a new architecture (legacy achitecture to service-oriented architecture), and migration
-of different languages to specific mobile application framework. 
+of different languages to specific mobile application framework.
 They also provided insights on how model-driven engineering processes are economically
-profitable and are cost-effective. 
+profitable and are cost-effective.
 \newline \newline
 In the paper \cite{b9}, author describes the process of migrating a large-scale software application from Mainframe to J2EE
-using Model-Driven Engineering process. The migration process in this study starts by describing the general 
+using Model-Driven Engineering process. The migration process in this study starts by describing the general
 processes of the current legacy system.
 First, a parser is created to make an abstract syntax tree from the legacy code. Then, it is processed
 by a transformation to build a model that conforms to the meta-model of the legacy language.
 During the second stage, all symbols are resolved and bound to the appropriate model elements.
-Afterwards, from the model representing the code, a reverse-engineering process is conducted to produce a platform independent 
+Afterwards, from the model representing the code, a reverse-engineering process is conducted to produce a platform independent
 model. Finally, this model will be mapped into a platform specific model that can be used to generate code
 for the final product of the migrated application.
 \newline \newline
 Lastly, Aboulsamh describes \cite{b10} the feasibility of model-driven approaches to be used in the software migration context in general.
-Our proposed method that utilises model transformation to generate the migrated code conforms with this 
+Our proposed method that utilises model transformation to generate the migrated code conforms with this
 research arguments. The migration system that it utilises are a sequential execution of model transformation \cite{b10}
-that is quite similar to our approach. 
-However, this research uses much more complex software migration modelling 
+that is quite similar to our approach.
+However, this research uses much more complex software migration modelling
 methodologies that is slightly irrelevant with our current study objectives. These are including
 the usage of service model and migration path model to defines common meta-data for semantic integration.
 \section{Conclusion}
-In conclusion, our study contributes to another area in software migration with 
+In conclusion, our study contributes to another area in software migration with
 model-driven engineering methodologies, focusing on the hybrid application domain.
-At this stage, our approach only proves a small fraction of the hybrid application migration because 
+At this stage, our approach only proves a small fraction of the hybrid application migration because
 this study only focused on one framework (Ionic) and only based on the selected versions (version 3 to version 4).
 \newline \newline
 At the moment, within various constraints, the validation tool that we had developed only handles basic migration functionalities.
@@ -371,25 +368,25 @@ be insufficient to handle more complex functionalities as described in our limit
 \newline \newline
 This leads to many other challenges that need to be tackled in the proposed methods to fully migrate the Ionic version 3 project
 to version 4. The main goal in this study is to prove the feasibility of migration hybrid application with model-driven engineering
-methods, and it is proven to be true. Therefore, building fully-functional software migration tool for hybrid application is intentionally 
-left for future work. 
+methods, and it is proven to be true. Therefore, building fully-functional software migration tool for hybrid application is intentionally
+left for future work.
 \newline \newline
-Here, we used the Eclipse Modeling Framework as validator and main migration tool to handle migration process of 
-the Ionic framework from version 3 to version 4. Within this tool, the abstraction level was intentionally 
-increased for the cohesiveness and extensibility of migration functions. By following our approaches and methodologies, 
-future researchers could add and upgrade the tool to handle more complex functionalities according 
+Here, we used the Eclipse Modeling Framework as validator and main migration tool to handle migration process of
+the Ionic framework from version 3 to version 4. Within this tool, the abstraction level was intentionally
+increased for the cohesiveness and extensibility of migration functions. By following our approaches and methodologies,
+future researchers could add and upgrade the tool to handle more complex functionalities according
 to limitations as described above.
 \newline \newline
-At the moment, our approaches are only applicable to solve basic software migration problems in hybrid application. 
-It requires more extensive researches to solve more complex functionalites, such as dealing with 
-architectural changes to arrange files in the correct directories. ADM (Architecture-Driven Modernization) and 
-KDM (Knowledge Discovery Metamodel) methods \cite{b6} \cite{b10} could potentially be the candidates to solve 
-current limitations in this study. 
+At the moment, our approaches are only applicable to solve basic software migration problems in hybrid application.
+It requires more extensive researches to solve more complex functionalites, such as dealing with
+architectural changes to arrange files in the correct directories. ADM (Architecture-Driven Modernization) and
+KDM (Knowledge Discovery Metamodel) methods \cite{b6} \cite{b10} could potentially be the candidates to solve
+current limitations in this study.
 \newline \newline
-There will be time in the future for this tool to be mature enough so that the migration of Ionic Framework applications 
+There will be time in the future for this tool to be mature enough so that the migration of Ionic Framework applications
 from version  3 to version 4 can be done thoroughly, without introducing any migration bugs.
-This tool is also envisioned to handle migration of Ionic framework from 
-any versions to the latest. In the future, by following our approaches and adding on further researches, 
+This tool is also envisioned to handle migration of Ionic framework from
+any versions to the latest. In the future, by following our approaches and adding on further researches,
 it could potentially migrate the other hybrid application frameworks.
 
 \begin{thebibliography}{00}
