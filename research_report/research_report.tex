@@ -159,8 +159,6 @@ Once the metamodel Java source code is generated and the \textit{migrate} operat
 
 Figure \ref{fig:model} shows the migration tool’s model, which simply contains instances of the entities that were created in the metamodel. Through this model, the project path is provided to the \textit{Migrator} entity instance, and the individual file paths relative to the project path are provided to each \textit{Component} entity instance.
 
-Sirius is an Eclipse project that allows for creating a graphical modelling workbench in EMF \cite{b12}. It has been used to visualise the model shown in Figure \ref{fig:model}.
-
 \subsubsection*{Acceleo}
 
 Acceleo is a template-based source code generation technology to facilitate model-to-text transformations (MTT). It is used as an add-on for EMF to be used with the model \cite{b13}.
@@ -175,11 +173,7 @@ The model in Figure \ref{fig:model} contains a project path, file path for each 
 
 The Acceleo script in Figure \ref{fig:acceleo} goes through each migrator’s components in the model, retrieves the project path and file path from a component, and calls that component’s \textit{migrate} operation, giving it both paths as parameters. The \textit{migrate} operation then returns a string that contains the contents of the entire file including the migration modifications. Acceleo will then write this string back to the file, essentially overwriting the entire file. However, the script ignores writing to a file when the \textit{migrate} operation returns an empty string. This can be useful for operations that do not require changing a file’s contents.
 
-\subsubsection*{Running the Migration Tool}
-
 Once the model is created, and the project path and file path are given, the Acceleo script is run by creating the appropriate run configuration in EMF.
-
-The model gives flexibility to the user by allowing a \textit{Component} to be removed if it shouldn’t be included in the migration process, and then added back in if it does. However, it should be remembered that the file path will always need to be given where the component resides in the source code, and each file will need to have a separate \textit{Component} created for it.
 
 \section{Evaluation}
 
@@ -206,6 +200,11 @@ had generated the correct Ionic 4 code.
 \caption{Migration Tool Model}
 \label{fig:model}
 \end{figure}
+
+Sirius is an Eclipse project that allows for creating a graphical modelling workbench in EMF \cite{b12}. It has been used to visualise the model shown in Figure \ref{fig:model}.
+
+The model in figure \ref{fig:model} gives flexibility to the user by allowing a \textit{Component} to be removed if it shouldn’t be included in the migration process, and then added back in if it does. However, it should be remembered that the file path will always need to be given where the component resides in the source code, and each file will need to have a separate \textit{Component} created for it.
+
 \subsection{Code Generation}
 The results of the migration tool we developed were quite favorable. The case study
 involved migrating three categories of changes:
