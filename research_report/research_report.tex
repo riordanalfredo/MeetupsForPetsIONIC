@@ -16,8 +16,6 @@
 \begin{document}
 
 \title{Model Driven Approach for Migration Problem in Hybrid App Development\\}
-
-%TODO: Insert names for each team member%
 \author{\IEEEauthorblockN{Zeeshan Khan$^{1}$}
 \IEEEauthorblockA{\textit{Faculty of IT} \\
 \textit{Monash University}\\
@@ -47,7 +45,7 @@ Melbourne, Australia \\
 \and
 
 \IEEEauthorblockN{Tomaž Kosar$^{5}$}
-\IEEEauthorblockA{\textit{Faculty of Electrical Engineering and Computer Science} \\
+\IEEEauthorblockA{\textit{Faculty of Electrical Engineering}\\ \textit{and Computer Science}\\
 \textit{University of Maribor}\\
 Maribor, Slovenia \\
 \href{mailto:tomaz.kosar@um.si}{tomaz.kosar@um.si}}
@@ -88,16 +86,10 @@ migration process with high accuracy and consistency as intended. In addition, i
 Therefore, model-driven approaches might solve software migration problems towards hybrid app development in regards to technical and business aspects
 that industry is currently facing. Using a model-driven approach as well as focusing on Ionic versions 3 and 4, the research undertaken will determine whether
 the issue of model driven approaches for migration can be applied.
-\\ This report will go into detail about our research questions and then move into how we approached the problem. Afterwards, we will evaluate our research, looking specifically
+\\ This report will go into detail about our research questions in Section II and then move into how we approached the problem in Section III. In Section IV we will evaluate our research, looking specifically
 at our case study (Meetup For Pets) and other Ionic version 3 projects. Futhermore, the model will be discussed in detail as well as the code generated using this model. Subsequently,  we will discuss our
-experiences applying a model-driven approach to solve the migration issue and tie in some other related literature to our own work. Eventually, we will formulate a conclusion and mention possible
+experiences applying a model-driven approach in Section V to solve the migration issue and tie in some other related literature to our own work in Section VI. Eventually, we will formulate a conclusion in Section VII and mention possible
 future work that our research may have.
-\newline \newline The contributions of this work are as follows:
-\begin{itemize}
-    \item We will introduce a case study Ionic 3 application (MeetUp For Pets) built primarily to test the viability of a proposed model
-    \item A metamodel will be built as well as a model which performs code generation to convert from Ionic 3 to Ionic 4
-    \item Our findings and evaluations will then be presented on the feasibility of using a model driven approach for migrating using the Ionic Framework as the primary focus
-\end{itemize}
 
 \section{Research Question}
 Looking into the problem a bit more, we have devised a main research question below.
@@ -178,9 +170,10 @@ Once the model is created, and the project path and file path are given, the Acc
 \section{Evaluation}
 
 \subsection{Case Study}
-As a proof-of-concept, the application that will be developed for our case study will be called \textbf{Meetups for Pets}. It is a hybrid application written
+As a proof-of-concept, the application that will be developed for our case study will be called \textbf{Meetups for Pets} (\url{https://github.com/rbnguyen231/Meetup-For-Pets}). It is a hybrid application written
 in Ionic version 3 to connect pet enthusiasts to promote face-to-face interactions with pets and their owners. The users will have the ability to organise a
-meetups with each pet’s owner. The main purpose of this case study is to test the model-driven migration tool, this can be shown in Figure \ref{fig:meetupIonic}
+meetups with each pet’s owner given a selection of pets. Furthermore, a user can add their own pets and upload or take a photo using the camera of their pet. Finally,
+if a meetup is organised the event will be added to their calendar on their device. The main purpose of this case study is to test the model-driven migration tool, this can be shown in Figure \ref{fig:meetupIonic}
 \begin{figure}[!htb]%
     \centering
     \subfloat[The home page of Meetup for Pets]{{\includegraphics[scale=0.1]{find_pets.png} }}%
@@ -191,7 +184,7 @@ meetups with each pet’s owner. The main purpose of this case study is to test 
 \end{figure}
 \\ In a real-world scenario, an application would normally take advantage of the hardware capabilities of the device it is running on.
 Therefore, there are some Ionic native framework features that were included, such as camera, contacts, calendar, and messaging.
-\\ Using the case study above, we attempted to perform some manual migration to look deeper into the issues that may arise when migrating. In our research we had also attempted to use another open-source Ionic 3 application from GitHub \cite{b14} in order to test if our model
+\\ Using the case study above, we attempted to perform some manual migration to look deeper into the issues that may arise when migrating. In our research we had also attempted to use another open-source Ionic 3 application from GitHub (\url{https://github.com/growu/drip-ionic3}) in order to test if our model
 had generated the correct Ionic 4 code.
 
 \subsection{The Model}
@@ -203,7 +196,7 @@ had generated the correct Ionic 4 code.
 
 Sirius is an Eclipse project that allows for creating a graphical modelling workbench in EMF \cite{b12}. It has been used to visualise the model shown in Figure \ref{fig:model}.
 
-The model in figure \ref{fig:model} gives flexibility to the user by allowing a \textit{Component} to be removed if it shouldn’t be included in the migration process, and then added back in if it does. However, it should be remembered that the file path will always need to be given where the component resides in the source code, and each file will need to have a separate \textit{Component} created for it.
+The model in Figure \ref{fig:model} gives flexibility to the user by allowing a \textit{Component} to be removed if it shouldn’t be included in the migration process, and then added back in if it does. However, it should be remembered that the file path will always need to be given where the component resides in the source code, and each file will need to have a separate \textit{Component} created for it.
 
 \subsection{Code Generation}
 The results of the migration tool we developed were quite favorable. The case study
@@ -320,10 +313,10 @@ The ADM approach that is described in this study could potentially be part of ou
 In terms of methodologies, our study is closely related to the FASMM approach as described by Forite, et al. \cite{b3} .
 This study provides extensive guides and methods to conduct software migration. The migration
 process that it is aiming is at the short and non-optimised migration phase.
-It is frequently quickly done and not necessarily in an optimized way. For example,
-inaccurate functionalities implementation, loose new architecture, and non-capitalised gained knowledge
-during the migration. These conditions are relatable with the environemnt of our current study.
-Therefore, our study followed the described methodologies that enables validation of
+It is quickly done and not necessarily in an optimized way. For example,
+inaccurate functionality implementation, loosely added new architecture, and non-capitalised gained knowledge
+during the migration. These conditions are relatable with the environment of our current study.
+Therefore, our study followed the described methodologies that enables the validation of a
 hybrid application migration process with model-driven engineering techniques. It also allows
 capitalising knowledge as transformation rules, to make it highly reusable in the future migration projects.
 \newline \newline
@@ -335,8 +328,8 @@ of different languages to specific mobile application framework.
 They also provided insights on how model-driven engineering processes are economically
 profitable and are cost-effective.
 \newline \newline
-In the paper \cite{b9}, author describes the process of migrating a large-scale software application from Mainframe to J2EE
-using Model-Driven Engineering process. The migration process in this study starts by describing the general
+In this paper \cite{b9}, the author describes the process of migrating a large-scale software application from Mainframe to J2EE
+using a Model-Driven Engineering process. The migration process in this study starts by describing the general
 processes of the current legacy system.
 First, a parser is created to make an abstract syntax tree from the legacy code. Then, it is processed
 by a transformation to build a model that conforms to the meta-model of the legacy language.
@@ -353,8 +346,12 @@ However, this research uses much more complex software migration modelling
 methodologies that is slightly irrelevant with our current study objectives. These are including
 the usage of service model and migration path model to defines common meta-data for semantic integration.
 \section{Conclusion}
-In conclusion, our study contributes to another area in software migration with
-model-driven engineering methodologies, focusing on the hybrid application domain.
+In conclusion, our study contributes to the following in the domain of software migration and model-driven approaches:
+\begin{itemize}
+    \item We have introduced a case study Ionic 3 hybrid application (MeetUp For Pets) built primarily to test the viability of a proposed migration tool
+    \item An Ionic migration tool was built which performs code generation to convert from Ionic 3 to Ionic 4
+    \item We have evaluated on the feasibility of using a model driven approach for migrating using the Ionic Framework as the primary focus
+\end{itemize}
 At this stage, our approach only proves a small fraction of the hybrid application migration because
 this study only focused on one framework (Ionic) and only based on the selected versions (version 3 to version 4).
 \newline \newline
@@ -364,26 +361,26 @@ be insufficient to handle more complex functionalities as described in our limit
 \newline \newline
 This leads to many other challenges that need to be tackled in the proposed methods to fully migrate the Ionic version 3 project
 to version 4. The main goal in this study is to prove the feasibility of migration hybrid application with model-driven engineering
-methods, and it is proven to be true. Therefore, building fully-functional software migration tool for hybrid application is intentionally
+methods, and it is proven to be true. Therefore, building a fully-functional software migration tool for a hybrid application is intentionally
 left for future work.
 \newline \newline
-Here, we used the Eclipse Modeling Framework as validator and main migration tool to handle migration process of
+Here, we used the Eclipse Modeling Framework as the validator and the main migration tool to handle the migration process of
 the Ionic framework from version 3 to version 4. Within this tool, the abstraction level was intentionally
 increased for the cohesiveness and extensibility of migration functions. By following our approaches and methodologies,
 future researchers could add and upgrade the tool to handle more complex functionalities according
-to limitations as described above.
+to the limitations as described above.
 \newline \newline
-At the moment, our approaches are only applicable to solve basic software migration problems in hybrid application.
-It requires more extensive researches to solve more complex functionalites, such as dealing with
+At the moment, our approaches are only applicable to solve basic software migration problems in hybrid applications.
+It requires more extensive research to solve more complex functionalites, such as dealing with
 architectural changes to arrange files in the correct directories. ADM (Architecture-Driven Modernization) and
-KDM (Knowledge Discovery Metamodel) methods \cite{b6} \cite{b10} could potentially be the candidates to solve
+KDM (Knowledge Discovery Metamodel) methods \cite{b6} \cite{b10} could potentially be candidates to solve the
 current limitations in this study.
 \newline \newline
 There will be time in the future for this tool to be mature enough so that the migration of Ionic Framework applications
 from version  3 to version 4 can be done thoroughly, without introducing any migration bugs.
-This tool is also envisioned to handle migration of Ionic framework from
-any versions to the latest. In the future, by following our approaches and adding on further researches,
-it could potentially migrate the other hybrid application frameworks.
+This tool is also envisioned to handle the migration of the Ionic framework from
+any version to the latest. In the future, by following our approaches and adding on further research,
+it could potentially migrate other hybrid application frameworks.
 
 \begin{thebibliography}{00}
 \bibitem{b1} "IBM Knowledge Center", Ibm.com, 2019. [Online]. Available: \url{https://www.ibm.com/support/knowledgecenter/en/SSEP7J_10.2.1/com.ibm.swg.ba.cognos.ug_mfdm.10.2.1.doc/c_mfdm_chal_mig.html}. [Accessed: 07-Sep-2019].
@@ -400,7 +397,6 @@ it could potentially migrate the other hybrid application frameworks.
 \bibitem{b11} R. Gronback, "Eclipse Modeling Project | The Eclipse Foundation", Eclipse.org, 2019. [Online]. Available: \url{https://www.eclipse.org/modeling/emf/}. [Accessed: 04- Nov- 2019].
 \bibitem{b12} "Sirius - Overview", Eclipse.org, 2019. [Online]. Available: \url{https://www.eclipse.org/sirius/overview.html}. [Accessed: 04- Nov- 2019].
 \bibitem{b13} "Acceleo | Home", Eclipse.org, 2019. [Online]. Available: \url{https://www.eclipse.org/acceleo/}. [Accessed: 04- Nov- 2019].
-\bibitem{b14} "growu/drip-ionic3", GitHub, 2019. [Online]. Available: \url{https://github.com/growu/drip-ionic3}, 2019 [Accessed: 14-Oct-2019].
 \end{thebibliography}
 \vspace{12pt}
 \color{red}
